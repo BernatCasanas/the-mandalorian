@@ -17,6 +17,7 @@ public class Core : Entity
         SHOOTING,
         SHOOT,
         GADGET_SHOOT,
+        GADGET_SHOOT_CHARGE,
         CHARGING_SEC_SHOOT,
         SECONDARY_SHOOT,
         SECONDARY_SHOOT_END,
@@ -33,7 +34,8 @@ public class Core : Entity
         IN_SHOOTING_END,
         IN_SHOOT,
         IN_SHOOT_END,
-        IN_GADGET_SHOOT,
+        IN_GADGET_SHOOT_START,
+        IN_GADGET_SHOOT_LAUNCH,
         IN_GADGET_SHOOT_END,
         IN_CHARGE_SEC_SHOOT,
         IN_CHARGE_SEC_SHOOT_END,
@@ -141,13 +143,11 @@ public class Core : Entity
     // Shooting
     public float baseFireRate = 0.2f;
     private float currFireRate = 0f;
-    public float gadgetFireRate = 0.2f;
     public float heatReductionSpeed = 22.5f;
     public float dashHeatReductionMult = 0.75f;
     public float onGrenadeHeatReduction = 5f;
     public float onSniperHeatReduction = 10f;
     private float shootingTimer = 0.0f;
-    private float gadgetShootTimer = 0.0f;
     private bool primaryWeaponOverHeat = false;
 
     private bool hasShot = false;
@@ -171,8 +171,16 @@ public class Core : Entity
     private Material sniperBullet2 = null;
     private GameObject myGrenade1 = null;
     private GameObject myGrenade2 = null;
-    public float grenadeForwardForceMult = 1f;
-    public float grenadeUpForce = 1f;
+    public float minGrenadeForwardForceMult = 1f;
+    public float maxGrenadeForwardForceMult = 1f;
+    public float minGrenadeUpForce = 1f;
+    public float maxGrenadeUpForce = 1f;
+    public float grenadeLaunchMaxTime = 0f;
+    public float grenadeMinLauncTime = 0.2f;
+    private float grenadeLaunchMinTimer = 0.0f;
+    private float grenadeLaunchTimer = 0f;
+    private bool canLaunchGrenade = false;
+
 
     // Secondary Shoot (sniper)
     public float timeToPerfectCharge = 0.424f;
@@ -268,7 +276,7 @@ public class Core : Entity
         baseFireRate = Math.Max(baseFireRate, 0.1f);
 
         normalShootSpeed = shootAnimationTotalTime / baseFireRate;
-        gadgetShootSkill = shootAnimationTotalTime / gadgetFireRate;
+        gadgetShootSkill = shootAnimationTotalTime / grenadeMinLauncTime;
 
         myAimbot = gameObject.GetComponent<AimBot>();
 
@@ -375,6 +383,41 @@ public class Core : Entity
             GameObject sniper2Cooldown = InternalCalls.FindObjectWithName("SniperCooldown2");
             if (sniper2Cooldown != null)
                 sniperBullet2 = sniper2Cooldown.GetComponent<Material>();
+
+            if (myGrenade1 == null)
+            {
+                myGrenade1 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + 0.5f, shootPoint.transform.globalRotation, null);
+                if (myGrenade1 != null)
+                {
+                    SlowGrenade grenadeComp = myGrenade1.GetComponent<SlowGrenade>();
+
+                    if (grenadeComp != null)
+                    {
+                        grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized, shootPoint.transform.globalRotation, Vector3.zero);
+                        grenadeComp.GrenadeFinish();
+                    }
+
+                    myGrenade1.Enable(false);
+                }
+            }
+
+            if (myGrenade2 == null)
+            {
+                myGrenade2 = InternalCalls.CreatePrefab("Library/Prefabs/660835192.prefab", shootPoint.transform.globalPosition + 0.5f, shootPoint.transform.globalRotation, null);
+                if (myGrenade2 != null)
+                {
+                    SlowGrenade grenadeComp = myGrenade2.GetComponent<SlowGrenade>();
+
+                    if (grenadeComp != null)
+                    {
+                        grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized, shootPoint.transform.globalRotation, Vector3.zero);
+                        grenadeComp.GrenadeFinish();
+                    }
+
+                    myGrenade2.Enable(false);
+                }
+
+            }
 
             if (secSound == null)
             {
@@ -490,16 +533,23 @@ public class Core : Entity
             if (shootingTimer <= 0 && stopShootingTime <= 0f)
             {
                 inputsList.Add(INPUT.IN_SHOOT);
-                //Debug.Log("In shoot");
             }
         }
 
-        if (gadgetShootTimer > 0)
+        if (grenadeLaunchMinTimer > 0)
         {
-            gadgetShootTimer -= myDeltaTime;
+            grenadeLaunchMinTimer -= myDeltaTime;
 
-            if (gadgetShootTimer <= 0)
-                inputsList.Add(INPUT.IN_GADGET_SHOOT_END);
+            if (grenadeLaunchMinTimer <= 0)
+                canLaunchGrenade = true;
+        }
+
+        if (grenadeLaunchTimer > 0)
+        {
+            grenadeLaunchTimer -= myDeltaTime;
+
+            if (grenadeLaunchTimer <= 0)
+                inputsList.Add(INPUT.IN_GADGET_SHOOT_LAUNCH);
         }
 
         if (skill_damageReductionDashActive && skill_damageReductionDashTimer > 0)
@@ -526,7 +576,6 @@ public class Core : Entity
 
             if (sniperShotTimer <= 0.0f)
             {
-                //inputsList.Add(INPUT.IN_CHARGE_SEC_SHOOT_END);
                 inputsList.Add(INPUT.IN_IDLE);
             }
         }
@@ -655,8 +704,11 @@ public class Core : Entity
 
             if (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_DOWN && grenadesFireRateTimer <= 0.0f && lockAttacks == false)
             {
-                inputsList.Add(INPUT.IN_GADGET_SHOOT);
-                grenadesFireRateTimer = grenadesFireRate;
+                inputsList.Add(INPUT.IN_GADGET_SHOOT_START);
+            }
+            else if ((Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_UP || (Input.GetGamepadButton(DEControllerButton.Y) == KeyState.KEY_IDLE && currentState == STATE.GADGET_SHOOT_CHARGE)) && canLaunchGrenade == true)
+            {
+                inputsList.Add(INPUT.IN_GADGET_SHOOT_LAUNCH);
             }
 
 
@@ -919,9 +971,9 @@ public class Core : Entity
                             currentState = STATE.SECONDARY_SHOOT;
                             break;
 
-                        case INPUT.IN_GADGET_SHOOT:
-                            currentState = STATE.GADGET_SHOOT;
-                            StartGadgetShoot();
+                        case INPUT.IN_GADGET_SHOOT_START:
+                            currentState = STATE.GADGET_SHOOT_CHARGE;
+                            StartGadgetCharge();
                             break;
 
                         case INPUT.IN_CHARGE_SEC_SHOOT:
@@ -935,7 +987,6 @@ public class Core : Entity
                             break;
                     }
                     break;
-
 
                 case STATE.MOVE:
                     switch (input)
@@ -958,10 +1009,10 @@ public class Core : Entity
                             StartShooting();
                             break;
 
-                        case INPUT.IN_GADGET_SHOOT:
-                            currentState = STATE.GADGET_SHOOT;
+                        case INPUT.IN_GADGET_SHOOT_START:
+                            currentState = STATE.GADGET_SHOOT_CHARGE;
                             MoveEnd();
-                            StartGadgetShoot();
+                            StartGadgetCharge();
                             break;
 
 
@@ -979,7 +1030,6 @@ public class Core : Entity
                     }
                     break;
 
-
                 case STATE.DASH:
                     switch (input)
                     {
@@ -995,7 +1045,6 @@ public class Core : Entity
                             break;
                     }
                     break;
-
 
                 case STATE.SHOOTING:
                     switch (input)
@@ -1016,10 +1065,10 @@ public class Core : Entity
                             StartShoot();
                             break;
 
-                        case INPUT.IN_GADGET_SHOOT:
-                            currentState = STATE.GADGET_SHOOT;
+                        case INPUT.IN_GADGET_SHOOT_START:
+                            currentState = STATE.GADGET_SHOOT_CHARGE;
                             EndShooting();
-                            StartGadgetShoot();
+                            StartGadgetCharge();
                             break;
 
                         case INPUT.IN_CHARGE_SEC_SHOOT:
@@ -1119,14 +1168,42 @@ public class Core : Entity
                             currentState = STATE.SECONDARY_SHOOT;
                             break;
 
-                        case INPUT.IN_GADGET_SHOOT:
-                            currentState = STATE.GADGET_SHOOT;
-                            StartGadgetShoot();
+                        case INPUT.IN_GADGET_SHOOT_START:
+                            currentState = STATE.GADGET_SHOOT_CHARGE;
+                            StartGadgetCharge();
                             break;
 
                         case INPUT.IN_CHARGE_SEC_SHOOT:
                             currentState = STATE.CHARGING_SEC_SHOOT;
                             StartSecCharge();
+                            break;
+
+                        case INPUT.IN_DEAD:
+                            currentState = STATE.DEAD;
+                            StartDead();
+                            break;
+                    }
+                    break;
+
+                case STATE.GADGET_SHOOT_CHARGE:
+                    switch (input)
+                    {
+                        case INPUT.IN_IDLE:
+                            currentState = STATE.IDLE;
+                            EndGadgetCharge();
+                            StartIdle();
+                            break;
+
+                        case INPUT.IN_GADGET_SHOOT_LAUNCH:
+                            currentState = STATE.GADGET_SHOOT;
+                            EndGadgetCharge();
+                            StartGadgetShoot();
+                            break;
+
+                        case INPUT.IN_DASH:
+                            currentState = STATE.DASH;
+                            EndShootCharge();
+                            StartDash();
                             break;
 
                         case INPUT.IN_DEAD:
@@ -1207,6 +1284,11 @@ public class Core : Entity
                 ReducePrimaryWeaponHeat();
                 UpdateSecondaryShotAmmo();
                 UpdateGadgetShoot();
+                break;
+            case STATE.GADGET_SHOOT_CHARGE:
+                ReducePrimaryWeaponHeat();
+                UpdateSecondaryShotAmmo();
+                UpdateGadgetCharge();
                 break;
             case STATE.SECONDARY_SHOOT_END:
                 ReducePrimaryWeaponHeat();
@@ -1335,31 +1417,49 @@ public class Core : Entity
         }
     }
 
+    private void StartGadgetCharge()
+    {
+        grenadeLaunchTimer = grenadeLaunchMaxTime;
+        grenadeLaunchMinTimer = grenadeMinLauncTime;
+        canLaunchGrenade = false;
+
+        Animator.Play(gameObject, "Shoot", gadgetShootSkill * speedMult);
+        if (blaster != null)
+        {
+            blaster.Enable(true);
+            Animator.Play(blaster, "Shoot", normalShootSpeed * speedMult);
+        }
+        UpdateAnimationSpd(gadgetShootSkill * speedMult);
+
+    }
+
+    private void UpdateGadgetCharge()
+    {
+        UpdateAnimationSpd(gadgetShootSkill * speedMult);
+    }
+
+    private void EndGadgetCharge()
+    { }
 
     private void StartGadgetShoot()
     {
-        Animator.Play(gameObject, "Shoot", gadgetShootSkill * speedMult);
         Audio.PlayAudio(gameObject, "Play_Mando_Grenade_Throw");
         lastAction = ACTION.SHOOT_GRENADE;
+
+        grenadesFireRateTimer = grenadesFireRate;
 
         if (HasStatus(STATUS_TYPE.REX_SEC_BLASTER) && GetStatusData(STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL).severity < 20)
         {
             AddStatus(STATUS_TYPE.REX_SEC_BLASTER_SUBSKILL, STATUS_APPLY_TYPE.ADDITIVE, GetStatusData(STATUS_TYPE.REX_SEC_BLASTER).severity, 5);
         }
 
-        if (blaster != null)
-        {
-            blaster.Enable(true);
-            Animator.Play(blaster, "Shoot", normalShootSpeed * speedMult);
-        }
-
-        UpdateAnimationSpd(gadgetShootSkill * speedMult);
-        gadgetShootTimer = gadgetFireRate;
         grenade_reloading = true;
         if (HasStatus(STATUS_TYPE.CAD_BANE_BOOTS))
             GetStatusData(STATUS_TYPE.CAD_BANE_BOOTS).statChange = 1 + GetStatusData(STATUS_TYPE.CAD_BANE_BOOTS).severity / 100;
 
         ReducePrimaryWeaponHeat(onGrenadeHeatReduction);
+
+        inputsList.Add(INPUT.IN_GADGET_SHOOT_END);
     }
 
     private void UpdateGadgetShoot()
@@ -1375,29 +1475,10 @@ public class Core : Entity
             return;
         }
 
+
+
         if (blaster != null)
             blaster.Enable(false);
-        //Vector3 scale = new Vector3(0.2f, 0.2f, 0.2f);
-        //Quaternion rotation = Quaternion.RotateAroundAxis(Vector3.up, 0.383972f);
-
-        //TODO: Some of this is hardcoded, will change it once I have all the Mando's new numbers. Besis, Alex <3
-
-        // bigGrenade grenadeComp = InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation * rotation, scale).GetComponent<bigGrenade>();
-
-        //if(grenadeComp != null)
-        //{
-        //    Vector3 targetPos = grenadeComp.gameObject.transform.globalPosition + grenadeComp.gameObject.transform.GetForward() * 1.9f;
-        //    grenadeComp.InitGrenade(targetPos, 0.204f, 10);
-        //}
-
-        //rotation = Quaternion.RotateAroundAxis(Vector3.up, -0.383972f);
-        //grenadeComp = InternalCalls.CreatePrefab("Library/Prefabs/142833782.prefab", shootPoint.transform.globalPosition - 0.5f, shootPoint.transform.globalRotation * rotation, scale).GetComponent<bigGrenade>();
-
-        //if (grenadeComp != null)
-        //{
-        //    Vector3 targetPos = grenadeComp.gameObject.transform.globalPosition + grenadeComp.gameObject.transform.GetForward() * 1.9f;
-        //    grenadeComp.InitGrenade(targetPos, 0.204f, 10);
-        //}
         Input.PlayHaptic(2f, 30);
 
         Vector3 baseScale = new Vector3(0.2f, 0.2f, 0.2f);
@@ -1407,10 +1488,31 @@ public class Core : Entity
             scale *= 1 + GetStatusData(STATUS_TYPE.BOBBA_STUN_AMMO).severity / 100;
 
         GameObject thrownGrenade = null;
+        Vector3 forceDir = shootPoint.transform.GetForward();
+        Quaternion grenadeRotation = shootPoint.transform.globalRotation;
 
-        Vector3 myForce = shootPoint.transform.GetForward() * grenadeForwardForceMult;
+        GameObject aimHelpTarget = GetAimbotObjective(10f);
 
-        myForce.y = grenadeUpForce;
+        if (aimHelpTarget != null)
+        {
+            Vector3 direction = (aimHelpTarget.transform.globalPosition - shootPoint.transform.globalPosition).normalized;
+            float angle = (float)Math.Atan2(direction.x, direction.z);
+
+            if (Math.Abs(angle * Mathf.Rad2Deg) < 1.0f)
+                return;
+
+            grenadeRotation = Quaternion.Slerp(grenadeRotation, Quaternion.RotateAroundAxis(Vector3.up, angle), 1f);
+        }
+
+
+        float forceMult = 1f - (grenadeLaunchTimer / grenadeLaunchMaxTime);
+        forceMult *= forceMult;
+
+        Vector3 myForce = forceDir * Mathf.Lerp(minGrenadeForwardForceMult, maxGrenadeForwardForceMult, forceMult);
+        myForce.y = Mathf.Lerp(minGrenadeUpForce, maxGrenadeUpForce, forceMult);
+
+        grenadeLaunchTimer = 0f;
+        grenadeLaunchMinTimer = 0f;
 
         if (myGrenade1 == null)
         {
@@ -1427,18 +1529,21 @@ public class Core : Entity
         }
         else if (myGrenade1 != null && myGrenade1.IsEnabled() == true && myGrenade2 != null && myGrenade2.IsEnabled() == false)
         {
-            thrownGrenade = myGrenade1;
+            thrownGrenade = myGrenade2;
             myGrenade2.Enable(true);
 
         }
         else
+        {
             Debug.Log("Mando needs more grenades!");
+            return;
+        }
 
         SlowGrenade grenadeComp = thrownGrenade.GetComponent<SlowGrenade>();
 
         if (grenadeComp != null)
         {
-            grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized, shootPoint.transform.globalRotation, myForce);
+            grenadeComp.GrenadeInit(shootPoint.transform.globalPosition + shootPoint.transform.GetForward().normalized, grenadeRotation, myForce);
         }
 
         thrownGrenade.transform.localScale = scale;

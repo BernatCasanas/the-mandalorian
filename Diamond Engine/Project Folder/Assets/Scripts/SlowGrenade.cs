@@ -34,6 +34,7 @@ public class SlowGrenade : DiamondComponent
             if (myScale == Vector3.zero)
                 myScale = this.gameObject.transform.localScale;
 
+            detonate = false;
             start = false;
         }
 
@@ -82,7 +83,7 @@ public class SlowGrenade : DiamondComponent
                 }
 
 
-                float slow = 0.33f;
+                float slow = 0.4f;
                 if (Core.instance != null)
                     if (Core.instance.HasStatus(STATUS_TYPE.SEC_SLOW))
                         slow *= 1 + Core.instance.GetStatusData(STATUS_TYPE.SEC_SLOW).severity;
@@ -135,7 +136,7 @@ public class SlowGrenade : DiamondComponent
                                 }
                                 else if (procActivation == true)
                                 {
-                                    Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
+                                    Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.4f);
                                     bossScript.TakeDamage(grenadeDamage * bossScript.damageRecieveMult);
                                     bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
                                 }
@@ -155,7 +156,7 @@ public class SlowGrenade : DiamondComponent
                                 }
                                 else if (procActivation == true)
                                 {
-                                    Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
+                                    Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.4f);
                                     bossScript.TakeDamage(grenadeDamage * bossScript.damageRecieveMult);
                                     bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
                                 }
@@ -175,7 +176,7 @@ public class SlowGrenade : DiamondComponent
                                 }
                                 else if (procActivation == true)
                                 {
-                                    Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
+                                    Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.4f);
                                     bossScript.TakeDamage(grenadeDamage * bossScript.damageRecieveMult);
                                     bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
                                 }
@@ -251,7 +252,6 @@ public class SlowGrenade : DiamondComponent
         if (!collidedGameObject.CompareTag("Player") && !collidedGameObject.CompareTag("StormTrooperBullet") && detonate == false)
         {
             Detonate();
-            this.gameObject.SetVelocity(new Vector3(0, 0, 0));
 
             BoxCollider myBoxColl = this.gameObject.GetComponent<BoxCollider>();
 
@@ -314,6 +314,8 @@ public class SlowGrenade : DiamondComponent
     {
         if (detonate == true)
             return;
+
+        this.gameObject.SetVelocity(new Vector3(0, 0, 0));
 
         if (grenadeActiveObj != null)
         {
@@ -463,9 +465,22 @@ public class SlowGrenade : DiamondComponent
         enemies.Clear();
 
         myScale = this.gameObject.transform.localScale;
+
+        if (grenadeActiveObj != null)
+        {
+            grenadeActivePar = grenadeActiveObj.GetComponent<ParticleSystem>();
+            if (grenadeActivePar != null)
+                grenadeActivePar.Stop();
+        }
+        if (granadeAreaObj != null)
+        {
+            granadeArea = granadeAreaObj.GetComponent<ParticleSystem>();
+            if (granadeArea != null)
+                granadeArea.Stop();
+        }
     }
 
-    private void GrenadeFinish()
+    public void GrenadeFinish()
     {
         this.gameObject.transform.localPosition = Vector3.positiveInfinity;
 
