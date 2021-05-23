@@ -178,7 +178,8 @@ public static class RoomSwitch
 
     public static void PlayLevelEnvironment()
     {
-        switch(currentLevelIndicator)
+        Audio.StopOneAudio(EnvironmentSourceLocate.instance.gameObject, "Play_Spaceship_Interior_Ambience");
+        switch (currentLevelIndicator)
         {
             case LEVELS.ONE:
                 Audio.SetState("Game_State", "Run");

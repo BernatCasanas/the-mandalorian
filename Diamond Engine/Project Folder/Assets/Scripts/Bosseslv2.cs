@@ -68,8 +68,6 @@ public class Bosseslv2 : Entity
     public float projectileAngle = 30.0f;
     public float projectileRange = 6.0f;
     public float projectileDamage = 10.0f;
-    public float rushDamage = 15.0f;
-    public float damageBounceRush = 20f;
 
     //Jump Slam
     private JUMPSLAM jumpslam = JUMPSLAM.NONE;
@@ -92,6 +90,8 @@ public class Bosseslv2 : Entity
     private bool firstThrow = true;
     public GameObject companion = null;
     private bool rushOnce = true;
+
+    private bool jumpOnce = true;
     enum JUMPSLAM : int
     {
         NONE = -1,
@@ -114,7 +114,7 @@ public class Bosseslv2 : Entity
     {
         Debug.Log("Health 2 Wampa " + healthPoints.ToString());
         maxHealthPoints = healthPoints;
-
+        jumpOnce = true;
         if (gameObject.CompareTag("Skel"))
         {
             //presentationTime = Animator.GetAnimationDuration(gameObject, "Skel_Presentation") - 0.016f;
@@ -128,6 +128,7 @@ public class Bosseslv2 : Entity
         {
             presentationTime = Animator.GetAnimationDuration(gameObject, "WP_Roar") - 0.016f;
         }
+        rushOnce = true;
     }
 
     #region PROJECTILE
@@ -220,6 +221,7 @@ public class Bosseslv2 : Entity
         secondShot = false;
         resting = true;
         restingTimer = restingTime;
+        Audio.StopAudio(gameObject);
     }
     #endregion
 
@@ -322,11 +324,8 @@ public class Bosseslv2 : Entity
     public void StartBounceRush()
     {
         if (gameObject.CompareTag("Skel"))
-            Audio.PlayAudio(gameObject, "Play_Skel_Preparation");
-        else if (gameObject.CompareTag("Wampa"))
-            Audio.PlayAudio(gameObject, "Play_Wampa_Rush");
-        if (gameObject.CompareTag("Skel"))
         {
+            Audio.PlayAudio(gameObject, "Play_Skel_Preparation");
             Animator.Play(gameObject, "Skel_Rush", speedMult);
             UpdateAnimationSpd(speedMult);
         }
@@ -384,7 +383,7 @@ public class Bosseslv2 : Entity
         UpdateAnimationSpd(speedMult);
         if (gameObject.CompareTag("Skel") && rushOnce)
         {
-            Audio.PlayAudio(gameObject, "Play_Skel_In_Progress");
+            Audio.PlayAudio(gameObject, "Play_Skel_Rush_In_Progress");
             rushOnce = false;
         }
     }
@@ -421,7 +420,6 @@ public class Bosseslv2 : Entity
 
     public void StartJumpSlam()
     {
-        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Jump_Snow");
         Debug.Log("Starting Jumping");
         jumpslam = JUMPSLAM.CHARGE;
         jumpslamTimer = chargeTime;
@@ -443,6 +441,11 @@ public class Bosseslv2 : Entity
                 //Debug.Log("Jump Slam: Charge");
                 if (jumpslamTimer > 0)
                 {
+                    if (jumpOnce)
+                    {
+                        Audio.PlayAudio(gameObject, "Play_Skel_Jump_Preparation");
+                        jumpOnce = false;
+                    }
                     jumpslamTimer -= myDeltaTime;
 
                     if (jumpslamTimer <= 0)
@@ -454,7 +457,8 @@ public class Bosseslv2 : Entity
                         {
                             Animator.Play(gameObject, "Skel_Jump_P2", speedMult);
                             UpdateAnimationSpd(speedMult);
-
+                            Audio.StopAudio(gameObject);
+                            Audio.PlayAudio(gameObject, "Play_Skel_Jump_In_Progress");
                             if (jumpPositionIndicator != null)
                             {
                                 jumpPositionIndicator.Enable(true);
@@ -518,13 +522,14 @@ public class Bosseslv2 : Entity
                         {
                             Animator.Play(gameObject, "Skel_Jump_P3", speedMult);
                             UpdateAnimationSpd(speedMult);
+                            jumpOnce = true;
+                            Audio.StopAudio(gameObject);
+                            Audio.PlayAudio(gameObject, "Play_Skel_Jump_Impact");
                         }
                         else if (gameObject.CompareTag("Wampa"))
                         {
 
                         }
-
-                        Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Jump_Impact");
                     }
                 }
                 //Audio.PlayAudio(gameObject, "Play_Wampa_Skell_Jump_Impact");
@@ -566,7 +571,7 @@ public class Bosseslv2 : Entity
         {
             colliderJumpSlam.GetComponent<AtackBosslv2>().active = false;
         }
-
+        Audio.StopAudio(gameObject);
     }
 
     #endregion

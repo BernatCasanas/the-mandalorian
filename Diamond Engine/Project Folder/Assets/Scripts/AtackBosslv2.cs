@@ -5,6 +5,7 @@ public class AtackBosslv2 : DiamondComponent
 {
     public float damage = 0.0f;
     public GameObject camera = null;
+    public GameObject boss = null;
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
@@ -15,6 +16,17 @@ public class AtackBosslv2 : DiamondComponent
             {
                 health.TakeDamage((int)damage);
                 gameObject.GetComponent<AtackBosslv2>().active = false;
+
+                if (boss != null) {
+                    if (boss.GetComponent<Wampa>() != null && boss.GetComponent<Wampa>().angry)
+                    {
+                        health.TakeDamage((int)damage);
+                    }
+                    else if (boss.GetComponent<Skel>() != null && boss.GetComponent<Skel>().angry)
+                    {
+                        health.TakeDamage((int)damage);
+                    }
+                }
 
                 if (camera != null)
                 {

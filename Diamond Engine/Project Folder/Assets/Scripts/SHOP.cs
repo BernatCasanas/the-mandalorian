@@ -38,7 +38,7 @@ public class SHOP : DiamondComponent
     public bool autoGenerateItems = true;
     public bool opening;
     public GameObject defaultButton = null;
-
+    private GameObject envObj = null;
     bool shopOpen = false;
     private bool start = true;
 
@@ -62,6 +62,7 @@ public class SHOP : DiamondComponent
             if (items[i] != null)
                 shopButtons[i] = items[i].GetComponent<ShopButtons>();
         }
+        envObj = InternalCalls.FindObjectWithName("Environment");
     }
 
     private void Start()
@@ -70,19 +71,21 @@ public class SHOP : DiamondComponent
             RandomiseItems();
 
         start = false;
-        if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
+        if (RoomSwitch.currentLevelIndicator-1 == RoomSwitch.LEVELS.ONE)
         {
             Audio.SetState("Game_State", "Run");
             Audio.SetState("Player_State", "Alive");
             if (MusicSourceLocate.instance != null)
                 Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+            Audio.PlayAudio(envObj, "Play_Post_Boss_Room_1_Ambience");
         }
-        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
+        else if (RoomSwitch.currentLevelIndicator-1 == RoomSwitch.LEVELS.TWO)
         {
             Audio.SetState("Game_State", "Run_2");
             Audio.SetState("Player_State", "Alive");
             if (MusicSourceLocate.instance != null)
                 Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+            Audio.PlayAudio(envObj, "Play_Post_Boss_Room_2_Ambience");
         }
         else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
         {
