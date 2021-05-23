@@ -260,7 +260,7 @@ public class Core : Entity
 
     private TUTO_STATES tuto_state = TUTO_STATES.NONE;
     public float fallDamage = 15f;
-
+    private string lastFootsteps = "";
     public void Awake()
     {
         #region VARIABLES WITH DEPENDENCIES
@@ -274,6 +274,7 @@ public class Core : Entity
         //Dash - if scene doesnt have its values
         //dashDuration = 0.2f;
         //dashDistance = 4.5f;
+        lastFootsteps = "Play_Footsteps_Stone_Mando";
         #endregion
 
         #region SHOOT
@@ -2043,16 +2044,18 @@ public class Core : Entity
 
     private void PlayFootstepsAudio()
     {
-
+        Audio.StopOneAudio(this.gameObject, lastFootsteps);
         if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.ONE)
         {
             if (floorType == FLOOR_TYPE.STONE)
             {
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Stone_Mando");
+                lastFootsteps = "Play_Footsteps_Stone_Mando";
             }
             else
             {
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Sand_Mando");
+                lastFootsteps = "Play_Footsteps_Sand_Mando";
             }
         }
         else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.TWO)
@@ -2060,15 +2063,19 @@ public class Core : Entity
             if (floorType == FLOOR_TYPE.METAL)
             {
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Metal_Platform_Mando");
+                lastFootsteps = "Play_Footsteps_Metal_Platform_Mando";
             }
             else if (floorType == FLOOR_TYPE.SNOW)
             {
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
+                lastFootsteps = "Play_Footsteps_Snow_Mando";
             }
             else if (floorType == FLOOR_TYPE.WATER)
             {
+                //Audio.StopOneAudio(this.gameObject, "Play_Mando_Damaging_Water");
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Water_Mando");
-                Audio.PlayAudio(gameObject, "Play_Mando_Damaging_Water");
+                //Audio.PlayAudio(this.gameObject, "Play_Mando_Damaging_Water");
+                lastFootsteps = "Play_Footsteps_Water_Mando";
             }
         }
         else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
@@ -2076,14 +2083,19 @@ public class Core : Entity
             if (floorType == FLOOR_TYPE.SNOW)
             {
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Snow_Mando");
+                lastFootsteps = "Play_Footsteps_Snow_Mando";
             }
             else if (floorType == FLOOR_TYPE.WATER)
             {
+                //Audio.StopOneAudio(this.gameObject, "Play_Mando_Damaging_Water");
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Water_Mando");
+                //Audio.PlayAudio(this.gameObject, "Play_Mando_Damaging_Water");
+                lastFootsteps = "Play_Footsteps_Water_Mando";
             }
             else
             {
                 Audio.PlayAudio(this.gameObject, "Play_Footsteps_Metal_Platform_Mando");
+                lastFootsteps = "Play_Footsteps_Metal_Platform_Mando";
             }
         }
 
