@@ -1305,6 +1305,7 @@ public class Rancor : Entity
         UpdateAnimationSpd(1f);
 
         Audio.PlayAudio(gameObject, "Play_Rancor_Death");
+        Audio.PlayAudio(gameObject, "Play_Victory_Music");
 
         if (hitParticles != null)
         {

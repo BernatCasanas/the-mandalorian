@@ -70,6 +70,7 @@ public class SlowGrenade : DiamondComponent
                 Audio.StopAudio(gameObject);
                 Audio.PlayAudio(gameObject, "Play_Mando_Grenade_Pulse_Wave");
                 procTimer = 0f;
+                SerchEnemiesByDistance();
             }
 
 
@@ -81,7 +82,6 @@ public class SlowGrenade : DiamondComponent
                     enemies.Remove(enemies[i]);
                     i--;
                 }
-
 
                 float slow = 0.4f;
                 if (Core.instance != null)
@@ -249,66 +249,31 @@ public class SlowGrenade : DiamondComponent
 
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
+
         if (!collidedGameObject.CompareTag("Player") && !collidedGameObject.CompareTag("StormTrooperBullet") && detonate == false)
         {
             Detonate();
-
-            BoxCollider myBoxColl = this.gameObject.GetComponent<BoxCollider>();
-
-            if (myBoxColl != null)
-                myBoxColl.active = true;
         }
-        else if (detonate == true && collidedGameObject.CompareTag("Enemy"))
+        else if (detonate == true && (collidedGameObject.CompareTag("Enemy") || collidedGameObject.CompareTag("Wampa") || collidedGameObject.CompareTag("Skel")))
         {
             AddEnemyTolist(collidedGameObject);
         }
     }
 
-    public void OnCollisionExit(GameObject collidedGameObject)
-    {
-        if (collidedGameObject != null)
-        {
-            if (collidedGameObject.tag == "Enemy")
-            {
-                //if (!enemies.Remove(triggeredGameObject))
-                //	Debug.Log("can't remove");
-
-                if (RemoveEnemyFromList(collidedGameObject) == true)
-                {
-                    Debug.Log("removed");
-                }
-            }
-        }
-
-
-    }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
+
         if (triggeredGameObject != null)
         {
-            if (triggeredGameObject.tag == "Enemy")
+            if (triggeredGameObject.CompareTag("Enemy") || triggeredGameObject.CompareTag("Wampa") || triggeredGameObject.CompareTag("Skel"))
             {
+                Debug.Log("Added triggered entity to enemy list");
                 AddEnemyTolist(triggeredGameObject);
             }
         }
     }
-    public void OnTriggerExit(GameObject triggeredGameObject)
-    {
-        if (triggeredGameObject != null)
-        {
-            if (triggeredGameObject.tag == "Enemy")
-            {
-                //if (!enemies.Remove(triggeredGameObject))
-                //	Debug.Log("can't remove");
 
-                if (RemoveEnemyFromList(triggeredGameObject) == true)
-                {
-                    Debug.Log("removed");
-                }
-            }
-        }
-    }
 
     private void Detonate()
     {
@@ -316,6 +281,11 @@ public class SlowGrenade : DiamondComponent
             return;
 
         this.gameObject.SetVelocity(new Vector3(0, 0, 0));
+
+        BoxCollider myBoxColl = this.gameObject.GetComponent<BoxCollider>();
+
+        if (myBoxColl != null)
+            myBoxColl.active = true;
 
         if (grenadeActiveObj != null)
         {
@@ -335,20 +305,7 @@ public class SlowGrenade : DiamondComponent
 
         // Debug.Log("Detonate!");
 
-
-        if (EnemyManager.currentEnemies != null)
-        {
-            for (int i = 0; i < EnemyManager.currentEnemies.Count; i++)
-            {
-                float distance = EnemyManager.currentEnemies[i].transform.globalPosition.Distance(this.gameObject.transform.globalPosition);
-
-
-                if (distance <= areaRadius)
-                    AddEnemyTolist(EnemyManager.currentEnemies[i]);
-
-            }
-
-        }
+        SerchEnemiesByDistance();
     }
 
     private void Explode()
@@ -521,5 +478,21 @@ public class SlowGrenade : DiamondComponent
         if (myBoxColl != null)
             myBoxColl.active = false;
 
+
+    }
+
+    private void SerchEnemiesByDistance()
+    {
+        if (EnemyManager.currentEnemies != null)
+        {
+            for (int i = 0; i < EnemyManager.currentEnemies.Count; i++)
+            {
+                float distance = EnemyManager.currentEnemies[i].transform.globalPosition.Distance(this.gameObject.transform.globalPosition);
+
+                if (distance <= areaRadius)
+                    AddEnemyTolist(EnemyManager.currentEnemies[i]);
+            }
+
+        }
     }
 }

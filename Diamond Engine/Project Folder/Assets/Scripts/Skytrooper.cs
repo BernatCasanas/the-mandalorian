@@ -557,6 +557,8 @@ public class Skytrooper : Enemy
         //Animator.Play(gameObject, "ST_Die", 1.0f);
 
         Audio.PlayAudio(gameObject, "Play_Skytrooper_Death");
+        if (Core.instance != null)
+            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Kill_Voice");
 
         EnemyManager.RemoveEnemy(gameObject);
 

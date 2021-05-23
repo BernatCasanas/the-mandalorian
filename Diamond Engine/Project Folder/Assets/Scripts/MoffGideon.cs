@@ -1227,6 +1227,7 @@ public class MoffGideon : Entity
         UpdateAnimationSpd(speedMult);
         Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Lightsaber_Turn_Off");
         Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Death");
+        Audio.PlayAudio(gameObject, "Play_Victory_Music");
         if (cam_comp != null)
             cam_comp.target = this.gameObject;
         if (visualFeedback != null)
