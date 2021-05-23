@@ -25,6 +25,7 @@ public class SlowGrenade : DiamondComponent
     private float procTimer = 0f;
     private bool procActivation = false;
     private bool addedForce = false;
+    private bool readyToAddForce = false;
     List<Entity> enemies = new List<Entity>();
     private bool destroy = false;
 
@@ -39,9 +40,10 @@ public class SlowGrenade : DiamondComponent
             start = false;
         }
 
-        if (addedForce == false && (lifeTimer > 0.0f || detonate == true))
+        if (addedForce == false && readyToAddForce == true)
         {
-            gameObject.AddForce(forceToAdd);
+            if (detonate == false)
+                gameObject.AddForce(forceToAdd);
             addedForce = true;
         }
 
@@ -247,6 +249,8 @@ public class SlowGrenade : DiamondComponent
             if (explosionTimer >= explosionTime)
                 Explode();
         }
+
+        readyToAddForce = true;
 
     }
 
@@ -457,6 +461,7 @@ public class SlowGrenade : DiamondComponent
 
         enemies.Clear();
 
+        readyToAddForce = false;
         start = true;
         detonate = false;
         lifeTimer = 0.0f;
