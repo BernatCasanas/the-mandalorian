@@ -793,6 +793,8 @@ public class HeavyTrooper : Enemy
         UpdateAnimationSpd(speedMult);
 
         Audio.PlayAudio(gameObject, "Play_Heavytrooper_Death");
+        if (Core.instance != null)
+            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Kill_Voice");
 
         EnemyManager.RemoveEnemy(gameObject);
 

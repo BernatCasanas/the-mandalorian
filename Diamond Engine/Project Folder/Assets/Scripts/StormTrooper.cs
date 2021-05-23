@@ -643,7 +643,8 @@ public class StormTrooper : Enemy
         UpdateAnimationSpd(speedMult);
 
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-        Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
+        if (Core.instance != null)
+            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Kill_Voice");
 
         EnemyManager.RemoveEnemy(gameObject);
 

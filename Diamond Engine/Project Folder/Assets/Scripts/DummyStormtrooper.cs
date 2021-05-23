@@ -400,7 +400,8 @@ public class DummyStormtrooper : Enemy
         UpdateAnimationSpd(speedMult);
 
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-        Audio.PlayAudio(gameObject, "Play_Mando_Kill_Voice");
+        if (Core.instance != null)
+            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Kill_Voice");
 
         //Combo
         if (PlayerResources.CheckBoon(BOONS.BOON_MASTER_YODA_FORCE))
