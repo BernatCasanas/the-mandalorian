@@ -52,6 +52,7 @@ public class Wampa : Bosseslv2
     private bool angry = false;
     float roarTime = 0.0f;
 
+
     public override void Awake()
     {
         Debug.Log("Wampa Awake");

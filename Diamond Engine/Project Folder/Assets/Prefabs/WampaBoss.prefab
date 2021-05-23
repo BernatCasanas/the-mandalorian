@@ -91,6 +91,8 @@
                     "bossHealth": 1007388580,
                     "limboHealth": 0,
                     "maxHealthPoints": 0,
+                    "leftSpike": 847351176,
+                    "rightSpike": 2060441206,
                     "resting": false,
                     "firstShot": false,
                     "secondShot": true,
@@ -474,10 +476,10 @@
                 -0.01217986736446619
             ],
             "Rotation": [
-                -0.023844072595238686,
-                0.013343616388738155,
-                0.874176025390625,
-                0.48483976721763611
+                -0.023844076320528984,
+                0.013343618251383305,
+                0.87417614459991455,
+                0.48483982682228088
             ],
             "Scale": [
                 1,
@@ -848,10 +850,10 @@
                 -1.1102230246251565e-15
             ],
             "Rotation": [
-                -0.00094224716303870082,
-                0.0038661258295178413,
-                0.028922660276293755,
-                0.99957370758056641
+                -0.00094224727945402265,
+                0.0038661262951791286,
+                0.028922664001584053,
+                0.99957382678985596
             ],
             "Scale": [
                 1,
@@ -998,6 +1000,102 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Empty",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 436560957,
+            "ParentUID": 1441938291,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0.20293450355529785,
+                -6.3598628044128418,
+                -5.0651793479919434
+            ],
+            "Rotation": [
+                0.067809812724590302,
+                -0.50303941965103149,
+                0.11510266363620758,
+                0.85387617349624634
+            ],
+            "Scale": [
+                0.99999696016311646,
+                1.0000002384185791,
+                0.99999749660491943
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Left Spike",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 847351176,
+            "ParentUID": 436560957,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                5.674370288848877,
+                5.9925680160522461,
+                0.21036593616008759
+            ],
+            "Rotation": [
+                -0.11510301381349564,
+                -0.85387629270553589,
+                0.067809246480464935,
+                0.50303930044174194
+            ],
+            "Scale": [
+                0.10000023990869522,
+                0.10000001639127731,
+                0.10000029951334
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/944489387.mmh",
+                    "UID": 944489387,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
                 }
             ]
         },
@@ -1304,6 +1402,102 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Empty",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 474331306,
+            "ParentUID": 251000619,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -5.430084228515625,
+                -7.906806468963623,
+                1.1328417062759399
+            ],
+            "Rotation": [
+                -0.057623445987701416,
+                0.42743530869483948,
+                0.12053769826889038,
+                0.8941192626953125
+            ],
+            "Scale": [
+                0.99999696016311646,
+                1,
+                0.99999743700027466
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Right Spike",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": false,
+            "UID": 2060441206,
+            "ParentUID": 474331306,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                6.2029147148132324,
+                5.9556422233581543,
+                5.8836393356323242
+            ],
+            "Rotation": [
+                0.12053771317005157,
+                0.8941192626953125,
+                0.057623568922281265,
+                0.42743533849716187
+            ],
+            "Scale": [
+                0.10000026226043701,
+                0.099999994039535522,
+                0.1000002920627594
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/944489387.mmh",
+                    "UID": 944489387,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
                 }
             ]
         },

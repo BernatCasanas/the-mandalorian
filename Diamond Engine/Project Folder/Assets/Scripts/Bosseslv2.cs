@@ -26,11 +26,15 @@ public class Bosseslv2 : Entity
     public GameObject bossHealth = null;
     public float limboHealth = 0.0f;
     public float maxHealthPoints = 0.0f;
+    public GameObject leftSpike = null;
+    public GameObject rightSpike = null;
+
 
     //Private Variables
     public bool resting = false;
     public bool firstShot = true;
     public bool secondShot = false;
+    private bool catchingProjectile = false;
 
     //Stats
     public float healthPoints = 1920.0f;
@@ -47,7 +51,7 @@ public class Bosseslv2 : Entity
     public float fastChasingTimer = 0.0f;
     public float slowChasingTime = 3.5f;
     public float slowChasingTimer = 0.0f;
-    public float shootingTime = 1.0f;
+    public float shootingTime = 0.5f;
     public float shootingTimer = 0.0f;
     public float dieTime = 2.0f;
     public float dieTimer = 0.0f;
@@ -58,6 +62,7 @@ public class Bosseslv2 : Entity
     private float currAnimationPlaySpd = 1f;
     public float presentationTimer = 0f;
     public float presentationTime = 1f;
+    private float catchProjectileTimer = 0f;
 
     //Atacks
     public float projectileAngle = 30.0f;
@@ -128,6 +133,7 @@ public class Bosseslv2 : Entity
     public void StartProjectile()
     {
         Debug.Log("Starting Throwing Projectile");
+        catchProjectileTimer = 0.7f;
         shootingTimer = shootingTime;
         firstShot = true;
         Animator.Play(gameObject, "WP_Projectile", speedMult);
@@ -137,6 +143,24 @@ public class Bosseslv2 : Entity
     public void UpdateProjectile()
     {
         LookAt(Core.instance.gameObject.transform.globalPosition);
+
+        if(catchProjectileTimer > 0f)
+        {
+            catchProjectileTimer -= myDeltaTime;
+            if (catchProjectileTimer < 0f)
+            {
+                if (leftSpike != null)
+                    leftSpike.Enable(true);
+
+                if (rightSpike != null)
+                    rightSpike.Enable(true);
+
+                catchingProjectile = true;
+            }
+        }
+
+        if (!catchingProjectile) return;
+
         if (shootingTimer > 0.0f)
         {
             shootingTimer -= myDeltaTime;
@@ -145,14 +169,14 @@ public class Bosseslv2 : Entity
                 if (projectilePoint != null)
                 {
                     Vector3 pos = projectilePoint.transform.globalPosition;
-                    Quaternion rot = new Quaternion(0, 0, 90);
+                    Quaternion rot = new Quaternion(0, projectilePoint.transform.GetForward().y, 0);
                     if (firstThrow)
                         Audio.PlayAudio(gameObject, "Play_Wampa_Projectile_Throw_1");
                     else
                         Audio.PlayAudio(gameObject, "Play_Wampa_Projectile_Throw_2");
                     firstThrow = false;
                     WampaProjectile projectile = InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, rot, null).GetComponent<WampaProjectile>();
-
+                    Debug.Log(rot.ToString());
                     if (projectile != null)
                     {
                         projectile.targetPos = Core.instance.gameObject.transform.globalPosition;
@@ -165,11 +189,19 @@ public class Bosseslv2 : Entity
                     {
                         shootingTimer = shootingTime;
                         firstShot = false;
-                        Animator.Play(gameObject, "WP_Projectile", speedMult);
                         UpdateAnimationSpd(speedMult);
+
+                        if (rightSpike != null)
+                            rightSpike.Enable(false);
                     }
                     else
+                    {
+                        if (leftSpike != null)
+                            leftSpike.Enable(false);
+
                         secondShot = true;
+                        catchingProjectile = false;
+                    }
                     Audio.PlayAudio(gameObject, "Play_Wampa_Ice_Pick");
                 }
             }
