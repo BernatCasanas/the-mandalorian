@@ -579,4 +579,9 @@ public class Skel : Bosseslv2
         //totalJumpSlamTime = chargeTime + upTime + fallingTime + recoveryTime;
     }
 
+    public void OnDestroy()
+    {
+        EnemyManager.RemoveEnemy(this.gameObject);
+    }
+
 }

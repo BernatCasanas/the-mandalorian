@@ -577,4 +577,10 @@ public class Wampa : Bosseslv2
         restingTime = 1.0f;
     }
 
+
+    public void OnDestroy()
+    {
+        EnemyManager.RemoveEnemy(this.gameObject);
+    }
+
 }
