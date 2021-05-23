@@ -1,19 +1,19 @@
 {
     "NavMesh": 912837797,
     "EditorCameraPosition": [
-        36.625274658203125,
-        31.302219390869141,
-        74.607192993164063
+        21.679080963134766,
+        18.841522216796875,
+        29.468832015991211
     ],
     "EditorCameraZ": [
-        0.60919386148452759,
-        -0.79299724102020264,
-        -0.0061821341514587402
+        0.76961725950241089,
+        -0.52945637702941895,
+        0.35688281059265137
     ],
     "EditorCameraY": [
-        0.79293513298034668,
-        0.60922408103942871,
-        -0.009995579719543457
+        0.48093494772911072,
+        0.84833627939224243,
+        0.22142070531845093
     ],
     "SkyboxPath0": "",
     "SkyboxPath1": "",
@@ -59288,6 +59288,204 @@
             ]
         },
         {
+            "name": "WaterCollider0",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1349423881,
+            "ParentUID": 1269107718,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                2.1709403991699219,
+                4.5999999046325684,
+                -24.792421340942383
+            ],
+            "Rotation": [
+                0,
+                -1.5261397831242696e-12,
+                0,
+                1
+            ],
+            "Scale": [
+                7.3131875991821289,
+                1,
+                11.637690544128418
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "DPSDamage",
+                    "onTriggerStay": false,
+                    "base_damage": 4,
+                    "damage": 0,
+                    "ticksPerSecond": 1,
+                    "damageTimer": 1
+                }
+            ]
+        },
+        {
+            "name": "WaterCollider1",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1485370946,
+            "ParentUID": 1269107718,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                2.1707382202148438,
+                4.5999999046325684,
+                -61.707012176513672
+            ],
+            "Rotation": [
+                0,
+                -2.0252825024685839e-12,
+                0,
+                1
+            ],
+            "Scale": [
+                7.3131871223449707,
+                1,
+                8.2496881484985352
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": false,
+                    "Path": "Library\/Meshes\/1313575480.mmh",
+                    "UID": 1313575480,
+                    "bumpDepth": 1,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 14,
+                    "Active": true,
+                    "kinematic": true,
+                    "Gravity": false,
+                    "LockLinearX": false,
+                    "LockLinearY": false,
+                    "LockLinearZ": false,
+                    "LockAngularX": false,
+                    "LockAngularY": false,
+                    "LockAngularZ": false,
+                    "Mass": 10,
+                    "Density": 1
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "DPSDamage",
+                    "onTriggerStay": false,
+                    "base_damage": 4,
+                    "damage": 0,
+                    "ticksPerSecond": 1,
+                    "damageTimer": 1
+                },
+                {
+                    "Type": 18,
+                    "Active": true,
+                    "isTrigger": true,
+                    "Position": [
+                        0,
+                        0,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            ]
+        },
+        {
             "name": "Grogu",
             "tag": "Untagged",
             "layer": "Default",
@@ -74079,8 +74277,8 @@
                     "fSize": 40,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 16.575000762939453,
-                    "hFOV": 31.25,
+                    "vFOV": 16.625,
+                    "hFOV": 26.524999618530273,
                     "culling": false,
                     "HDR": true,
                     "drawSkybox": true
