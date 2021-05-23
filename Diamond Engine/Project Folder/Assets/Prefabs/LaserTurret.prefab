@@ -13,9 +13,9 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
+                -1.9519612789154053,
                 0.21558773517608643,
-                -5.5630207061767578
+                0.45806610584259033
             ],
             "Rotation": [
                 0,
@@ -94,10 +94,10 @@
                     "Active": true,
                     "evName": "Empty",
                     "audBankReference": "Turret",
-                    "volume": 0,
                     "pitch": 50,
                     "playOnAwake": false,
-                    "isMuted": false
+                    "isMuted": false,
+                    "isMusic": true
                 },
                 {
                     "Type": 24,
@@ -157,7 +157,8 @@
                         0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false
+                    "doNotDrawStencil": false,
+                    "drawShadows": true
                 },
                 {
                     "Type": 3,
@@ -210,10 +211,10 @@
                     "tag": "Untagged",
                     "layer": "Default",
                     "Active": true,
-                    "UID": 465457299,
+                    "UID": 1836848132,
                     "ParentUID": 957246446,
                     "PrefabID": 0,
-                    "PrefabReference": 101799082,
+                    "PrefabReference": 465457299,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -238,10 +239,10 @@
                     "tag": "Untagged",
                     "layer": "Default",
                     "Active": true,
-                    "UID": 74380449,
+                    "UID": 552619122,
                     "ParentUID": 957246446,
                     "PrefabID": 0,
-                    "PrefabReference": 657852822,
+                    "PrefabReference": 74380449,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -266,10 +267,10 @@
                     "tag": "Untagged",
                     "layer": "Default",
                     "Active": true,
-                    "UID": 858166912,
+                    "UID": 1726356757,
                     "ParentUID": 957246446,
                     "PrefabID": 0,
-                    "PrefabReference": 987580893,
+                    "PrefabReference": 858166912,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -294,10 +295,66 @@
                     "tag": "Untagged",
                     "layer": "Default",
                     "Active": true,
-                    "UID": 1296037165,
+                    "UID": 319023801,
                     "ParentUID": 957246446,
                     "PrefabID": 0,
-                    "PrefabReference": 385425554,
+                    "PrefabReference": 1296037165,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        -0.25276088714599609,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Barrel Explosion",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1480172147,
+                    "ParentUID": 957246446,
+                    "PrefabID": 0,
+                    "PrefabReference": 1594799615,
+                    "DontDestroy": false,
+                    "Static": false,
+                    "Position": [
+                        0,
+                        0.066840648651123047,
+                        0
+                    ],
+                    "Rotation": [
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "Scale": [
+                        1,
+                        1,
+                        1
+                    ]
+                },
+                {
+                    "name": "Wave",
+                    "tag": "Untagged",
+                    "layer": "Default",
+                    "Active": true,
+                    "UID": 1914761345,
+                    "ParentUID": 957246446,
+                    "PrefabID": 0,
+                    "PrefabReference": 196995074,
                     "DontDestroy": false,
                     "Static": false,
                     "Position": [
@@ -559,6 +616,140 @@
                                     "PaShapeSphereDirection": false,
                                     "PaShapeSphereAngle": 0,
                                     "paShapeType": 1,
+                                    "PaShapeOffset": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type": 21,
+                    "Active": true,
+                    "billboardAlignment": 0,
+                    "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "Turret Sniper Impact",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 1622092012,
+            "ParentUID": 1078529231,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0.98192739486694336,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
+                    "MaterialUID": 355756108
+                },
+                {
+                    "Type": 20,
+                    "Active": true,
+                    "systemActive": false,
+                    "looping": false,
+                    "maxDuration": 0.070000000298023224,
+                    "ParticleEmitters": [
+                        {
+                            "AssetPath": "Empty",
+                            "LibraryPath": "Library\/Textures\/2134419253.dds",
+                            "texUID": 2134419253,
+                            "paEmitterName": "Chispitas",
+                            "paLifeTime": [
+                                0.10000000149011612,
+                                0.20000000298023224
+                            ],
+                            "paSize": [
+                                1,
+                                1
+                            ],
+                            "paColor": [
+                                1,
+                                1,
+                                1,
+                                1
+                            ],
+                            "paPerSec": 600,
+                            "paRelative": true,
+                            "ParticleEffects": [
+                                {
+                                    "paEffectType": 2,
+                                    "Gradients": [
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0.92454171180725098,
+                                                0.5573122501373291,
+                                                0
+                                            ],
+                                            "paColorOLTposition": 0
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0.91125494241714478,
+                                                0.63636362552642822,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 0.26216214895248413
+                                        },
+                                        {
+                                            "paColorOLTcolor": [
+                                                1,
+                                                0.75595235824584961,
+                                                0,
+                                                1
+                                            ],
+                                            "paColorOLTposition": 1
+                                        }
+                                    ]
+                                },
+                                {
+                                    "paEffectType": 3,
+                                    "paSizeOLTStartSize": 0.10000000149011612,
+                                    "paSizeOLTEndSize": 0
+                                },
+                                {
+                                    "paEffectType": 5,
+                                    "paShapeHasInitSpeed": true,
+                                    "paShapePartSpeed": 5,
+                                    "paShapeRandSpeed": 1,
+                                    "PaShapeCircumferenceinnerRadius": 0.30000001192092896,
+                                    "PaShapeCircumferenceoutterRadius": 0.30000001192092896,
+                                    "PaShapeCircumferenceDirection": false,
+                                    "PaShapeCircumferenceAngle": 0,
+                                    "paShapeType": 3,
                                     "PaShapeOffset": [
                                         0,
                                         0,
