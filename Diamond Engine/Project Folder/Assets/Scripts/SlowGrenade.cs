@@ -258,31 +258,14 @@ public class SlowGrenade : DiamondComponent
 
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
+        if (detonate == true)
+            return;
 
-        if (!collidedGameObject.CompareTag("Player") && !collidedGameObject.CompareTag("StormTrooperBullet") && detonate == false)
+        if (detonate == false && !collidedGameObject.CompareTag("Player") && !collidedGameObject.CompareTag("StormTrooperBullet"))
         {
             Detonate();
         }
-        else if (detonate == true && (collidedGameObject.CompareTag("Enemy") || collidedGameObject.CompareTag("Wampa") || collidedGameObject.CompareTag("Skel")))
-        {
-            AddEnemyTolist(collidedGameObject);
-        }
     }
-
-
-    public void OnTriggerEnter(GameObject triggeredGameObject)
-    {
-
-        if (triggeredGameObject != null)
-        {
-            if (triggeredGameObject.CompareTag("Enemy") || triggeredGameObject.CompareTag("Wampa") || triggeredGameObject.CompareTag("Skel"))
-            {
-                Debug.Log("Added triggered entity to enemy list");
-                AddEnemyTolist(triggeredGameObject);
-            }
-        }
-    }
-
 
     private void Detonate()
     {
@@ -366,7 +349,6 @@ public class SlowGrenade : DiamondComponent
             {
                 script = enemy.GetComponent<MoffGideon>();
             }
-
 
             if (script != null)
             {
