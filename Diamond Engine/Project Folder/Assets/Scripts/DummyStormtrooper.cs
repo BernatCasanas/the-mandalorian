@@ -505,6 +505,9 @@ public class DummyStormtrooper : Enemy
                 STATUS_APPLY_TYPE applyType = STATUS_APPLY_TYPE.BIGGER_PERCENTAGE;
                 float damageMult = 1f;
 
+                if (myParticles != null && myParticles.sniperHit != null)
+                    myParticles.sniperHit.Play();
+
                 if (Core.instance != null)
                 {
                     if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_DMG_UP))

@@ -903,6 +903,8 @@ public class HeavyTrooper : Enemy
             if (bullet != null && currentState != STATE.DIE)
             {
 
+                particles.Play(HeavyTrooperParticles.HEAVYROOPER_PARTICLES.SNIPER_HIT);
+
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
                 if (Core.instance.hud != null)
