@@ -28,7 +28,7 @@
 #include "MathGeoLib/include/Geometry/Plane.h"
 
 
-C_MeshRenderer::C_MeshRenderer(GameObject* _gm) : Component(_gm), _mesh(nullptr), normalMap(nullptr), specularMap(nullptr), bumpDepth(1.0f),
+C_MeshRenderer::C_MeshRenderer(GameObject* _gm) : Component(_gm), _mesh(nullptr), normalMap(nullptr), specularMap(nullptr), bumpDepth(0.0f),
 faceNormals(false), vertexNormals(false), showAABB(false), showOBB(false), drawDebugVertices(false), drawStencil(false),
 calculatedBonesThisFrame(false), boneTransforms(), stencilEmissionAmmount(0.9f),drawShadows(true)
 {
