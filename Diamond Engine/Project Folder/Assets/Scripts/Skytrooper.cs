@@ -88,7 +88,11 @@ public class Skytrooper : Enemy
 
     //hit particles
     public GameObject hitParticlesObj = null;
+    public GameObject sniperHitParticleObj = null;
+    public GameObject grenadeHitParticleObj = null;
     private ParticleSystem hitParticles = null;
+    private ParticleSystem sniperHitParticle = null;
+    private ParticleSystem grenadeHitParticle = null;
 
     public void Awake()
     {
@@ -109,6 +113,12 @@ public class Skytrooper : Enemy
         initialHeight = gameObject.transform.globalPosition.y;
         if (hitParticlesObj != null)
             hitParticles = hitParticlesObj.GetComponent<ParticleSystem>();
+
+        if (sniperHitParticleObj != null)
+            sniperHitParticle = sniperHitParticleObj.GetComponent<ParticleSystem>();
+
+        if (grenadeHitParticleObj != null)
+            grenadeHitParticle = grenadeHitParticleObj.GetComponent<ParticleSystem>();
         //else
         //Debug.Log("Hit particles gameobject not found!");
 
@@ -683,13 +693,13 @@ public class Skytrooper : Enemy
         {
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
 
-            if (bullet != null)
+            if (bullet != null && currentState != STATE.DIE)
             {
 
+                if (sniperHitParticle != null)
+                    sniperHitParticle.Play();
 
-                if (currentState != STATE.DIE)
-
-                    Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
+                Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
                 if (Core.instance.hud != null && currentState != STATE.DIE)
                 {
@@ -812,7 +822,7 @@ public class Skytrooper : Enemy
                 mod = 1 + GetStatusData(STATUS_TYPE.GEOTERMAL_MARKER).severity / 100;
             }
         }
-        healthPoints -= damage * mod; 
+        healthPoints -= damage * mod;
         if (Core.instance != null)
         {
             if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))
@@ -919,5 +929,11 @@ public class Skytrooper : Enemy
                                              (float)(Math.Sin(angle * Mathf.Deg2RRad) * direction.normalized.x + Math.Cos(angle * Mathf.Deg2RRad) * direction.normalized.z));
 
         return gameObject.transform.localPosition + randomPosition * dashRange;
+    }
+
+    public override void PlayGrenadeHitParticles()
+    {
+        if (grenadeHitParticle != null)
+            grenadeHitParticle.Play();
     }
 }

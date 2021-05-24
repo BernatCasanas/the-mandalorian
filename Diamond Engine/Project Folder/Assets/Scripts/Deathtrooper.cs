@@ -88,6 +88,10 @@ public class Deathtrooper : Enemy
     private ParticleSystem hitParticle = null;
     public GameObject shotgunParticlesObj = null;
     private ParticleSystem shotgunParticle = null;
+    public GameObject sniperHitParticleObj = null;
+    private ParticleSystem sniperParticle = null;
+    public GameObject grenadeHitParticleObj = null;
+    private ParticleSystem grenadeHitParticle = null;
 
     public void Awake()
     {
@@ -114,6 +118,13 @@ public class Deathtrooper : Enemy
 
         if (shotgunParticlesObj != null)
             shotgunParticle = shotgunParticlesObj.GetComponent<ParticleSystem>();
+
+        if (sniperHitParticleObj != null)
+            sniperParticle = sniperHitParticleObj.GetComponent<ParticleSystem>();
+
+        if (grenadeHitParticleObj != null)
+            grenadeHitParticle = grenadeHitParticleObj.GetComponent<ParticleSystem>();
+
         //else
         //{
         //    //Debug.Log("Shotgun particles gameobject not found!");
@@ -510,7 +521,7 @@ public class Deathtrooper : Enemy
     {
        
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/550070139.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, null);
-        bullet.GetComponent<DeathTrooperBullet>().damage = damage;
+        bullet.GetComponent<DeathTrooperBullet>().damage = damage * damageMult;
         bullet.GetComponent<DeathTrooperBullet>().SetTagToAvoid("Deathtrooper");
         bullet.GetComponent<DeathTrooperBullet>().SetGameObjectToAvoid(this.gameObject);
 
@@ -654,7 +665,10 @@ public class Deathtrooper : Enemy
                 {
                     Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
                 }
-                
+
+                if (sniperParticle != null)
+                    sniperParticle.Play();
+
                 float vulerableSev = 0.2f;
                 float vulerableTime = 4.5f;
                 STATUS_APPLY_TYPE applyType = STATUS_APPLY_TYPE.BIGGER_PERCENTAGE;
@@ -864,4 +878,13 @@ public class Deathtrooper : Enemy
     {
         return currentState;
     }
+
+    public override void PlayGrenadeHitParticles()
+    {
+        if (grenadeHitParticle != null)
+        {
+            grenadeHitParticle.Play();
+        }
+    }
+
 }

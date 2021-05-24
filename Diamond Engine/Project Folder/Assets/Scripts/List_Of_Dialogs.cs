@@ -2740,13 +2740,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_0_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_MANDO_SERIOUS,
+		DialogImages.IMG_MANDO_HAPPY,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_JOKING,
         DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_ASHAMED,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_JOKING,
     };
 
     private List<string> Cara_0_2 = new List<string>()
@@ -2778,12 +2778,12 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
 		DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_JOKING,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_HAPPY,
+        DialogImages.IMG_CARA_ANGRY2,
+        DialogImages.IMG_MANDO_ANGRY,
         DialogImages.IMG_CARA_SERIOUS,
     };
 
@@ -2793,7 +2793,7 @@ public class List_Of_Dialogs : DiamondComponent
         "That's not how it works. The moment someone sees my face, I will stop being a member of the Tribe.",
         "But they don't need to know, it's not like they are watching every step you make right?",
         "I don't think so, but to be part of the Tribe is a choice, and an honour.",
-        " I wouldn't have joined if I wasn't entirely sure that this is what I wanted. To always wear a helmet is a small price to pay.",
+        "I wouldn't have joined if I wasn't entirely sure that this is what I wanted. To always wear a helmet is a small price to pay.",
         "Do you realize this whole Tribe stuff sounds pretty obscure? It's not good to blindly follow rules without ever questioning them. That's why I left the Alliance.",
         "You are starting to sound like Bo-Katan... The Tribe is not like the New Republic, we look for ourselves and swear allegiance to no one. ",
         "I only pick the contracts I like so I don't have to do anything I don't want to do.",
@@ -2817,15 +2817,15 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_0_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_ANGRY,
         DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_ANGRY,
         DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_ANGRY,
         DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
     };
 
     private List<string> Cara_1_1 = new List<string>()
@@ -2861,15 +2861,15 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
 		DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_HAPPY,
         DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
         DialogImages.IMG_MANDO_SERIOUS,
         DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_ASHAMED,
         DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
     };
 
     private List<string> Cara_1_2 = new List<string>()
@@ -2897,11 +2897,11 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
         DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_HAPPY,
+        DialogImages.IMG_CARA_ASHAMED,
+        DialogImages.IMG_MANDO_JOKING,
+        DialogImages.IMG_CARA_ANGRY2,
     };
 
     private List<string> Cara_1_3 = new List<string>()
@@ -2935,14 +2935,14 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
         DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
         DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_ASHAMED,
         DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_ASHAMED,
+        DialogImages.IMG_CARA_ANGRY2,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_ASHAMED,
     };
 
     private List<string> Cara_2_1 = new List<string>()
@@ -2971,13 +2971,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_2_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-		DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
+		DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_JOKING,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_ASHAMED,
         DialogImages.IMG_CARA_SERIOUS,
         DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
     };
 
     private List<string> Cara_2_2 = new List<string>()
@@ -3009,13 +3009,13 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
         DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_ASHAMED,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_ASHAMED,
         DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_JOKING,
+        DialogImages.IMG_CARA_ANGRY1,
     };
 
     private List<string> Cara_2_3 = new List<string>()
@@ -3044,13 +3044,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_2_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
+        DialogImages.IMG_MANDO_ASHAMED,
+        DialogImages.IMG_CARA_ANGRY1,
         DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY2,
+        DialogImages.IMG_MANDO_ASHAMED,
         DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_HAPPY,
     };
 
     private List<string> Cara_3_1 = new List<string>()
@@ -3079,13 +3079,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_3_1_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_JOKING,
         DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_HAPPY,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_ASHAMED,
         DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
     };
 
     private List<string> Cara_3_2 = new List<string>()
@@ -3116,10 +3116,10 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
         DialogImages.IMG_MANDO_SERIOUS,
         DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_HAPPY,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_ASHAMED,
         DialogImages.IMG_CARA_SERIOUS,
     };
 
@@ -3142,8 +3142,8 @@ public class List_Of_Dialogs : DiamondComponent
 		// Mando true, other false
         true,
         false,
-        false,
         true,
+        false,
         false,
         true,
         false,
@@ -3156,15 +3156,15 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
         DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_ANGRY,
+        DialogImages.IMG_CARA_ANGRY1,
         DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_HAPPY,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_ASHAMED,
         DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_HAPPY,
     };
 
     private List<string> Cara_4_1 = new List<string>()
@@ -3192,11 +3192,11 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
         DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_HAPPY,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_ASHAMED,
         DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_MANDO_HAPPY,
     };
 
     private List<string> Cara_4_2 = new List<string>()
@@ -3226,12 +3226,12 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
         DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY2,
+        DialogImages.IMG_MANDO_ASHAMED,
+        DialogImages.IMG_CARA_ANGRY2,
+        DialogImages.IMG_MANDO_ASHAMED,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_CARA_ANGRY2,
     };
 
     private List<string> Cara_4_3 = new List<string>()
@@ -3262,13 +3262,13 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_4_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
+        DialogImages.IMG_MANDO_ANGRY,
+        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
         DialogImages.IMG_MANDO_SERIOUS,
         DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_HAPPY,
         DialogImages.IMG_CARA_SERIOUS,
     };
 
@@ -3299,12 +3299,12 @@ public class List_Of_Dialogs : DiamondComponent
     {
 		// Mando true, other false
         DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_MANDO_ASHAMED,
+        DialogImages.IMG_CARA_ASHAMED,
         DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_ASHAMED,
+        DialogImages.IMG_CARA_ASHAMED,
+        DialogImages.IMG_CARA_ANGRY1,
     };
 
     private List<string> Cara_5_2 = new List<string>()
@@ -3335,14 +3335,14 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_5_2_images = new List<DialogImages>()
     {
 		// Mando true, other false
-        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY2,
+        DialogImages.IMG_MANDO_ASHAMED,
+        DialogImages.IMG_CARA_ANGRY2,
         DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_ASHAMED,
         DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
     };
 
     private List<string> Cara_5_3 = new List<string>()
@@ -3384,19 +3384,19 @@ public class List_Of_Dialogs : DiamondComponent
     private List<DialogImages> Cara_5_3_images = new List<DialogImages>()
     {
 		// Mando true, other false
+        DialogImages.IMG_MANDO_JOKING,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_ASHAMED,
+        DialogImages.IMG_CARA_ASHAMED,
+        DialogImages.IMG_MANDO_ASHAMED,
+        DialogImages.IMG_CARA_ANGRY2,
         DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_CARA_SERIOUS,
-        DialogImages.IMG_MANDO_SERIOUS,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_CARA_ANGRY2,
+        DialogImages.IMG_MANDO_ASHAMED,
+        DialogImages.IMG_CARA_ANGRY2,
+        DialogImages.IMG_CARA_ANGRY1,
+        DialogImages.IMG_MANDO_ASHAMED,
     };
 
     public List<String> GetListOfDialog(uint index)

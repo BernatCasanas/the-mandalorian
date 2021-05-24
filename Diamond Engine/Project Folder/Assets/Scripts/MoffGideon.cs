@@ -1406,7 +1406,6 @@ public class MoffGideon : Entity
                 if (Core.instance.HasStatus(STATUS_TYPE.PRIM_MOV_SPEED))
                     Core.instance.AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
             }
-            if (invencible) return;
 
             float damageToBoss = 0f;
 
@@ -1565,6 +1564,8 @@ public class MoffGideon : Entity
 
     public void TakeDamage(float damage)
     {
+        if (invencible) return;
+
         if (!DebugOptionsHolder.bossDmg)
         {
             float mod = 1;

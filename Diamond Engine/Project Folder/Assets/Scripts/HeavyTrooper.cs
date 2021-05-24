@@ -881,7 +881,7 @@ public class HeavyTrooper : Enemy
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
-                if (Core.instance.hud != null &&  currentState != STATE.DIE)
+                if (Core.instance.hud != null && currentState != STATE.DIE)
                 {
                     HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
@@ -902,6 +902,8 @@ public class HeavyTrooper : Enemy
 
             if (bullet != null && currentState != STATE.DIE)
             {
+
+                particles.Play(HeavyTrooperParticles.HEAVYROOPER_PARTICLES.SNIPER_HIT);
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -972,7 +974,7 @@ public class HeavyTrooper : Enemy
                             BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
                         }
                     }
-                 
+
 
                     if (Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
                     {
@@ -1061,7 +1063,7 @@ public class HeavyTrooper : Enemy
                 mod = 1 + GetStatusData(STATUS_TYPE.GEOTERMAL_MARKER).severity / 100;
             }
         }
-        healthPoints -= damage * mod; 
+        healthPoints -= damage * mod;
         if (Core.instance != null)
         {
             if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))
@@ -1124,4 +1126,13 @@ public class HeavyTrooper : Enemy
             currAnimationPlaySpd = newSpd;
         }
     }
+
+    public override void PlayGrenadeHitParticles()
+    {
+
+        if (particles != null)
+            particles.Play(HeavyTrooperParticles.HEAVYROOPER_PARTICLES.GRENADE_HIT);
+
+    }
+
 }

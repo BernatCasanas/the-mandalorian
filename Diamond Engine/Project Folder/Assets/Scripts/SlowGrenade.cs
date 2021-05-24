@@ -225,6 +225,7 @@ public class SlowGrenade : DiamondComponent
                         Debug.Log("Enemy ticked!");
                         Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.3f);
                         eneScript.TakeDamage(grenadeDamage * eneScript.damageRecieveMult);
+                        eneScript.PlayGrenadeHitParticles();
                         eneScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
                     }
 
@@ -257,31 +258,14 @@ public class SlowGrenade : DiamondComponent
 
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
+        if (detonate == true)
+            return;
 
-        if (!collidedGameObject.CompareTag("Player") && !collidedGameObject.CompareTag("StormTrooperBullet") && detonate == false)
+        if (detonate == false && !collidedGameObject.CompareTag("Player") && !collidedGameObject.CompareTag("StormTrooperBullet"))
         {
             Detonate();
         }
-        else if (detonate == true && (collidedGameObject.CompareTag("Enemy") || collidedGameObject.CompareTag("Wampa") || collidedGameObject.CompareTag("Skel")))
-        {
-            AddEnemyTolist(collidedGameObject);
-        }
     }
-
-
-    public void OnTriggerEnter(GameObject triggeredGameObject)
-    {
-
-        if (triggeredGameObject != null)
-        {
-            if (triggeredGameObject.CompareTag("Enemy") || triggeredGameObject.CompareTag("Wampa") || triggeredGameObject.CompareTag("Skel"))
-            {
-                Debug.Log("Added triggered entity to enemy list");
-                AddEnemyTolist(triggeredGameObject);
-            }
-        }
-    }
-
 
     private void Detonate()
     {
@@ -365,7 +349,6 @@ public class SlowGrenade : DiamondComponent
             {
                 script = enemy.GetComponent<MoffGideon>();
             }
-
 
             if (script != null)
             {

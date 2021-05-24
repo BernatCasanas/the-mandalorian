@@ -45,7 +45,9 @@ public class Bantha : Enemy
 
     public GameObject chargePoint = null;
     public GameObject hitParticles = null;
+    public GameObject snipHitParticles = null;
     private GameObject visualFeedback = null;
+    private GameObject grenadeHitParticleObj = null;
 
     private bool straightPath = false;
 
@@ -747,6 +749,14 @@ public class Bantha : Enemy
             ChargedBullet bullet = collidedGameObject.GetComponent<ChargedBullet>();
             if (bullet != null)
             {
+                if (snipHitParticles != null)
+                {
+                    ParticleSystem sniperParticles = snipHitParticles.GetComponent<ParticleSystem>();
+
+                    if (sniperParticles != null)
+                        sniperParticles.Play();
+                }
+
                 Debug.Log("Bantha charged bullet scripts detect");
 
                 if (currentState != STATE.DIE)
@@ -985,6 +995,17 @@ public class Bantha : Enemy
         {
             Animator.SetSpeed(gameObject, newSpd);
             currAnimationPlaySpd = newSpd;
+        }
+    }
+
+    public override void PlayGrenadeHitParticles()
+    {
+        if (grenadeHitParticleObj != null)
+        {
+            ParticleSystem grenadeHitParticles = grenadeHitParticleObj.GetComponent<ParticleSystem>();
+
+            if (grenadeHitParticles != null)
+                grenadeHitParticles.Play();
         }
     }
 }

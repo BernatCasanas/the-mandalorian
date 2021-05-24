@@ -52,8 +52,8 @@
                     "Active": true,
                     "ScriptName": "Deathtrooper",
                     "detectionRange": 25,
-                    "damage": 5,
-                    "healthPoints": 60,
+                    "damage": 10,
+                    "healthPoints": 100,
                     "stoppingDistance": 1,
                     "slerpSpeed": 5,
                     "shootPoint": 179710061,
@@ -70,7 +70,9 @@
                     "forcePushMod": 1.1499999761581421,
                     "PushStun": 2,
                     "hitParticlesObj": 1938952528,
-                    "shotgunParticlesObj": 936921638
+                    "shotgunParticlesObj": 936921638,
+                    "sniperHitParticleObj": 149225084,
+                    "grenadeHitParticleObj": 1337086120
                 },
                 {
                     "Type": 24,
@@ -119,10 +121,10 @@
                     "Active": true,
                     "evName": "Empty",
                     "audBankReference": "Deathtrooper",
+                    "volume": 0,
                     "pitch": 50,
                     "playOnAwake": false,
-                    "isMuted": false,
-                    "isMusic": true
+                    "isMuted": false
                 }
             ]
         },
@@ -175,8 +177,7 @@
                         0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false,
-                    "drawShadows": true
+                    "doNotDrawStencil": false
                 },
                 {
                     "Type": 3,
@@ -454,7 +455,7 @@
                 0,
                 0,
                 -0.0073059904389083385,
-                0.99997329711914062
+                0.99997329711914063
             ],
             "Scale": [
                 1,
@@ -1568,7 +1569,7 @@
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0.49832534790039062,
+                0.49832534790039063,
                 2.0816681711721685e-17,
                 1.3898392876873153e-17
             ],
@@ -1791,10 +1792,10 @@
                 2.441623292437356e-16
             ],
             "Rotation": [
-                0.37796294689178467,
-                0.40847727656364441,
-                0.59761530160903931,
-                0.57718819379806519
+                0.37796300649642944,
+                0.40847733616828918,
+                0.59761536121368408,
+                0.57718825340270996
             ],
             "Scale": [
                 1,
@@ -1959,8 +1960,7 @@
                         0
                     ],
                     "stencilEmission": 0.89999997615814209,
-                    "doNotDrawStencil": false,
-                    "drawShadows": true
+                    "doNotDrawStencil": false
                 },
                 {
                     "Type": 3,
@@ -2084,7 +2084,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -2286,7 +2286,7 @@
             "Position": [
                 -1.2270965576171875,
                 1.344346284866333,
-                0.66952896118164062
+                0.66952896118164063
             ],
             "Rotation": [
                 -4.163336607042133e-16,
@@ -2342,7 +2342,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
@@ -2590,7 +2590,7 @@
             "Static": false,
             "Position": [
                 0.0076279044151306152,
-                1.2670669555664062,
+                1.2670669555664063,
                 0.10014450550079346
             ],
             "Rotation": [
@@ -2642,7 +2642,7 @@
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/Particle.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/355756108.mat",
                     "MaterialUID": 355756108
                 },
