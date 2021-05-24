@@ -255,11 +255,13 @@ public class MoffGideon : Entity
 
             if (comboTimer <= 0)
             {
+
                 if (nAtacks > 0)
                 {
                     int rand = randomNum.Next(1, 6);
                     comboTimer = atacks[rand].duration;
                     Animator.Play(gameObject, atacks[rand].animation);
+                    Input.PlayHaptic(0.5f, 500);
                     UpdateAnimationSpd(speedMult);
                     nAtacks--;
                 }
@@ -311,7 +313,10 @@ public class MoffGideon : Entity
             chargeThrowTimer -= myDeltaTime;
 
             if (chargeThrowTimer <= 2.1f)
+            {
+                Input.PlayHaptic(0.6f, 600);
                 inputsList.Add(MOFFGIDEON_INPUT.IN_CHARGE_THROW_END);
+            }
 
         }
     }
@@ -890,6 +895,7 @@ public class MoffGideon : Entity
         }
         invencible = true;
 
+        Input.PlayHaptic(0.9f, 2200);
     }
 
 
@@ -927,8 +933,10 @@ public class MoffGideon : Entity
         if (cam_comp != null)
         {
             cam_comp.target = this.gameObject;
-            
         }
+
+        Input.PlayHaptic(0.7f, 1000);
+
         invencible = true;
     }
 
@@ -941,6 +949,15 @@ public class MoffGideon : Entity
         if (changingStateTimer <= 2.5f)
         {
             sword.Enable(true);
+            if (camera != null)
+            {
+                Shake3D shake = camera.GetComponent<Shake3D>();
+                if (shake != null)
+                {
+                    shake.StartShaking(1.1f, 0.15f);
+                    Input.PlayHaptic(0.9f, 1100);
+                }
+            }
         }
     }
 
@@ -1045,6 +1062,7 @@ public class MoffGideon : Entity
         comboTimer = atacks[rand].duration;
         Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Lightsaber_Whoosh");
         nAtacks--;
+        Input.PlayHaptic(0.5f, 500);
     }
 
     private void UpdateMeleeCombo()
@@ -1126,6 +1144,7 @@ public class MoffGideon : Entity
                 cadencyTimer = cadencyTime;
                 projectiles++;
                 GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1606118587.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
+                Input.PlayHaptic(0.3f, 100);
             }
 
         }
@@ -1155,6 +1174,8 @@ public class MoffGideon : Entity
         if (cam_comp != null)
             cam_comp.target = this.gameObject;
         privateTimer = 0.5f;
+
+        Input.PlayHaptic(0.8f, 600);
     }
 
     private void UpdateSpawnEnemies()
@@ -1301,6 +1322,9 @@ public class MoffGideon : Entity
         Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Lightsaber_Turn_Off");
         Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Death");
         Audio.PlayAudio(gameObject, "Play_Victory_Music");
+
+        Input.PlayHaptic(1f, 1000);
+
         if (cam_comp != null)
             cam_comp.target = this.gameObject;
         if (visualFeedback != null)
