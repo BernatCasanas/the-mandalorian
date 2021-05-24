@@ -10,6 +10,7 @@ public class BH_DestructBox : DiamondComponent
 
 
 	private bool triggered = false;
+	private bool triggeredByPlayer = true;
 	public float explosionTime = 2.0f;
 	private float timer = 0;
 	private ParticleSystem partExp = null;
@@ -41,8 +42,11 @@ public class BH_DestructBox : DiamondComponent
 
 	public void OnTriggerEnter(GameObject triggeredGameObject)
 	{
-		if((triggeredGameObject.CompareTag("Bullet") || triggeredGameObject.CompareTag("ChargeBullet")) && triggered == false)
+		if((triggeredGameObject.CompareTag("Bullet") || triggeredGameObject.CompareTag("ChargeBullet") || triggeredGameObject.CompareTag("StormTrooperBullet")) && triggered == false)
         {
+			if (triggeredGameObject.CompareTag("StormTrooperBullet"))
+				triggeredByPlayer = false;
+
 			if (explosion != null && wave != null)
 			{
 				partExp = explosion.GetComponent<ParticleSystem>();

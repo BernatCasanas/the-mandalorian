@@ -439,6 +439,8 @@ public class SlowGrenade : DiamondComponent
 
         myScale = this.gameObject.transform.localScale;
 
+        this.gameObject.SetVelocity(new Vector3(0, 0, 0));
+
         if (grenadeActiveObj != null)
         {
             grenadeActivePar = grenadeActiveObj.GetComponent<ParticleSystem>();
@@ -455,7 +457,8 @@ public class SlowGrenade : DiamondComponent
 
     public void GrenadeFinish()
     {
-        this.gameObject.transform.localPosition = Vector3.positiveInfinity;
+        //this.gameObject.transform.localPosition = Vector3.positiveInfinity;
+        this.gameObject.SetVelocity(new Vector3(0, 0, 0));
 
         this.gameObject.Enable(false);
 

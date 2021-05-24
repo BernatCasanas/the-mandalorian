@@ -834,7 +834,7 @@ public class Bantha : Enemy
                 inputsList.Add(INPUT.IN_CHARGE_END);
                 PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
-                    playerHealth.TakeDamage((int)damage);
+                    playerHealth.TakeDamage((int)damage, true);
             }
         }
         else if (collidedGameObject.CompareTag("ExplosiveBarrel"))
@@ -854,6 +854,18 @@ public class Bantha : Enemy
                     }
                 }
             }
+
+            if(Core.instance != null)
+            {
+                if (Core.instance.hud != null)
+                {
+                    HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                    if (hudComponent != null)
+                        hudComponent.AddToCombo(33, 0.65f);
+                }
+            }
+
         }
     }
 

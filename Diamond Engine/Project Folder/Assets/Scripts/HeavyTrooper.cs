@@ -994,6 +994,17 @@ public class HeavyTrooper : Enemy
                     inputsList.Add(INPUT.IN_DIE);
             }
 
+            if (Core.instance != null)
+            {
+                if (Core.instance.hud != null)
+                {
+                    HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                    if (hudComponent != null)
+                        hudComponent.AddToCombo(33, 0.65f);
+                }
+            }
+
         }
         else if (collidedGameObject.CompareTag("WorldLimit"))
         {
