@@ -195,8 +195,8 @@ public class Bosseslv2 : Entity
                             projectiles[i].damage = (int)(projectiles[i].damage * damageMult);
                         }
                         projectiles[0].targetDirection = new Vector3(targetPos.x, targetPos.y, targetPos.z);
-                        projectiles[1].targetDirection = new Vector3(targetPos.x, targetPos.y - 5, targetPos.z);
-                        projectiles[2].targetDirection = new Vector3(targetPos.x, targetPos.y + 5, targetPos.z);
+                        projectiles[1].targetDirection = new Vector3(targetPos.x - 5, targetPos.y, targetPos.z);
+                        projectiles[2].targetDirection = new Vector3(targetPos.x + 5, targetPos.y, targetPos.z);
                     }
 
                     //Debug.Log("Throwing projectile");
