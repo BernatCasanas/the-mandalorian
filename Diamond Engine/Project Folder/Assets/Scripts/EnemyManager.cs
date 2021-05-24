@@ -46,7 +46,7 @@ public class EnemyManager : DiamondComponent
             {
                 if(Core.instance != null)
                 {
-                    Core.instance.NotifuEnemyDeath(currentEnemies[i]);
+                    Core.instance.NotifyEnemyDeath(currentEnemies[i]);
                 }
 
                 currentEnemies.RemoveAt(i);
