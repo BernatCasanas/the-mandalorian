@@ -105,7 +105,12 @@ public class FloatingVehicles : DiamondComponent
                 verticalSpeed = 0.2f;
                 maxRotation = 0.05f;
                 break;
-            case "Tie":
+            case "Tie_Fighter":
+                maxHeight = 0.4f;
+                verticalSpeed = 0.5f;
+                maxRotation = 0.0f;
+                break;
+            case "Tie_In":
                 maxHeight = 0.8f;
                 verticalSpeed = 0.5f;
                 maxRotation = 0.0f;
