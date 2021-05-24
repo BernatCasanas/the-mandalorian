@@ -181,12 +181,9 @@ public class StormTrooper : Enemy
     {
         if (currentState != STATE.DIE && currentState != STATE.RUN)
         {
-            if (InRange(Core.instance.gameObject.transform.globalPosition, detectionRange))
+            if (Core.instance != null && InRange(Core.instance.gameObject.transform.globalPosition, detectionRange))
             {
                 inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
-
-                //if (Core.instance != null && currentState != STATE.SHOOT)
-                //    LookAt(Core.instance.gameObject.transform.globalPosition);
             }
         }
 
@@ -599,7 +596,7 @@ public class StormTrooper : Enemy
             }
         }
 
-        if (!shooting)
+        if (!shooting && Core.instance != null)
             LookAt(Core.instance.gameObject.transform.globalPosition);
 
         UpdateAnimationSpd(speedMult);
@@ -643,16 +640,20 @@ public class StormTrooper : Enemy
         UpdateAnimationSpd(speedMult);
 
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-        if (Core.instance != null)
-            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Kill_Voice");
 
         EnemyManager.RemoveEnemy(gameObject);
 
-        //Combo
-        if (PlayerResources.CheckBoon(BOONS.BOON_MASTER_YODA_FORCE))
+        if (Core.instance != null)
         {
-            Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
+            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Kill_Voice");
+
+            //Combo
+            if (PlayerResources.CheckBoon(BOONS.BOON_MASTER_YODA_FORCE))
+            {
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
+            }
         }
+
     }
     private void UpdateDie()
     {
@@ -677,7 +678,11 @@ public class StormTrooper : Enemy
         Vector3 forward = gameObject.transform.GetForward();
         forward = forward.normalized * (-dist);
 
-        Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        if (Core.instance != null)
+        {
+            Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        }
+
         InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
         DropCoins();
 
@@ -712,6 +717,12 @@ public class StormTrooper : Enemy
     {
         float distance = detectionRange;
         float hitDistance = detectionRange;
+
+        if(Core.instance == null)
+        {
+            return false;
+        }
+
         GameObject raycastHit = InternalCalls.RayCast(shootPoint.transform.globalPosition, (Core.instance.gameObject.transform.globalPosition - shootPoint.transform.globalPosition).normalized, distance, ref hitDistance);
 
         if (raycastHit != null)
@@ -750,7 +761,7 @@ public class StormTrooper : Enemy
 
             Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
-            if (Core.instance.hud != null && currentState != STATE.DIE)
+            if (Core.instance != null && Core.instance.hud != null && currentState != STATE.DIE)
             {
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
@@ -775,7 +786,7 @@ public class StormTrooper : Enemy
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
-                if (Core.instance.hud != null && currentState != STATE.DIE)
+                if (Core.instance != null && Core.instance.hud != null && currentState != STATE.DIE)
                 {
                     HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
