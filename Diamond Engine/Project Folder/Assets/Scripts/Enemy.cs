@@ -9,6 +9,7 @@ public class Enemy : Entity
 	private float baseDamage = 1f;
     public float healthPoints = 60.0f;
 	public float damageRecieveMult { get; protected set; } = 1f;
+	public float damageMult { get; protected set; } = 1f;
 
 
 	protected Vector3 targetPosition = null;
@@ -30,6 +31,7 @@ public class Enemy : Entity
 		myDeltaTime = Time.deltaTime;
 		baseDamage = damage;
 		damageRecieveMult = 1f;
+		damageMult = 1f;
 
 		AddLoC();
 	}
@@ -43,6 +45,7 @@ public class Enemy : Entity
 		}
 		else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
 		{
+			Debug.Log("Enemy lvl 3 added statuses");
 			AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.SUBSTITUTE, 0.15f, 1f, true);
 			AddStatus(STATUS_TYPE.ENEMY_DAMAGE_UP, STATUS_APPLY_TYPE.SUBSTITUTE, 0.2f, 1f, true);
 		}
@@ -163,6 +166,8 @@ public class Enemy : Entity
 
 					this.damage += damageSubstracted;
 
+					damageMult += statusToInit.severity;
+
 					statusToInit.statChange = damageSubstracted;
 
 				}
@@ -230,6 +235,8 @@ public class Enemy : Entity
 			case STATUS_TYPE.ENEMY_DAMAGE_UP:
 				{
 					this.damage -= statusToDelete.statChange;
+
+					damageMult -= statusToDelete.severity;
 				}
 				break;
 			case STATUS_TYPE.ENEMY_HP_UP:

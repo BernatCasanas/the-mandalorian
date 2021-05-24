@@ -521,7 +521,7 @@ public class Deathtrooper : Enemy
     {
        
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/550070139.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, null);
-        bullet.GetComponent<DeathTrooperBullet>().damage = damage;
+        bullet.GetComponent<DeathTrooperBullet>().damage = damage * damageMult;
         bullet.GetComponent<DeathTrooperBullet>().SetTagToAvoid("Deathtrooper");
         bullet.GetComponent<DeathTrooperBullet>().SetGameObjectToAvoid(this.gameObject);
 
