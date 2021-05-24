@@ -969,10 +969,10 @@ public class MoffGideon : Entity
         currentPhase = MOFFGIDEON_PHASE.PHASE2;
         enemiesTimer = enemiesTime;
         probWander = probWanderP2;
-        followSpeed = 7f;
+        followSpeed = 6.8f;
         distance2Melee = 8f;
         distanceProjectile = 10f;
-        dashSpeed = 14f;
+        dashSpeed = 16f;
         dashBackWardDistance = 4f;
         dashForwardDistance = 8f;
         closerDistance = 6f;
@@ -1198,7 +1198,7 @@ public class MoffGideon : Entity
                 if(ready2Spawn)
                 {
                     SpawnEnemies();
-                    privateTimer = 0.5f;
+                    privateTimer = 1.5f;
                     ready2Spawn = false;
                     deathTrooperSpawned = true;
                 }
