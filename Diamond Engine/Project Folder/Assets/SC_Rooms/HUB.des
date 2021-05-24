@@ -1,19 +1,19 @@
 {
     "NavMesh": -1,
     "EditorCameraPosition": [
-        -18.440252304077148,
-        22.832096099853516,
-        -23.66118049621582
+        -37.684501647949219,
+        -87.485710144042969,
+        -33.558151245117188
     ],
     "EditorCameraZ": [
-        0.55575686693191528,
-        -0.55759710073471069,
-        0.61661958694458008
+        0.89502543210983276,
+        -0.093959495425224304,
+        0.43600571155548096
     ],
     "EditorCameraY": [
-        0.37335008382797241,
-        0.83011174201965332,
-        0.41415482759475708
+        0.084489956498146057,
+        0.99557602405548096,
+        0.041107624769210815
     ],
     "SkyboxPath0": "",
     "SkyboxPath1": "",
@@ -105,8 +105,8 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 13.260000228881836,
-                    "hFOV": 25,
+                    "vFOV": 11.380000114440918,
+                    "hFOV": 22.319999694824219,
                     "culling": true,
                     "HDR": true,
                     "drawSkybox": true,
@@ -23065,6 +23065,35 @@
             ]
         },
         {
+            "name": "BlackFade",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 705025983,
+            "ParentUID": 1847907807,
+            "PrefabReference": 1852207575,
+            "PrefabID": 1368828559,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "PrefabObjects": []
+        },
+        {
             "name": "ColliderNextRoom",
             "tag": "Untagged",
             "layer": "Default",
@@ -32387,6 +32416,59 @@
                 {
                     "Type": 1,
                     "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Empty",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 635572268,
+            "ParentUID": 226045245,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -133.21080017089844,
+                -396.34976196289063,
+                33.629158020019531
+            ],
+            "Rotation": [
+                7.2782144894256717e-12,
+                1,
+                1.6643515992481595e-12,
+                -4.3711388286737929e-08
+            ],
+            "Scale": [
+                1.0000003576278687,
+                1,
+                0.9999992847442627
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 27,
+                    "Active": true,
+                    "lightColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "ambientLightColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "lightIntensity": 1,
+                    "specularValue": 1,
+                    "fadeDistance": 50,
+                    "maxDistance": 600,
+                    "calculateShadows": true
                 }
             ]
         },

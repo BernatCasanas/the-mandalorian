@@ -33,31 +33,19 @@ public class StartMenu : DiamondComponent
     }
     public void OnExecuteButton()
     {
+        
         if (gameObject.Name == "New Game" || gameObject.Name == "Load Game")
         {
-            if (gameObject.Name == "Load Game")
+            if (InternalCalls.FindObjectWithName("BlackFade") != null)
             {
-                DiamondPrefs.LoadData();
-                if (DiamondPrefs.ReadBool("loadData") == false)
-                    return;
+                BlackFade.StartFadeIn();
+                BlackFade.onFadeInCompleted = StartGameButton;
             }
             else
             {
-                DiamondPrefs.LoadData();
-                if (DiamondPrefs.ReadBool("loadData") == true && popUpNewGame != null && menuButtons != null)
-                {
-                    popUpNewGame.EnableNav(true);
-                    menuButtons.EnableNav(false);
-                    if (default_selected != null)
-                        default_selected.GetComponent<Navigation>().Select();
-                    DiamondPrefs.Clear();
-                    return;
-                }
-                DiamondPrefs.Clear();
+                StartGameButton();
 
             }
-            StartGame();
-            
         }
         else if (gameObject.Name == "Options")
         {
@@ -98,6 +86,32 @@ public class StartMenu : DiamondComponent
             Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
             Debug.Log("Exploring");
         }
+    }
+
+    private void StartGameButton()
+    {
+        if (gameObject.Name == "Load Game")
+        {
+            DiamondPrefs.LoadData();
+            if (DiamondPrefs.ReadBool("loadData") == false)
+                return;
+        }
+        else
+        {
+            DiamondPrefs.LoadData();
+            if (DiamondPrefs.ReadBool("loadData") == true && popUpNewGame != null && menuButtons != null)
+            {
+                popUpNewGame.EnableNav(true);
+                menuButtons.EnableNav(false);
+                if (default_selected != null)
+                    default_selected.GetComponent<Navigation>().Select();
+                DiamondPrefs.Clear();
+                return;
+            }
+            DiamondPrefs.Clear();
+
+        }
+        StartGame();
     }
 
 }

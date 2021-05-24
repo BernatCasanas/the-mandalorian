@@ -1936,7 +1936,7 @@ public class Core : Entity
 
     private void EndDead()
     {
-        PlayerHealth.onPlayerDeathEnd?.Invoke();
+        BlackFade.StartFadeIn();
     }
 
     private void DeadInput()

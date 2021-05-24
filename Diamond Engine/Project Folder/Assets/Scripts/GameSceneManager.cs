@@ -70,7 +70,16 @@ public class GameSceneManager : DiamondComponent
             if (rewardSpawnComponent.trigger == true)
             {
                 ApplyReward();
-                ChangeScene();
+                if (InternalCalls.FindObjectWithName("BlackFade") != null)
+                {
+                    BlackFade.StartFadeIn();
+                    BlackFade.onFadeInCompleted = ChangeScene;
+                }
+                else
+                {
+                    ChangeScene();
+                }
+                rewardSpawnComponent.trigger = false;
             }
         }
 
