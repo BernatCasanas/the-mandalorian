@@ -167,6 +167,16 @@ public class Enemy : Entity
 
 				}
 				break;
+			case STATUS_TYPE.ENEMY_HP_UP:
+				{
+					float lifeGiven = healthPoints * statusToInit.severity;
+
+					this.healthPoints += lifeGiven;
+
+					statusToInit.statChange = lifeGiven;
+
+				}
+				break;
 			default:
 				break;
 		}
@@ -220,6 +230,13 @@ public class Enemy : Entity
 			case STATUS_TYPE.ENEMY_DAMAGE_UP:
 				{
 					this.damage -= statusToDelete.statChange;
+				}
+				break;
+			case STATUS_TYPE.ENEMY_HP_UP:
+				{
+					this.healthPoints -= statusToDelete.statChange;
+
+					this.healthPoints = Math.Max(this.healthPoints, 1f);
 				}
 				break;
 			default:

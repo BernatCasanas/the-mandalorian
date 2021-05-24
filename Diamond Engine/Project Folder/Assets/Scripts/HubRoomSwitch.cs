@@ -28,6 +28,7 @@ public class HubRoomSwitch : DiamondComponent
         if (isHubScene == true)
         {
             PlayerResources.ResetRunBoons();
+            PlayerResources.SetRunCoins(0);
             RoomSwitch.ClearStaticData();
         }
 
