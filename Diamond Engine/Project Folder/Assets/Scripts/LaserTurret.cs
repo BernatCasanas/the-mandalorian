@@ -61,8 +61,10 @@ public class LaserTurret : Enemy
 
     //Explosion effect
     public GameObject hit = null;
+    public GameObject sniperHitObj = null;
 
     private ParticleSystem hitParticle = null;
+    private ParticleSystem sniperHitParticle = null;
 
     public void Awake()
     {
@@ -88,7 +90,7 @@ public class LaserTurret : Enemy
 
         if (spawnparticles != null)
         {
-           // Debug.Log("PLAY SPAWN!!!");
+            // Debug.Log("PLAY SPAWN!!!");
             spawnparticles.Play();
         }
         else
@@ -98,6 +100,10 @@ public class LaserTurret : Enemy
         if (hit != null)
         {
             hitParticle = hit.GetComponent<ParticleSystem>();
+        }
+        if (sniperHitObj != null)
+        {
+            sniperHitParticle = sniperHitObj.GetComponent<ParticleSystem>();
         }
 
         rotationSpeed = shotTotalAngle * Mathf.Deg2RRad / shotTime;
@@ -168,7 +174,7 @@ public class LaserTurret : Enemy
     //All events from outside the stormtrooper
     private void ProcessExternalInput()
     {
-    
+
     }
 
     //Manages state changes throught inputs
@@ -296,7 +302,7 @@ public class LaserTurret : Enemy
         //Debug.Log("TURRET SHOOT");
         shotTimer = shotTime;
         Audio.PlayAudio(gameObject, "Play_Turret_Shot");
-        Audio.PlayAudio(gameObject, "Play_Turret_Charge"); 
+        Audio.PlayAudio(gameObject, "Play_Turret_Charge");
     }
 
     private void UpdateShoot()
@@ -433,6 +439,9 @@ public class LaserTurret : Enemy
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
+                if (sniperHitParticle != null)
+                    sniperHitParticle.Play();
+
                 if (Core.instance.hud != null)
                 {
                     Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
@@ -503,7 +512,7 @@ public class LaserTurret : Enemy
                             BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
                         }
                     }
-          
+
 
                     if (Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
                     {

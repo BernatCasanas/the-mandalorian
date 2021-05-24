@@ -88,6 +88,8 @@ public class Deathtrooper : Enemy
     private ParticleSystem hitParticle = null;
     public GameObject shotgunParticlesObj = null;
     private ParticleSystem shotgunParticle = null;
+    public GameObject sniperHitParticleObj = null;
+    private ParticleSystem sniperParticle = null;
 
     public void Awake()
     {
@@ -114,6 +116,10 @@ public class Deathtrooper : Enemy
 
         if (shotgunParticlesObj != null)
             shotgunParticle = shotgunParticlesObj.GetComponent<ParticleSystem>();
+
+        if (sniperHitParticleObj != null)
+            sniperParticle = sniperHitParticleObj.GetComponent<ParticleSystem>();
+
         //else
         //{
         //    //Debug.Log("Shotgun particles gameobject not found!");
@@ -654,7 +660,10 @@ public class Deathtrooper : Enemy
                 {
                     Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
                 }
-                
+
+                if (sniperParticle != null)
+                    sniperParticle.Play();
+
                 float vulerableSev = 0.2f;
                 float vulerableTime = 4.5f;
                 STATUS_APPLY_TYPE applyType = STATUS_APPLY_TYPE.BIGGER_PERCENTAGE;
