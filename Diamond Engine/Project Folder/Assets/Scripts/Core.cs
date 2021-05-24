@@ -121,7 +121,7 @@ public class Core : Entity
     private bool skill_groguIncreaseDamageActive = false;
     private float skill_groguIncreaseDamageTimer = 0.0f;
     public float skill_SoloHeal = 0.0f;
-    public int ShopDiscount = 1;
+    public int ShopDiscount = 0;
     // Dash
     public float dashCD = 0.33f;
     public float dashDuration = 0.2f;
@@ -339,7 +339,7 @@ public class Core : Entity
             blaster.Enable(false);
 
         dieTime = Animator.GetAnimationDuration(gameObject, "Die") - 0.016f - 1f;
-
+        ShopDiscount = 0;
         #endregion
 
         #region EVENTS
@@ -3069,6 +3069,7 @@ public class Core : Entity
             case STATUS_TYPE.GREEF_PAYCHECK:
                 {
                     ShopDiscount = (int)statusToInit.severity;
+                    Debug.Log(ShopDiscount.ToString());
                 }
                 break;
             default:

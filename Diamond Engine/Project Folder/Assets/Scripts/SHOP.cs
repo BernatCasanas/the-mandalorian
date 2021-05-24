@@ -153,13 +153,13 @@ public class SHOP : DiamondComponent
         if (shopOpen)
         {
             int currency = PlayerResources.GetRunCoins();
-            float discount = 0;
+            int discount = 0;
+            Debug.Log("Discounts left" + Core.instance.ShopDiscount.ToString());
             if (Core.instance.ShopDiscount > 0)
             {
                 Core.instance.ShopDiscount--;
-                float price = (float)item.price;
-                discount = price * 0.75f;
-                Debug.Log("discount" + discount.ToString());
+                Core.instance.GetStatusData(STATUS_TYPE.GREEF_PAYCHECK).severity--;
+                discount = item.discount;
 
                 if (Core.instance.ShopDiscount == 0)
                 {
@@ -257,7 +257,7 @@ public class SHOP : DiamondComponent
         {
             if (BoonDataHolder.boonType[(int)boon] != null)
             {
-                item.SetItem(type, BoonDataHolder.boonType[(int)boon].price - (int)discount, BoonDataHolder.boonType[(int)boon].name, BoonDataHolder.boonType[(int)boon].rewardDescription);
+                item.SetItem(type, BoonDataHolder.boonType[(int)boon].price, BoonDataHolder.boonType[(int)boon].name, BoonDataHolder.boonType[(int)boon].rewardDescription, (int)discount);
                 item.resource = BoonDataHolder.boonType[(int)boon];
             }
             else
@@ -265,7 +265,7 @@ public class SHOP : DiamondComponent
         }
         else
         {
-            item.SetItem(type, ShopPrice.SHOP_CHEAP -(int)discount, "Health Replenishment", "Heal for 25% of your max life");
+            item.SetItem(type, ShopPrice.SHOP_CHEAP , "Health Replenishment", "Heal for 25% of your max life", (int)discount);
         }
     }
 
