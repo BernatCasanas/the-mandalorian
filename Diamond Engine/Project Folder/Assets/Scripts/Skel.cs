@@ -67,8 +67,6 @@ public class Skel : Bosseslv2
         else
             Debug.Log("Agent is located");
 
-        //Animator.Play(gameObject, "");
-        //Audio.PlayAudio(gameObject, "");
     }
 
     public void Update()
@@ -166,16 +164,6 @@ public class Skel : Bosseslv2
                 inputsList.Add(INPUT.IN_JUMPSLAM_END);
             }
         }
-        //if (bounceRushTimer > 0)
-        //{
-        //    bounceRushTimer -= myDeltaTime;
-
-        //    if (bounceRushTimer <= 0)
-        //    {
-        //        inputsList.Add(INPUT.IN_BOUNCERUSH_END);
-        //    }
-        //}
-
     }
 
     private void ProcessExternalInput()
@@ -388,18 +376,11 @@ public class Skel : Bosseslv2
             else
                 inputsList.Add(INPUT.IN_WANDER);
         }
-        //else
-        //{
-        //    if (Mathf.Distance(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition) >= distanceProjectile)
-        //        inputsList.Add(INPUT.IN_PROJECTILE);
-        //    else
-        //        inputsList.Add(INPUT.IN_FAST_RUSH);
-        //    Debug.Log("Selecting Action");
-        //}
+       
         else
         {
             int decision = randomNum.Next(1, 100);
-            if (decision <= 75)
+            if (decision <= 1)
                 inputsList.Add(INPUT.IN_JUMPSLAM);
             else
                 inputsList.Add(INPUT.IN_BOUNCERUSH);
@@ -428,15 +409,8 @@ public class Skel : Bosseslv2
                 if (Core.instance != null)
                     damageToBoss *= Core.instance.DamageToBosses * BlasterVulnerability;
 
-                //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
-                //{
-                //    damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
-                //}
-
                 TakeDamage(damageToBoss * damageRecieveMult);
             }
-
-            //damaged = 1.0f; this is HUD things
 
             if (Core.instance.hud != null)
             {
@@ -498,8 +472,6 @@ public class Skel : Bosseslv2
                 }
                 TakeDamage(damageToBoss);
             }
-
-            //damaged = 1.0f; this is HUD things
 
             if (Core.instance.hud != null)
             {

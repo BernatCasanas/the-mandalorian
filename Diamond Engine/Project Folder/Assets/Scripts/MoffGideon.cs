@@ -63,9 +63,7 @@ public class MoffGideon : Entity
         {
             this.animation = animation;
             this.duration = Animator.GetAnimationDuration(go, animation) - 0.016f;
-            this.last = false;
         }
-        public bool last;
         public string animation;
         public float duration;
     }
@@ -1411,15 +1409,9 @@ public class MoffGideon : Entity
                 Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
             }
 
-            /*if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
-            {
-                damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
-            }*/
-
             TakeDamage(damageToBoss * damageRecieveMult * BlasterVulnerability);
             Debug.Log("GIDEON HP: " + healthPoints.ToString());
-            //damaged = 1.0f;
-            //CHANGE FOR APPROPIATE RANCOR HIT
+
             if (currentPhase == MOFFGIDEON_PHASE.PHASE1)
             {
                 Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Hit_Phase_1");
@@ -1493,10 +1485,6 @@ public class MoffGideon : Entity
                 Debug.Log("The collider with tag Bullet didn't have a bullet Script!!");
             }
 
-            /*if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
-            {
-                damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
-            }*/
             if (Core.instance.HasStatus(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT))
             {
                 float mod = Core.instance.GetStatusData(STATUS_TYPE.CROSS_HAIR_LUCKY_SHOT).severity;
