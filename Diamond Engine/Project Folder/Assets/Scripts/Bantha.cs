@@ -687,9 +687,9 @@ public class Bantha : Enemy
             visualFeedback = null;
         }
 
-        Vector3 force = pushDir.normalized;
-        if (BabyYoda.instance != null)
+        if (BabyYoda.instance != null && pushDir != null)
         {
+            Vector3 force = pushDir.normalized;
             force.y = BabyYoda.instance.pushVerticalForce;
             force.x *= BabyYoda.instance.pushHorizontalForce;
             force.z *= BabyYoda.instance.pushHorizontalForce;
@@ -722,6 +722,7 @@ public class Bantha : Enemy
                     Core.instance.AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.BIGGER_PERCENTAGE, Core.instance.GetStatusData(STATUS_TYPE.PRIM_MOV_SPEED).severity / 100, 5, false);
 
             }
+
             BH_Bullet bullet = collidedGameObject.GetComponent<BH_Bullet>();
             if (bullet != null)
             {
@@ -729,14 +730,15 @@ public class Bantha : Enemy
 
                 Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 
-                if (Core.instance.hud != null && currentState != STATE.DIE)
+                if (Core.instance != null && Core.instance.hud != null && currentState != STATE.DIE)
                 {
                     HUD hud = Core.instance.hud.GetComponent<HUD>();
 
                     if (hud != null)
+                    {
                         hud.AddToCombo(20, 1.0f);
+                    }
                 }
-
             }
         }
         else if (collidedGameObject.CompareTag("ChargeBullet"))
@@ -813,7 +815,6 @@ public class Bantha : Enemy
                             }
                         }
 
-
                         if (Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
                         {
                             Core.instance.RefillSniper();
@@ -846,7 +847,9 @@ public class Bantha : Enemy
                 inputsList.Add(INPUT.IN_CHARGE_END);
                 PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
+                {
                     playerHealth.TakeDamage((int)damage, true);
+                }
             }
         }
         else if (collidedGameObject.CompareTag("ExplosiveBarrel"))
@@ -927,13 +930,13 @@ public class Bantha : Enemy
         if (Core.instance != null)
         {
             if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))
-                AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.WRECK_HEAVY_SHOT).severity / 100, 5);
+                AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.WRECK_HEAVY_SHOT).severity / 100.0f, 5.0f);
 
             if (Core.instance.HasStatus(STATUS_TYPE.LIFESTEAL))
             {
                 Random rand = new Random();
                 float result = rand.Next(1, 101);
-                if (result <= 11)
+                if (result <= 11.0f)
                     if (Core.instance.gameObject != null && Core.instance.gameObject.GetComponent<PlayerHealth>() != null)
                     {
                         float healing = Core.instance.GetStatusData(STATUS_TYPE.LIFESTEAL).severity * damage / 100;
@@ -953,20 +956,20 @@ public class Bantha : Enemy
             if (healthPoints <= 0.0f)
             {
                 inputsList.Add(INPUT.IN_DIE);
-                if (Core.instance != null)
+                if (Core.instance != null && BabyYoda.instance != null)
                 {
                     if (Core.instance.HasStatus(STATUS_TYPE.WINDU_FORCE))
+                    {
                         BabyYoda.instance.SetCurrentForce(BabyYoda.instance.GetCurrentForce() + (int)(Core.instance.GetStatusData(STATUS_TYPE.WINDU_FORCE).severity));
+                    }
                 }
             }
-
         }
-
     }
 
     public void StraightPath()
     {
-        if (Vector2.Dot(agent.GetLastVector().ToVector2(), (agent.GetDestination() - gameObject.transform.localPosition).ToVector2()) > 0.9f)
+        if (agent != null && Vector2.Dot(agent.GetLastVector().ToVector2(), (agent.GetDestination() - gameObject.transform.localPosition).ToVector2()) > 0.9f)
         {
             straightPath = true;
         }
@@ -990,5 +993,4 @@ public class Bantha : Enemy
     {
         EnemyManager.RemoveEnemy(this.gameObject);
     }
-
 }
