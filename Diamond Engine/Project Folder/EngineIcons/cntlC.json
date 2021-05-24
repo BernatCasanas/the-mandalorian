@@ -1,33 +1,71 @@
 {
     "Game Objects": [
         {
-            "name": "Sniper Impact",
+            "name": "Tie_Fighter",
             "tag": "Untagged",
             "layer": "Default",
             "Active": true,
-            "UID": 1293084811,
-            "ParentUID": 221054999,
-            "PrefabReference": 149225084,
-            "PrefabID": 1298559028,
+            "UID": 847555451,
+            "ParentUID": 529855152,
+            "PrefabReference": 0,
+            "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                -2.384185791015625e-07,
-                1.2639099359512329,
-                -1.1920928955078125e-07
+                -32.597232818603516,
+                2.109860897064209,
+                -9.6048564910888672
             ],
             "Rotation": [
-                -0.7071068286895752,
-                2.3707890761670569e-07,
-                -2.4761570216469408e-07,
-                0.70710670948028564
+                1.0672351891116705e-11,
+                -0.70722883939743042,
+                1.0672351891116705e-11,
+                0.70698469877243042
             ],
             "Scale": [
                 1,
-                0.99998974800109863,
-                0.9999890923500061
+                1,
+                1
             ],
-            "PrefabObjects": []
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                },
+                {
+                    "Type": 2,
+                    "Active": true,
+                    "Path": "Library\/Meshes\/360405882.mmh",
+                    "UID": 360405882,
+                    "bumpDepth": 0,
+                    "alternColor": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "alternColorStencil": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "stencilEmission": 0.89999997615814209,
+                    "doNotDrawStencil": true,
+                    "drawShadows": true
+                },
+                {
+                    "Type": 3,
+                    "Active": true,
+                    "IsEmpty": true,
+                    "MaterialAssetPath": "Empty",
+                    "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
+                    "MaterialUID": 82053990
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "FloatingVehicles"
+                }
+            ]
         }
     ]
 }

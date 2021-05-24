@@ -565,6 +565,7 @@ public class HUD : DiamondComponent
                 if (Core.instance.gameObject != null)
                 {
                     PlayerResources.AddRunCoins((int)Math.Round(coinsToGain));
+                    UpdateCurrency(PlayerResources.GetRunCoins());
                 }
                 if (Core.instance.HasStatus(STATUS_TYPE.HEAL_COMBO_FINNISH))
                 {

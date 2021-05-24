@@ -11,6 +11,8 @@ public class SkyTrooperShot : DiamondComponent
 
 	public float damageRange = 3.5f;
 
+	private bool damagedPlayer = false;
+
 	Vector3 initialPos = null;
 	Vector3 velocity = new Vector3(0,0,0);
 	Vector3 targetPosition = null;
@@ -131,14 +133,16 @@ public class SkyTrooperShot : DiamondComponent
 
 	public void OnCollisionEnter(GameObject collidedGameObject)
 	{
-		if(collidedGameObject.CompareTag("Player"))
+		if(collidedGameObject.CompareTag("Player") && damagedPlayer == false)
         {
 			PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
 			
 			if(playerHealth != null)
 				playerHealth.TakeDamage(damage);
-        }
-		else
+
+			damagedPlayer = true;
+		}
+		else if (damagedPlayer == false)
         {
 			if (Mathf.Distance(targetPosition, gameObject.transform.globalPosition) < 1.0f)
             {
@@ -151,7 +155,9 @@ public class SkyTrooperShot : DiamondComponent
                     {
 						Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
 						//Debug.Log("Damage: " + damage.ToString());
-                    }
+						damagedPlayer = true;
+
+					}
 
 				}
             }
