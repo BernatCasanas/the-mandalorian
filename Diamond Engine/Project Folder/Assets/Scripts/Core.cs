@@ -599,10 +599,12 @@ public class Core : Entity
             }
         }
 
+        float grenadeDeltaTime = Math.Max(myDeltaTime, Time.deltaTime * 0.5f);
         if (HasStatus(STATUS_TYPE.SEC_RECOVERY))
-            grenadesFireRateTimer -= myDeltaTime * (1 + GetStatusData(STATUS_TYPE.SEC_RECOVERY).severity / 100);
+            grenadesFireRateTimer -= grenadeDeltaTime * (1 + GetStatusData(STATUS_TYPE.SEC_RECOVERY).severity / 100);
         else
-            grenadesFireRateTimer -= myDeltaTime;
+            grenadesFireRateTimer -= grenadeDeltaTime;
+
         timeOfRoom += myDeltaTime;
         timeSinceLastDash += myDeltaTime;
 

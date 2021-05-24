@@ -92,7 +92,7 @@ public class StormTrooper : Enemy
     private StormTrooperParticles myParticles = null;
     public void Awake()
     {
-        Debug.Log("Stormtrooper Awake");
+        //Debug.Log("Stormtrooper Awake");
 
         InitEntity(ENTITY_TYPE.STROMTROOPER);
         EnemyManager.AddEnemy(gameObject);
@@ -107,7 +107,7 @@ public class StormTrooper : Enemy
         if (blaster != null)
             Animator.Play(blaster, "ST_Idle", 1.0f);
 
-        UpdateAnimationSpd(1f);
+        UpdateAnimationSpd(1.0f);
 
         shotTimes = 0;
         shotSequences = 0;
@@ -151,7 +151,7 @@ public class StormTrooper : Enemy
 
         if (currentState == STATE.RUN || currentState == STATE.WANDER)
         {
-            if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
+            if (agent != null && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
             {
                 inputsList.Add(INPUT.IN_IDLE);
             }
@@ -159,21 +159,11 @@ public class StormTrooper : Enemy
 
         if (currentState == STATE.FIND_AIM)
         {
-            if (Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
+            if (agent != null && Mathf.Distance(gameObject.transform.globalPosition, agent.GetDestination()) <= agent.stoppingDistance)
             {
                 inputsList.Add(INPUT.IN_SHOOT);
             }
         }
-
-        /*if (skill_slowDownActive)
-        {
-            skill_slowDownTimer += myDeltaTime;
-            if (skill_slowDownTimer >= Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownDuration)
-            {
-                skill_slowDownTimer = 0.0f;
-                skill_slowDownActive = false;
-            }
-        }*/
     }
 
     //All events from outside the stormtrooper
@@ -401,6 +391,7 @@ public class StormTrooper : Enemy
     {
         idleTimer = idleTime;
         Animator.Play(gameObject, "ST_Idle", speedMult);
+
         if (blaster != null)
             Animator.Play(blaster, "ST_Idle", speedMult);
 
@@ -418,21 +409,24 @@ public class StormTrooper : Enemy
     #region WANDER
     private void StartWander()
     {
-        agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
+        if (agent != null)
+            agent.CalculateRandomPath(gameObject.transform.globalPosition, wanderRange);
 
         Animator.Play(gameObject, "ST_Run", speedMult);
         if (blaster != null)
             Animator.Play(blaster, "ST_Idle", speedMult);
+
         UpdateAnimationSpd(speedMult);
+
         Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }
     private void UpdateWander()
     {
-        LookAt(agent.GetDestination());
-        //if (skill_slowDownActive) 
-        //    agent.MoveToCalculatedPos(wanderSpeed * (1 - Skill_Tree_Data.GetWeaponsSkillTree().PW3_SlowDownAmount));
-
-        agent.MoveToCalculatedPos(wanderSpeed * speedMult);
+        if (agent != null)
+        {
+            LookAt(agent.GetDestination());
+            agent.MoveToCalculatedPos(wanderSpeed * speedMult);
+        }
 
         UpdateAnimationSpd(speedMult);
 
@@ -446,21 +440,27 @@ public class StormTrooper : Enemy
     #region RUN
     private void StartRun()
     {
-        //Debug.Log("STORMTROOPER RUN");
-        agent.CalculateRandomPath(gameObject.transform.globalPosition, runningRange);
+        if (agent != null)
+        {
+            agent.CalculateRandomPath(gameObject.transform.globalPosition, runningRange);
+        }
 
         Animator.Play(gameObject, "ST_Run", speedMult);
         if (blaster != null)
             Animator.Play(blaster, "ST_Run", speedMult);
+
         UpdateAnimationSpd(speedMult);
+
         Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
     }
 
     private void UpdateRun()
     {
-        LookAt(agent.GetDestination());
-
-        agent.MoveToCalculatedPos(runningSpeed * speedMult);
+        if (agent != null)
+        {
+            LookAt(agent.GetDestination());
+            agent.MoveToCalculatedPos(runningSpeed * speedMult);
+        }
 
         UpdateAnimationSpd(speedMult);
     }
@@ -480,14 +480,16 @@ public class StormTrooper : Enemy
         Animator.Play(gameObject, "ST_Run", speedMult);
         if (blaster != null)
             Animator.Play(blaster, "ST_Run", speedMult);
+
         UpdateAnimationSpd(speedMult);
+
         Audio.PlayAudio(gameObject, "Play_Footsteps_Stormtrooper");
 
-        if (agent != null && Core.instance != null)
+        if (agent != null && Core.instance != null && agent.GetPathSize() >= 2)
         {
             agent.CalculatePath(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition);
             Vector3 directionFindAim = new Vector3(agent.GetPointAt(1) - gameObject.transform.globalPosition);
-            agent.ClearPath();
+            //agent.ClearPath();
             targetPosition = directionFindAim.normalized * runningRange + gameObject.transform.globalPosition;
             targetPosition.y = gameObject.transform.globalPosition.y;
             agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
@@ -496,9 +498,11 @@ public class StormTrooper : Enemy
 
     private void UpdateFindAim()
     {
-        LookAt(agent.GetDestination());
-
-        agent.MoveToCalculatedPos(runningSpeed * speedMult);
+        if (agent != null)
+        {
+            LookAt(agent.GetDestination());
+            agent.MoveToCalculatedPos(runningSpeed * speedMult);
+        }
 
         UpdateAnimationSpd(speedMult);
     }
@@ -554,7 +558,6 @@ public class StormTrooper : Enemy
             if (shotTimer <= 0.0f)
             {
                 Shoot();
-                //shooting = true;
 
                 if (shotTimes >= maxShots)
                 {
@@ -578,7 +581,6 @@ public class StormTrooper : Enemy
                     {
                         statesTimer = timeBetweenStates;
                         shooting = false;
-                        //Debug.Log("Ending 2 time shot");
                     }
                 }
             }
@@ -597,7 +599,9 @@ public class StormTrooper : Enemy
         }
 
         if (!shooting && Core.instance != null)
+        {
             LookAt(Core.instance.gameObject.transform.globalPosition);
+        }
 
         UpdateAnimationSpd(speedMult);
     }
@@ -607,10 +611,17 @@ public class StormTrooper : Enemy
         shooting = true;
 
         GameObject bullet = InternalCalls.CreatePrefab("Library/Prefabs/1635392825.prefab", shootPoint.transform.globalPosition, shootPoint.transform.globalRotation, shootPoint.transform.globalScale);
-        BH_Bullet bulletScript = bullet.GetComponent<BH_Bullet>();
-        bulletScript.damage = damage;
-        //bulletScript.SetTagToAvoid(gameObject.tag);
-        bulletScript.SetGameObjectToAvoid(this.gameObject);
+
+        if (bullet != null)
+        {
+            BH_Bullet bulletScript = bullet.GetComponent<BH_Bullet>();
+
+            if (bulletScript != null)
+            {
+                bulletScript.damage = damage;
+                bulletScript.SetGameObjectToAvoid(this.gameObject);
+            }
+        }
 
         Animator.Play(gameObject, "ST_Shoot", speedMult);
         if (blaster != null)
@@ -624,15 +635,17 @@ public class StormTrooper : Enemy
     {
         Audio.PlayAudio(gameObject, "Play_Enemy_Detection");
         if (myParticles != null && myParticles.alert != null)
+        {
             myParticles.alert.Play();
+        }
     }
     #endregion
 
     #region DIE
     private void StartDie()
     {
+        EnemyManager.RemoveEnemy(gameObject);
         dieTimer = dieTime;
-        //Audio.StopAudio(gameObject);
 
         Animator.Play(gameObject, "ST_Die", speedMult);
         if (blaster != null)
@@ -641,14 +654,12 @@ public class StormTrooper : Enemy
 
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
 
-        EnemyManager.RemoveEnemy(gameObject);
-
         if (Core.instance != null)
         {
             Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Kill_Voice");
 
             //Combo
-            if (PlayerResources.CheckBoon(BOONS.BOON_MASTER_YODA_FORCE))
+            if (PlayerResources.CheckBoon(BOONS.BOON_MASTER_YODA_FORCE) && Core.instance.hud != null)
             {
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
             }
@@ -680,10 +691,15 @@ public class StormTrooper : Enemy
 
         if (Core.instance != null)
         {
-            Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+            PlayerHealth playerHealth = Core.instance.gameObject.GetComponent<PlayerHealth>();
+
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+            }
         }
 
-        InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), Quaternion.identity, new Vector3(1, 1, 1));
+        InternalCalls.CreatePrefab("Library/Prefabs/230945350.prefab", new Vector3(gameObject.transform.globalPosition.x + forward.x, gameObject.transform.globalPosition.y, gameObject.transform.globalPosition.z + forward.z), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f), new Vector3(1.0f, 1.0f, 1.0f));
         DropCoins();
 
         InternalCalls.Destroy(gameObject);
@@ -697,7 +713,7 @@ public class StormTrooper : Enemy
         Vector3 force = pushDir.normalized;
         if (BabyYoda.instance != null)
         {
-            force.y = BabyYoda.instance.pushVerticalForce * forcePushMod;
+            force.y  = BabyYoda.instance.pushVerticalForce * forcePushMod;
             force.x *= BabyYoda.instance.pushHorizontalForce;
             force.z *= BabyYoda.instance.pushHorizontalForce;
             gameObject.AddForce(force * forcePushMod);
@@ -718,7 +734,7 @@ public class StormTrooper : Enemy
         float distance = detectionRange;
         float hitDistance = detectionRange;
 
-        if(Core.instance == null)
+        if (Core.instance == null)
         {
             return false;
         }
@@ -873,7 +889,7 @@ public class StormTrooper : Enemy
                 inputsList.Add(INPUT.IN_DIE);
             }
         }
-        else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>().active)
+        else if (collidedGameObject.CompareTag("ExplosiveBarrel") && collidedGameObject.GetComponent<SphereCollider>() != null && collidedGameObject.GetComponent<SphereCollider>().active)
         {
             BH_DestructBox explosion = collidedGameObject.GetComponent<BH_DestructBox>();
 
@@ -894,9 +910,7 @@ public class StormTrooper : Enemy
                         hudComponent.AddToCombo(33, 0.65f);
                 }
             }
-
         }
-
     }
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
@@ -942,10 +956,8 @@ public class StormTrooper : Enemy
 
     public override void TakeDamage(float damage)
     {
-
         if (currentState != STATE.DIE)
         {
-
             if (myParticles != null && myParticles.hit != null)
                 myParticles.hit.Play();
 
@@ -986,15 +998,15 @@ public class StormTrooper : Enemy
             if (healthPoints <= 0.0f)
             {
                 inputsList.Add(INPUT.IN_DIE);
-                if (Core.instance != null)
+                if (Core.instance != null && BabyYoda.instance != null)
                 {
                     if (Core.instance.HasStatus(STATUS_TYPE.WINDU_FORCE))
+                    {
                         BabyYoda.instance.SetCurrentForce(BabyYoda.instance.GetCurrentForce() + (int)(Core.instance.GetStatusData(STATUS_TYPE.WINDU_FORCE).severity));
+                    }
                 }
             }
         }
-
-
     }
     private void UpdateAnimationSpd(float newSpd)
     {
@@ -1007,8 +1019,10 @@ public class StormTrooper : Enemy
         }
     }
 
-    public void OnDestroy()
+    public override void PlayGrenadeHitParticles()
     {
-        EnemyManager.RemoveEnemy(this.gameObject);
+        if (myParticles != null && myParticles.grenadeHit != null)
+            myParticles.grenadeHit.Play();
     }
+
 }

@@ -184,19 +184,20 @@ public class Bosseslv2 : Entity
                     firstThrow = false;
                     projectiles.Clear();
                     Vector3 targetPos = (Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition);
-                    projectiles.Add(InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, new Quaternion(0, 0, 0), null).GetComponent<WampaProjectile>());
-                    projectiles.Add(InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, new Quaternion(0, 0, 0), null).GetComponent<WampaProjectile>());
-                    projectiles.Add(InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, new Quaternion(0, 0, 0), null).GetComponent<WampaProjectile>());
+                    projectiles.Add(InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, new Quaternion(90, 0, 0), null).GetComponent<WampaProjectile>());
+                    projectiles.Add(InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, new Quaternion(90, 0, 0), null).GetComponent<WampaProjectile>());
+                    projectiles.Add(InternalCalls.CreatePrefab("Library/Prefabs/788871013.prefab", pos, new Quaternion(90, 0, 0), null).GetComponent<WampaProjectile>());
 
                     if (projectiles.Count!=0)
                     {
                         for(int i = 0;i<projectiles.Count;++i)
                         {
+                            if(projectiles[i]!=null)
                             projectiles[i].damage = (int)(projectiles[i].damage * damageMult);
                         }
                         projectiles[0].targetDirection = new Vector3(targetPos.x, targetPos.y, targetPos.z);
-                        projectiles[1].targetDirection = new Vector3(targetPos.x, targetPos.y - 5, targetPos.z);
-                        projectiles[2].targetDirection = new Vector3(targetPos.x, targetPos.y + 5, targetPos.z);
+                        projectiles[1].targetDirection = new Vector3(targetPos.x - 5, targetPos.y, targetPos.z);
+                        projectiles[2].targetDirection = new Vector3(targetPos.x + 5, targetPos.y, targetPos.z);
                     }
 
                     //Debug.Log("Throwing projectile");

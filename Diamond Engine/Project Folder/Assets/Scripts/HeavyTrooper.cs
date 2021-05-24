@@ -785,6 +785,7 @@ public class HeavyTrooper : Enemy
     #region DIE
     private void StartDie()
     {
+        EnemyManager.RemoveEnemy(gameObject);
         dieTimer = dieTime;
 
         Animator.Play(gameObject, "HVY_Die", speedMult);
@@ -795,8 +796,6 @@ public class HeavyTrooper : Enemy
         Audio.PlayAudio(gameObject, "Play_Heavytrooper_Death");
         if (Core.instance != null)
             Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Kill_Voice");
-
-        EnemyManager.RemoveEnemy(gameObject);
 
         //Combo
         if (PlayerResources.CheckBoon(BOONS.BOON_MASTER_YODA_FORCE))
@@ -882,7 +881,7 @@ public class HeavyTrooper : Enemy
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
-                if (Core.instance.hud != null &&  currentState != STATE.DIE)
+                if (Core.instance.hud != null && currentState != STATE.DIE)
                 {
                     HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
@@ -903,6 +902,8 @@ public class HeavyTrooper : Enemy
 
             if (bullet != null && currentState != STATE.DIE)
             {
+
+                particles.Play(HeavyTrooperParticles.HEAVYROOPER_PARTICLES.SNIPER_HIT);
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
@@ -973,7 +974,7 @@ public class HeavyTrooper : Enemy
                             BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
                         }
                     }
-                 
+
 
                     if (Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
                     {
@@ -1062,7 +1063,7 @@ public class HeavyTrooper : Enemy
                 mod = 1 + GetStatusData(STATUS_TYPE.GEOTERMAL_MARKER).severity / 100;
             }
         }
-        healthPoints -= damage * mod; 
+        healthPoints -= damage * mod;
         if (Core.instance != null)
         {
             if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))
@@ -1126,8 +1127,12 @@ public class HeavyTrooper : Enemy
         }
     }
 
-    public void OnDestroy()
+    public override void PlayGrenadeHitParticles()
     {
-        EnemyManager.RemoveEnemy(this.gameObject);
+
+        if (particles != null)
+            particles.Play(HeavyTrooperParticles.HEAVYROOPER_PARTICLES.GRENADE_HIT);
+
     }
+
 }

@@ -11,6 +11,7 @@ public class StormTrooperParticles : DiamondComponent
     public GameObject alertObj = null;
     public GameObject hitExplosion = null;
     public GameObject sniperHitObj = null;
+    public GameObject grenadeHitObj = null;
 
     public ParticleSystem spawn = null;
     public ParticleSystem dead = null;
@@ -19,6 +20,7 @@ public class StormTrooperParticles : DiamondComponent
     public ParticleSystem alert = null;
     public ParticleSystem hit = null;
     public ParticleSystem sniperHit = null;
+    public ParticleSystem grenadeHit = null;
 
     public void Awake()
     {
@@ -51,6 +53,10 @@ public class StormTrooperParticles : DiamondComponent
         if (sniperHitObj != null)
         {
             sniperHit = sniperHitObj.GetComponent<ParticleSystem>();
+        }
+        if (grenadeHitObj != null)
+        {
+            grenadeHit = grenadeHitObj.GetComponent<ParticleSystem>();
         }
     }
     public void Update()
