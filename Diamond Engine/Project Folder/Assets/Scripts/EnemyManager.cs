@@ -44,8 +44,15 @@ public class EnemyManager : DiamondComponent
         {
             if (currentEnemies[i].GetUid() == enemy.GetUid())
             {
+                if(Core.instance != null)
+                {
+                    Core.instance.NotifuEnemyDeath(currentEnemies[i]);
+                }
+
                 currentEnemies.RemoveAt(i);
                 ret = true;
+
+
             }
         }
 

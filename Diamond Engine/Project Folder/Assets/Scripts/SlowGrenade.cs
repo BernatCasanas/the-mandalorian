@@ -80,7 +80,7 @@ public class SlowGrenade : DiamondComponent
             for (int i = 0; i < enemies.Count; i++)
             {
 
-                if (enemies[i].gameObject.transform.globalPosition.Distance(this.gameObject.transform.globalPosition) > areaRadius)
+                if (enemies[i] == null || enemies[i].gameObject.transform.globalPosition.Distance(this.gameObject.transform.globalPosition) > areaRadius)
                 {
                     enemies.Remove(enemies[i]);
                     i--;
@@ -501,6 +501,11 @@ public class SlowGrenade : DiamondComponent
             myBoxColl.active = false;
 
 
+    }
+
+    public void EnemyDied(GameObject deadEnemy)
+    {
+        RemoveEnemyFromList(deadEnemy);
     }
 
     private void SerchEnemiesByDistance()

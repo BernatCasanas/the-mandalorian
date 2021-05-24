@@ -1923,7 +1923,13 @@ public class Core : Entity
         Animator.Play(gameObject, "Die");
         Audio.PlayAudio(gameObject, "Play_Mando_Death");
         Audio.SetState("Player_State", "Dead");
-        hud.GetComponent<HUD>().gameObject.Enable(false);
+        HUD hudComp = hud.GetComponent<HUD>();
+
+        if (hudComp != null && hudComp.gameObject != null)
+        {
+            hudComp.gameObject.Enable(false);
+        }
+
 
         if (rifle != null)
             rifle.Enable(false);
@@ -3361,6 +3367,36 @@ public class Core : Entity
                 break;
             default:
                 break;
+        }
+    }
+
+    public void NotifyEnemyDeath(GameObject enemy)
+    {
+        if(myGrenade1 != null)
+        {
+            if(myGrenade1.IsEnabled() == true)
+            {
+                SlowGrenade grenadeComp = myGrenade1.GetComponent<SlowGrenade>();
+
+                if (grenadeComp != null)
+                {
+                    grenadeComp.EnemyDied(enemy);
+                }
+            }
+
+        }
+
+        if (myGrenade2 != null)
+        {
+            if (myGrenade2.IsEnabled() == true)
+            {
+                SlowGrenade grenadeComp = myGrenade2.GetComponent<SlowGrenade>();
+
+                if (grenadeComp != null)
+                {
+                    grenadeComp.EnemyDied(enemy);
+                }
+            }
         }
     }
 
