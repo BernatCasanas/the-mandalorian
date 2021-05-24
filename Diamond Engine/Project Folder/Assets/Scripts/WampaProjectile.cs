@@ -19,8 +19,6 @@ public class WampaProjectile : DiamondComponent
 			//if (targetDirection == Vector3.zero)
 			//	targetDirection = targetPos - gameObject.transform.globalPosition;
 
-			Debug.Log(targetDirection.ToString());
-
 			gameObject.transform.localPosition += targetDirection.normalized * speed * Time.deltaTime;
 
 			gameObject.transform.LookAt(targetDirection);
