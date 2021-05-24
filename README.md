@@ -79,7 +79,7 @@ YouTube:	https://www.youtube.com/channel/UCzwLxtTAxGMVG1belis7tkw
 	- Shoot, becoming still in the process, & using the Left Joystick to aim. This weapon has a "Heat mechanic", the more you use it, the less fire rate it will have; if you over do it the weapon will enter in a "overheat" state where you will be not able to shot until it has completly cooled down. You can cool it down by not shooting or by using the other weapons.
 	
 * Y
-	- Grenade Launcher, becoming still in the process, & using the Left Joystick to aim. Shoots grenades that explode on contact with the ground or in a few seconds; once it explodes it deploys an area that hits consecutively in an area. You can't thoew another set of grenade until every single one has disapeared.
+	- Grenade Launcher, becoming still in the process, & using the Left Joystick to aim. Shoots grenades that explode on contact with the ground or in a few seconds; once it explodes it deploys an area that hits consecutively in an area. You can't thoew another set of grenade until every single one has disapeared. The longer the button is pressed, the further the grenade will go.
 
 * B
 	- Sniper Shot, becoming still in the process, & using the Left Joystick to aim. Holding down this button makes the Mandalorian charge his sniper rifle, once you release it you shot the bullet with less or more damage depending on the charge. If the sniper laser is red, it is undercharged; if it is yellow is optimally charged and if it neeps between white & red is overchared & won't do as much damage. You have 2 sniper charges that regenerate with time.
@@ -110,6 +110,7 @@ YouTube:	https://www.youtube.com/channel/UCzwLxtTAxGMVG1belis7tkw
 	- Overhauled Combat with parameters, dynamics, mechanics,...
 	- New Heat system for the Primary Weapon.
 	- Added weapons attached to the character!
+	- Polished beheaviour of the character!
 	- HUD overhauled with full functionallity. <br>
     	> For more information about Mando & Grogu's moveset, see Controls above. 
 	
@@ -124,20 +125,25 @@ YouTube:	https://www.youtube.com/channel/UCzwLxtTAxGMVG1belis7tkw
 	* All with finished models, animations & attacks.
 	- Added 3 bosses encounters:
 		- Rancor: 1st level noss,finished & polsihed.
-		- Wampa & Skel: 2nd level boss first iteration.
-		- Moff Gideon: 3rd level & final boss first iteration.
+		- Wampa & Skel: 2nd level boss finished & polished.
+		- Moff Gideon: 3rd level & final boss finished.
 	- General AI extremely polished & improved.
+	- General enemy balance & behaviour polished.
 
 * Enviroment
 	- 4 room setup that is changed in a random order, with a starting (just in the 1st level) & ending scene for each level.
-	- 1st Level with final & polsihed Art Assets.
+	- Plished (& remade some parts) 1st Level with final & Art Assets.
 	- New rooms of the 2nd Level with Final Art.
-	- 3rd Level Rooms final art assets implemented.
+	- 3rd Level Rooms polished with final art assets .
 	- Featuring a fully finished Barrel, Column, Spike Traps & X-Wing props.
 	- Fully interactuable Barrels & Traps!
 	- Added directional & point lights with improved shadows!
 	- Now there is a Stencil Buffer to be able to see entities behind meshes.
-	- HUB final art implementation.
+	- HUB polished with final art & effects.
+	- Fully operational lighting w/ Area lights.
+	- Post processing effects added!
+	- All levels hazards fully operational (freezing water, traps, etc.)
+	- Added fully funcional interactive music!
 
 * General Gameplay
 	- Perspective Camera.
@@ -145,7 +151,7 @@ YouTube:	https://www.youtube.com/channel/UCzwLxtTAxGMVG1belis7tkw
 	- Added combo system with UI (everytime an enemy takes damage you get a combo counter that fades with time).
 	- Improved Particle & Audio systems with new Assets!
 	- Full Loop: you can die, go through the levels and finish the 1st level.
-	- Boons & Items: each time you finish a level a random boon appears, you obtain its benefits & advance to the next level.
+	- Boons & Items (+30!): each time you finish a level a random boon appears, you obtain its benefits & advance to the next level.
 	- Dialogue System: added dialogues that can be skipped pressing A, at the start & the end of the run.
 	- Money & shop system are now working as intended
 	- Improved intro & outro cinematics.
@@ -155,6 +161,7 @@ YouTube:	https://www.youtube.com/channel/UCzwLxtTAxGMVG1belis7tkw
 	- Added tutorial room; that only activates the 1st time you play.
 	- Added LoC system: the enemies get stronger each level completed.
 	- Added Status System: now Mando & enemies can have buffs & debuffs that affect their behaviour.
+	- Adjusted level progression & difficulty.
 	
 * Design Prototype Features 
 	- Enemy document expended to 6 enemies.
@@ -167,7 +174,10 @@ YouTube:	https://www.youtube.com/channel/UCzwLxtTAxGMVG1belis7tkw
 	- Debug menu implemented & first debug options added (Press Select).
 	- Fully functional Prefab System.
 
-
+* QA & Marketing
+	- Check out our Twitter & Teasers!
+	- New Webpage!
+	- Lots of QA testing.
 
 ## Credits
 
