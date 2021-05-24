@@ -132,17 +132,17 @@
                     "damageRecieveMult": 1,
                     "healthPoints": 182.68048095703125,
                     "maxHealthPoints_fase1": 100,
-                    "maxHealthPoints_fase2": 100,
-                    "followSpeed": 4,
+                    "maxHealthPoints_fase2": 400,
+                    "followSpeed": 3,
                     "touchDamage": 10,
-                    "distance2Melee": 10,
-                    "probWanderP2": 30,
-                    "probWander": 40,
+                    "distance2Melee": 8,
+                    "probWanderP2": 25,
+                    "probWander": 30,
                     "radiusWander": 2,
                     "distanceProjectile": 10,
-                    "dashSpeed": 16,
+                    "dashSpeed": 12,
                     "dashBackWardDistance": 3,
-                    "dashForwardDistance": 5,
+                    "dashForwardDistance": 8,
                     "closerDistance": 10,
                     "farDistance": 15,
                     "velocityRotationShooting": 20,
@@ -156,9 +156,9 @@
                     "spawner4": 1032956343,
                     "sword": 133970082,
                     "shootPoint": 2027939547,
-                    "numSequencesPh2": 0,
-                    "numAtacksPh1": 0,
-                    "numAtacksPh2": 0,
+                    "numSequencesPh2": 4,
+                    "numAtacksPh1": 2,
+                    "numAtacksPh2": 1,
                     "dieTime": 8.1506662368774414,
                     "neutralTime": 5,
                     "enemiesTime": 20,
@@ -2809,31 +2809,31 @@
             ]
         },
         {
-            "name": "Saber",
+            "name": "MOFF Saber",
             "tag": "Untagged",
             "layer": "Default",
             "Active": false,
-            "UID": 133970082,
+            "UID": 0,
             "ParentUID": 2006506632,
             "PrefabReference": 0,
             "PrefabID": 0,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                0,
-                0,
-                0
+                -0.005842745304107666,
+                -0.036015748977661133,
+                -2.384185791015625e-07
             ],
             "Rotation": [
-                0,
-                0,
-                0,
+                -2.3283108774307948e-10,
+                -5.8207777486884993e-10,
+                -3.7252974038892717e-09,
                 1
             ],
             "Scale": [
-                1,
-                1,
-                1
+                0.99999809265136719,
+                0.99999988079071045,
+                0.99999815225601196
             ],
             "Components": [
                 {
@@ -2890,40 +2890,6 @@
                     "playOnAwake": false,
                     "isMuted": false,
                     "isMusic": false
-                }
-            ]
-        },
-        {
-            "name": "Dark_Lase_Moff",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 1935053102,
-            "ParentUID": 133970082,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                -2.384185791015625e-07
-            ],
-            "Rotation": [
-                -2.3283064365386963e-10,
-                -1.3096720929972605e-10,
-                -1.862645149230957e-09,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                0.99999994039535522
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 },
                 {
                     "Type": 2,
@@ -2952,74 +2918,6 @@
                     "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
-                }
-            ]
-        },
-        {
-            "name": "Moff Gideon Sword Particles",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 0,
-            "ParentUID": 1935053102,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                0,
-                0,
-                0
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
-                }
-            ]
-        },
-        {
-            "name": "Particle System",
-            "tag": "Untagged",
-            "layer": "Default",
-            "Active": true,
-            "UID": 51038558,
-            "ParentUID": 0,
-            "PrefabReference": 0,
-            "PrefabID": 0,
-            "DontDestroy": false,
-            "Static": false,
-            "Position": [
-                -0.005842745304107666,
-                -0.036015748977661133,
-                -2.384185791015625e-07
-            ],
-            "Rotation": [
-                -2.3283108774307948e-10,
-                -5.8207777486884993e-10,
-                -3.7252974038892717e-09,
-                1
-            ],
-            "Scale": [
-                0.99999809265136719,
-                0.99999988079071045,
-                0.99999815225601196
-            ],
-            "Components": [
-                {
-                    "Type": 1,
-                    "Active": true
                 },
                 {
                     "Type": 3,
@@ -3209,6 +3107,108 @@
                     "Active": true,
                     "billboardAlignment": 0,
                     "horizantalAligned": true
+                }
+            ]
+        },
+        {
+            "name": "Dark_Lase_Moff",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 0,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                -2.384185791015625e-07
+            ],
+            "Rotation": [
+                -2.3283064365386963e-10,
+                -1.3096720929972605e-10,
+                -1.862645149230957e-09,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                0.99999994039535522
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Moff Gideon Sword Particles",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 0,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                0,
+                0,
+                0
+            ],
+            "Rotation": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "Scale": [
+                1,
+                1,
+                1
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
+                }
+            ]
+        },
+        {
+            "name": "Particle System",
+            "tag": "Untagged",
+            "layer": "Default",
+            "Active": true,
+            "UID": 0,
+            "ParentUID": 0,
+            "PrefabReference": 0,
+            "PrefabID": 0,
+            "DontDestroy": false,
+            "Static": false,
+            "Position": [
+                -0.005842745304107666,
+                -0.036015748977661133,
+                -2.384185791015625e-07
+            ],
+            "Rotation": [
+                -2.3283108774307948e-10,
+                -5.8207777486884993e-10,
+                -3.7252974038892717e-09,
+                1
+            ],
+            "Scale": [
+                0.99999809265136719,
+                0.99999988079071045,
+                0.99999815225601196
+            ],
+            "Components": [
+                {
+                    "Type": 1,
+                    "Active": true
                 }
             ]
         },

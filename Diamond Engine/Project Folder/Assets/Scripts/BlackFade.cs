@@ -17,18 +17,15 @@ public class BlackFade : DiamondComponent
 
     private float current_alpha = 0.0f;
 
-    private STATE state;
+    private static STATE state;
 
     public float fadeOutSpeed = 1.0f;
     public float fadeInSpeed = 1.0f;
 
     private void Awake()
     {
-        PlayerHealth.onPlayerDeathEnd += StartFadeIn;
-        current_alpha = 1.0f;
         fade = gameObject.GetComponent<Material>();
         fade.SetFloatUniform("fadeValue", current_alpha);
-        StartFadeOut();
 
     }
     public void Update()
@@ -48,12 +45,12 @@ public class BlackFade : DiamondComponent
 
     private void FadeIn()
     {
-        if (current_alpha < 1)
+        if (current_alpha <= 1.1f)
         {
             current_alpha += Time.deltaTime * fadeInSpeed;
-            if (current_alpha > 1)
+            if (current_alpha > 1.1f)
             {
-                current_alpha = 1;
+                current_alpha = 1.1f;
                 state = STATE.NONE;
                 onFadeInCompleted?.Invoke();
             }
@@ -76,13 +73,13 @@ public class BlackFade : DiamondComponent
         }
     }
 
-    private void StartFadeIn()
+    public static void StartFadeIn()
     {
         state = STATE.FADE_IN;
 
     }
 
-    private void StartFadeOut()
+    public static void StartFadeOut()
     {
         state = STATE.FADE_OUT;
     }
