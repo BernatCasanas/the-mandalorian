@@ -140,6 +140,7 @@ public class MoffGideon : Entity
     private int nAtacks = 0;
     private int nSequences = 3;
     private bool retrieveAnim = true;
+    private bool showingSaber = false;
 
 
     //Timers
@@ -245,7 +246,8 @@ public class MoffGideon : Entity
             enemiesTimer -= myDeltaTime;
 
             if (enemiesTimer <= 0)
-                ready2Spawn = true;
+                if(deathtroopers.Count>0)
+                    ready2Spawn = true;
 
         }
 
@@ -929,8 +931,7 @@ public class MoffGideon : Entity
         healthPoints = maxHealthPoints_fase2;
 
         
-        Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Lightsaber_Turn_On");
-        Audio.SetState("Game_State", "Moff_Gideon_Phase_2");
+
 
         if (cam_comp != null)
         {
@@ -948,16 +949,19 @@ public class MoffGideon : Entity
 
         Debug.Log("Changing State");
        
-        if (changingStateTimer <= 2.5f)
+        if (changingStateTimer <= 2.5f && !showingSaber)
         {
+            showingSaber = true;
+            Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Lightsaber_Turn_On");
+            Audio.SetState("Game_State", "Moff_Gideon_Phase_2");
             sword.Enable(true);
             if (camera != null)
             {
                 Shake3D shake = camera.GetComponent<Shake3D>();
                 if (shake != null)
                 {
-                    shake.StartShaking(0.3f, 0.12f);
-                    Input.PlayHaptic(0.7f, 400);
+                    shake.StartShaking(2f, 0.12f);
+                    Input.PlayHaptic(2f, 400);
                 }
             }
         }
@@ -980,7 +984,7 @@ public class MoffGideon : Entity
         if (cam_comp != null)
             cam_comp.target = Core.instance.gameObject;
         invencible = false;
-
+        showingSaber = false;
 
     }
 
