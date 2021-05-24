@@ -189,13 +189,16 @@ public class Bantha : Enemy
     {
         if (currentState != STATE.DIE && currentState != STATE.CHARGE)
         {
-            if (InRange(Core.instance.gameObject.transform.globalPosition, detectionRange) && agent.IsPathPossible(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition))
+            if (Core.instance != null)
             {
-                inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
-            }
-            if (InRange(Core.instance.gameObject.transform.globalPosition, chargeRange) && straightPath)
-            {
-                inputsList.Add(INPUT.IN_CHARGE_RANGE);
+                if (InRange(Core.instance.gameObject.transform.globalPosition, detectionRange) && agent.IsPathPossible(gameObject.transform.globalPosition, Core.instance.gameObject.transform.globalPosition))
+                {
+                    inputsList.Add(INPUT.IN_PLAYER_IN_RANGE);
+                }
+                if (InRange(Core.instance.gameObject.transform.globalPosition, chargeRange) && straightPath)
+                {
+                    inputsList.Add(INPUT.IN_CHARGE_RANGE);
+                }
             }
         }
         if (currentState == STATE.RUN)
@@ -205,10 +208,12 @@ public class Bantha : Enemy
                 inputsList.Add(INPUT.IN_IDLE);
                 //Debug.Log("My agent is null :)");
             }
-
-            if (!InRange(Core.instance.gameObject.transform.globalPosition, detectionRange))
+            if (Core.instance != null)
             {
-                inputsList.Add(INPUT.IN_WANDER);
+                if (!InRange(Core.instance.gameObject.transform.globalPosition, detectionRange))
+                {
+                    inputsList.Add(INPUT.IN_WANDER);
+                }
             }
         }
     }
@@ -560,10 +565,13 @@ public class Bantha : Enemy
 
             if (directionDecisionTimer > 0.1f)
             {
-                Vector3 direction = Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition;
-                targetPosition = direction.normalized * chargeLength + gameObject.transform.globalPosition;
-                agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
-                LookAt(targetPosition);
+                if (Core.instance != null)
+                {
+                    Vector3 direction = Core.instance.gameObject.transform.globalPosition - gameObject.transform.globalPosition;
+                    targetPosition = direction.normalized * chargeLength + gameObject.transform.globalPosition;
+                    agent.CalculatePath(gameObject.transform.globalPosition, targetPosition);
+                    LookAt(targetPosition);
+                }
             }
         }
         if (visualFeedback.transform.globalScale.z < 1.0)
@@ -626,16 +634,18 @@ public class Bantha : Enemy
         UpdateAnimationSpd(speedMult);
 
         Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Death");
-        if (Core.instance != null)
-            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Kill_Voice");
 
         if (hitParticles != null)
             hitParticles.GetComponent<ParticleSystem>().Play();
 
-        //Combo
-        if (PlayerResources.CheckBoon(BOONS.BOON_MASTER_YODA_FORCE))
+        if (Core.instance != null)
         {
-            Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
+            Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Kill_Voice");
+            //Combo
+            if (PlayerResources.CheckBoon(BOONS.BOON_MASTER_YODA_FORCE))
+            {
+                Core.instance.hud.GetComponent<HUD>().AddToCombo(300, 1.0f);
+            }
         }
     }
     private void UpdateDie()
@@ -659,7 +669,10 @@ public class Bantha : Enemy
 
         DropCoins();
 
-        Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        if (Core.instance != null)
+        {
+            Core.instance.gameObject.GetComponent<PlayerHealth>().TakeDamage(-PlayerHealth.healWhenKillingAnEnemy);
+        }
 
         InternalCalls.Destroy(gameObject);
     }
@@ -697,7 +710,6 @@ public class Bantha : Enemy
 
     public void OnCollisionEnter(GameObject collidedGameObject)
     {
-
         if (collidedGameObject.CompareTag("Bullet"))
         {
             if (Core.instance != null)
@@ -717,7 +729,7 @@ public class Bantha : Enemy
 
                 Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 
-                if (Core.instance.hud != null)
+                if (Core.instance.hud != null && currentState != STATE.DIE)
                 {
                     HUD hud = Core.instance.hud.GetComponent<HUD>();
 
@@ -745,7 +757,7 @@ public class Bantha : Enemy
 
                     if (Core.instance != null)
                     {
-                        if(Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_DMG_UP))
+                        if (Core.instance.HasStatus(STATUS_TYPE.SNIPER_STACK_DMG_UP))
                         {
                             vulerableSev += Core.instance.GetStatusData(STATUS_TYPE.SNIPER_STACK_DMG_UP).severity;
                         }
@@ -800,7 +812,7 @@ public class Bantha : Enemy
                                 BabyYoda.instance.SetCurrentForce((int)(BabyYoda.instance.GetCurrentForce() + force));
                             }
                         }
-                      
+
 
                         if (Core.instance.HasStatus(STATUS_TYPE.AHSOKA_DET))
                         {
@@ -834,7 +846,7 @@ public class Bantha : Enemy
                 inputsList.Add(INPUT.IN_CHARGE_END);
                 PlayerHealth playerHealth = collidedGameObject.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
-                    playerHealth.TakeDamage((int)damage);
+                    playerHealth.TakeDamage((int)damage, true);
             }
         }
         else if (collidedGameObject.CompareTag("ExplosiveBarrel"))
@@ -854,6 +866,18 @@ public class Bantha : Enemy
                     }
                 }
             }
+
+            if(Core.instance != null &&  currentState != STATE.DIE)
+            {
+                if (Core.instance.hud != null)
+                {
+                    HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
+
+                    if (hudComponent != null)
+                        hudComponent.AddToCombo(33, 0.65f);
+                }
+            }
+
         }
     }
 
@@ -864,7 +888,7 @@ public class Bantha : Enemy
             pushDir = triggeredGameObject.transform.GetForward();
             inputsList.Add(INPUT.IN_PUSHED);
 
-            if (Core.instance != null)
+            if (Core.instance != null && currentState != STATE.DIE)
             {
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
@@ -879,7 +903,7 @@ public class Bantha : Enemy
         {
             pushDir = triggeredGameObject.transform.GetForward();
             inputsList.Add(INPUT.IN_PUSHED);
-            if (Core.instance != null)
+            if (Core.instance != null && currentState != STATE.DIE)
             {
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 

@@ -446,7 +446,7 @@ public class Wampa : Bosseslv2
                 TakeDamage(damageToBoss * damageRecieveMult * BlasterVulnerability);
             }
 
-            if (Core.instance.hud != null)
+            if (Core.instance.hud != null && currentState != STATE.DEAD)
             {
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(25, 0.95f);
             }
@@ -507,7 +507,7 @@ public class Wampa : Bosseslv2
                 TakeDamage(damageToBoss);
             }
 
-            if (Core.instance.hud != null)
+            if (Core.instance.hud != null && currentState != STATE.DEAD)
             {
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
             }

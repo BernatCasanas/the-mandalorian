@@ -9,13 +9,13 @@
             "UID": 189915864,
             "ParentUID": 0,
             "PrefabReference": 0,
-            "PrefabID": 0,
+            "PrefabID": 1330294312,
             "DontDestroy": false,
             "Static": false,
             "Position": [
-                11.627288818359375,
-                0,
-                0
+                -6.5166568756103516,
+                16.232666015625,
+                -6.619816780090332
             ],
             "Rotation": [
                 0.24263942241668701,
@@ -40,16 +40,16 @@
                     "fSize": 50,
                     "nearPlaneDist": 1,
                     "farPlaneDist": 100,
-                    "vFOV": 1.0471975803375244,
-                    "hFOV": 1.5521194934844971,
+                    "vFOV": 11.659999847412109,
+                    "hFOV": 17.239999771118164,
                     "culling": false,
+                    "HDR": true,
                     "drawSkybox": true
                 },
                 {
                     "Type": 12,
                     "Active": true,
-                    "isDefaultListener": true,
-                    "masterVolume": 50
+                    "isDefaultListener": true
                 },
                 {
                     "Type": 5,
@@ -59,13 +59,14 @@
                     "y": 9.3000001907348633,
                     "z": -10,
                     "smoothSpeed": 0.10000000149011612,
-                    "zoomDesired": 0.10000000149011612,
                     "timer_easing_sec": 0,
                     "timer": 0,
                     "cornerTopLeftX": -100,
                     "cornerTopLeftY": -100,
                     "cornerBotRightX": 100,
-                    "cornerBotRightY": 100
+                    "cornerBotRightY": 100,
+                    "deadZoom": 80,
+                    "deadEasingSec": 5
                 }
             ]
         }

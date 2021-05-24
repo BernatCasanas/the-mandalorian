@@ -208,7 +208,9 @@ public class MoffGideon : Entity
 
         bossBarMat = boss_bar.GetComponent<Material>();
 
-       
+        Audio.SetState("Player_State", "Alive");
+        Audio.SetState("Game_State", "Moff_Guideon_Room");
+
         StartPresentation();
     }
 
@@ -312,7 +314,7 @@ public class MoffGideon : Entity
 
             if (chargeThrowTimer <= 2.1f)
             {
-                Input.PlayHaptic(0.6f, 600);
+                Input.PlayHaptic(0.6f, 250);
                 inputsList.Add(MOFFGIDEON_INPUT.IN_CHARGE_THROW_END);
             }
 
@@ -925,6 +927,8 @@ public class MoffGideon : Entity
         changingStateTimer = changingStateTime;
 
         healthPoints = maxHealthPoints_fase2;
+
+        
         Audio.PlayAudio(gameObject, "Play_Moff_Gideon_Lightsaber_Turn_On");
         Audio.SetState("Game_State", "Moff_Gideon_Phase_2");
 
@@ -943,7 +947,7 @@ public class MoffGideon : Entity
     {
 
         Debug.Log("Changing State");
-
+       
         if (changingStateTimer <= 2.5f)
         {
             sword.Enable(true);
@@ -952,8 +956,8 @@ public class MoffGideon : Entity
                 Shake3D shake = camera.GetComponent<Shake3D>();
                 if (shake != null)
                 {
-                    shake.StartShaking(1.1f, 0.15f);
-                    Input.PlayHaptic(0.9f, 1100);
+                    shake.StartShaking(0.3f, 0.12f);
+                    Input.PlayHaptic(0.7f, 400);
                 }
             }
         }
@@ -965,6 +969,13 @@ public class MoffGideon : Entity
         currentPhase = MOFFGIDEON_PHASE.PHASE2;
         enemiesTimer = enemiesTime;
         probWander = probWanderP2;
+        followSpeed = 6.8f;
+        distance2Melee = 8f;
+        distanceProjectile = 10f;
+        dashSpeed = 16f;
+        dashBackWardDistance = 4f;
+        dashForwardDistance = 8f;
+        closerDistance = 6f;
         if (cam_comp != null)
             cam_comp.target = Core.instance.gameObject;
         invencible = false;
@@ -1187,7 +1198,7 @@ public class MoffGideon : Entity
                 if(ready2Spawn)
                 {
                     SpawnEnemies();
-                    privateTimer = 0.5f;
+                    privateTimer = 1.5f;
                     ready2Spawn = false;
                     deathTrooperSpawned = true;
                 }
@@ -1423,7 +1434,7 @@ public class MoffGideon : Entity
                 Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Intimidation_Phase_2");
             }
 
-            if (Core.instance.hud != null)
+            if (Core.instance.hud != null  && currentState != MOFFGIDEON_STATE.DEAD)
             {
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
@@ -1502,7 +1513,7 @@ public class MoffGideon : Entity
             //CHANGE FOR APPROPIATE RANCOR HIT
             Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Hit_Phase_1");
 
-            if (Core.instance.hud != null)
+            if (Core.instance.hud != null && currentState != MOFFGIDEON_STATE.DEAD)
             {
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
@@ -1764,6 +1775,11 @@ public class MoffGideon : Entity
                 return;
             }
         }
+    }
+
+    public override bool IsDying()
+    {
+        return currentState == MOFFGIDEON_STATE.DEAD;
     }
 
     public void MoveToPosition(Vector3 positionToReach, float speed)

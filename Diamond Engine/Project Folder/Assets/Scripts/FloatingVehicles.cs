@@ -105,11 +105,15 @@ public class FloatingVehicles : DiamondComponent
                 verticalSpeed = 0.2f;
                 maxRotation = 0.05f;
                 break;
+            case "Tie":
+                maxHeight = 0.8f;
+                verticalSpeed = 0.5f;
+                maxRotation = 0.0f;
+                break;
             default:
                 Debug.Log("Vehicle properties have not been setup correctly");
                 break;            
-        }
-        
+        }        
     }
 
     private void SetRandomInitialValues()

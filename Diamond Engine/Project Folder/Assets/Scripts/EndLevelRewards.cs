@@ -50,7 +50,7 @@ public class EndLevelRewards
         secondButton = rewardMenu.GetChild("SecondRewardButton").GetComponent<EndLevelRewardsButtons>();
         thirdButton  = rewardMenu.GetChild("ThirdRewardButton").GetComponent<EndLevelRewardsButtons>();
 
-        if (firstButton != null)
+        if (firstButton != null && firstButton.gameObject != null)
             firstButton.gameObject.GetComponent<Navigation>().Select(); // Line added because buttons crashed. For... some reason
     }
 

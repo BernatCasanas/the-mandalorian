@@ -70,7 +70,16 @@ public class GameSceneManager : DiamondComponent
             if (rewardSpawnComponent.trigger == true)
             {
                 ApplyReward();
-                ChangeScene();
+                if (InternalCalls.FindObjectWithName("BlackFade") != null)
+                {
+                    BlackFade.StartFadeIn();
+                    BlackFade.onFadeInCompleted = ChangeScene;
+                }
+                else
+                {
+                    ChangeScene();
+                }
+                rewardSpawnComponent.trigger = false;
             }
         }
 
@@ -119,8 +128,6 @@ public class GameSceneManager : DiamondComponent
         }
         if (Core.instance != null)
             Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Clean_Room_Voice");
-        if (BabyYoda.instance != null)
-            Audio.PlayAudio(BabyYoda.instance.gameObject, "Play_Grogu_Cheering");
         Counter.SumToCounterType(Counter.CounterTypes.LEVELS);
         rewardMenu = new EndLevelRewards();
         Core.instance.BlockInIdle();

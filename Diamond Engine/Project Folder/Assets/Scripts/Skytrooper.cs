@@ -664,7 +664,7 @@ public class Skytrooper : Enemy
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
-                if (Core.instance.hud != null)
+                if (Core.instance.hud != null && currentState != STATE.DIE)
                 {
                     HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
@@ -691,7 +691,7 @@ public class Skytrooper : Enemy
 
                     Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
-                if (Core.instance.hud != null)
+                if (Core.instance.hud != null && currentState != STATE.DIE)
                 {
                     Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
                 }
@@ -778,7 +778,7 @@ public class Skytrooper : Enemy
             pushDir = triggeredGameObject.transform.GetForward();
             inputsList.Add(INPUT.IN_PUSHED);
 
-            if (Core.instance != null)
+            if (Core.instance != null && currentState != STATE.DIE)
             {
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 

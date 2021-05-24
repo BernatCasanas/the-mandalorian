@@ -1400,7 +1400,7 @@ public class Rancor : Entity
                 //CHANGE FOR APPROPIATE RANCOR HIT
                 Audio.PlayAudio(gameObject, "Play_Rancor_Hit");
 
-                if (Core.instance.hud != null)
+                if (Core.instance.hud != null && currentState != RANCOR_STATE.DEAD)
                 {
                     HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
@@ -1491,7 +1491,7 @@ public class Rancor : Entity
                 //CHANGE FOR APPROPIATE RANCOR HIT
                 Audio.PlayAudio(gameObject, "Play_Rancor_Hit");
 
-                if (Core.instance.hud != null)
+                if (Core.instance.hud != null && currentState != RANCOR_STATE.DEAD)
                 {
                     HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
@@ -1687,6 +1687,11 @@ public class Rancor : Entity
             Animator.SetSpeed(gameObject, newSpd);
             currAnimationPlaySpd = newSpd;
         }
+    }
+
+    public override bool IsDying()
+    {
+        return currentState == RANCOR_STATE.DEAD;
     }
 
     #region STATUS_SYSTEM

@@ -43,13 +43,14 @@ public class SHOP : DiamondComponent
     private GameObject envObj = null;
     bool shopOpen = false;
     private bool start = true;
-
+    private bool toCheck = true;
     public void Awake()
     {
         DebugOptionsHolder.goToNextLevel = false;
         shopOpen = false;
         opening = false;
         start = true;
+        toCheck = true;
         if (currencyObject != null && currencyObject1 != null)
         {
             currencyText = currencyObject.GetComponent<Text>();
@@ -74,7 +75,15 @@ public class SHOP : DiamondComponent
             RandomiseItems();
 
         start = false;
-        if (RoomSwitch.currentLevelIndicator-1 == RoomSwitch.LEVELS.ONE)
+        if (RoomSwitch.currentroom == RoomSwitch.levelLists[(int)RoomSwitch.currentLevelIndicator].preBossScene)
+        {
+            toCheck = false;
+            Audio.SetState("Game_State", "Run_3");
+            Audio.SetState("Player_State", "Alive");
+            if (MusicSourceLocate.instance != null)
+                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
+        }
+        if (RoomSwitch.currentLevelIndicator-1 == RoomSwitch.LEVELS.ONE && toCheck)
         {
             Audio.SetState("Game_State", "Run");
             Audio.SetState("Player_State", "Alive");
@@ -83,7 +92,7 @@ public class SHOP : DiamondComponent
             if (envObj !=null)
                 Audio.PlayAudio(envObj, "Play_Post_Boss_Room_1_Ambience");
         }
-        else if (RoomSwitch.currentLevelIndicator-1 == RoomSwitch.LEVELS.TWO)
+        else if (RoomSwitch.currentLevelIndicator-1 == RoomSwitch.LEVELS.TWO && toCheck)
         {
             Audio.SetState("Game_State", "Run_2");
             Audio.SetState("Player_State", "Alive");
@@ -91,13 +100,6 @@ public class SHOP : DiamondComponent
                 Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
             if (envObj != null)
                 Audio.PlayAudio(envObj, "Play_Post_Boss_Room_2_Ambience");
-        }
-        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
-        {
-            Audio.SetState("Game_State", "Run_3");
-            Audio.SetState("Player_State", "Alive");
-            if (MusicSourceLocate.instance != null)
-                Audio.SetSwitch(MusicSourceLocate.instance.gameObject, "Player_Action", "Exploring");
         }
     }
 
@@ -153,13 +155,13 @@ public class SHOP : DiamondComponent
         if (shopOpen)
         {
             int currency = PlayerResources.GetRunCoins();
-            float discount = 0;
+            int discount = 0;
+            Debug.Log("Discounts left" + Core.instance.ShopDiscount.ToString());
             if (Core.instance.ShopDiscount > 0)
             {
                 Core.instance.ShopDiscount--;
-                float price = (float)item.price;
-                discount = price * 0.75f;
-                Debug.Log("discount" + discount.ToString());
+                Core.instance.GetStatusData(STATUS_TYPE.GREEF_PAYCHECK).severity--;
+                discount = item.discount;
 
                 if (Core.instance.ShopDiscount == 0)
                 {
@@ -257,7 +259,7 @@ public class SHOP : DiamondComponent
         {
             if (BoonDataHolder.boonType[(int)boon] != null)
             {
-                item.SetItem(type, BoonDataHolder.boonType[(int)boon].price - (int)discount, BoonDataHolder.boonType[(int)boon].name, BoonDataHolder.boonType[(int)boon].rewardDescription);
+                item.SetItem(type, BoonDataHolder.boonType[(int)boon].price, BoonDataHolder.boonType[(int)boon].name, BoonDataHolder.boonType[(int)boon].rewardDescription, (int)discount);
                 item.resource = BoonDataHolder.boonType[(int)boon];
             }
             else
@@ -265,7 +267,7 @@ public class SHOP : DiamondComponent
         }
         else
         {
-            item.SetItem(type, ShopPrice.SHOP_CHEAP -(int)discount, "Health Replenishment", "Heal for 25% of your max life");
+            item.SetItem(type, ShopPrice.SHOP_CHEAP , "Health Replenishment", "Heal for 25% of your max life", (int)discount);
         }
     }
 

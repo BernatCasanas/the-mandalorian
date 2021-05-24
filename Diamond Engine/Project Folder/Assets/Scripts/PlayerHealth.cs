@@ -4,7 +4,6 @@ using DiamondEngine;
 public class PlayerHealth : DiamondComponent
 {
     public static Action onPlayerDeath;
-    public static Action onPlayerDeathEnd;
 
     public static int currMaxHealth { get; private set; }
     public static int currHealth { get; private set; }

@@ -121,7 +121,7 @@ public class Core : Entity
     private bool skill_groguIncreaseDamageActive = false;
     private float skill_groguIncreaseDamageTimer = 0.0f;
     public float skill_SoloHeal = 0.0f;
-    public int ShopDiscount = 1;
+    public int ShopDiscount = 0;
     // Dash
     public float dashCD = 0.33f;
     public float dashDuration = 0.2f;
@@ -339,7 +339,7 @@ public class Core : Entity
             blaster.Enable(false);
 
         dieTime = Animator.GetAnimationDuration(gameObject, "Die") - 0.016f - 1f;
-
+        ShopDiscount = 0;
         #endregion
 
         #region EVENTS
@@ -1923,7 +1923,13 @@ public class Core : Entity
         Animator.Play(gameObject, "Die");
         Audio.PlayAudio(gameObject, "Play_Mando_Death");
         Audio.SetState("Player_State", "Dead");
-        hud.GetComponent<HUD>().gameObject.Enable(false);
+        HUD hudComp = hud.GetComponent<HUD>();
+
+        if (hudComp != null && hudComp.gameObject != null)
+        {
+            hudComp.gameObject.Enable(false);
+        }
+
 
         if (rifle != null)
             rifle.Enable(false);
@@ -1936,7 +1942,7 @@ public class Core : Entity
 
     private void EndDead()
     {
-        PlayerHealth.onPlayerDeathEnd?.Invoke();
+        BlackFade.StartFadeIn();
     }
 
     private void DeadInput()
@@ -2392,21 +2398,6 @@ public class Core : Entity
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        if (triggeredGameObject.CompareTag("Coin"))
-        {
-            PlayerResources.AddRunCoins(10);
-            Audio.PlayAudio(gameObject, "Play_UI_Credit_Pickup");
-
-            if (hud != null)
-            {
-                HUD hudComponent = hud.GetComponent<HUD>();
-
-                if (hudComponent != null)
-                    hudComponent.UpdateCurrency(PlayerResources.GetRunCoins());
-            }
-
-            InternalCalls.Destroy(triggeredGameObject);
-        }
 
         if (triggeredGameObject.CompareTag("Zone1"))
         {
@@ -2445,6 +2436,19 @@ public class Core : Entity
         }
     }
 
+    public void GetCoin()
+    {
+        PlayerResources.AddRunCoins(10);
+        Audio.PlayAudio(gameObject, "Play_UI_Credit_Pickup");
+
+        if (hud != null)
+        {
+            HUD hudComponent = hud.GetComponent<HUD>();
+
+            if (hudComponent != null)
+                hudComponent.UpdateCurrency(PlayerResources.GetRunCoins());
+        }
+    }
 
     public void RespawnOnFall()
     {
@@ -3065,6 +3069,7 @@ public class Core : Entity
             case STATUS_TYPE.GREEF_PAYCHECK:
                 {
                     ShopDiscount = (int)statusToInit.severity;
+                    Debug.Log(ShopDiscount.ToString());
                 }
                 break;
             default:
@@ -3365,6 +3370,42 @@ public class Core : Entity
                 break;
         }
     }
+
+    public void NotifyEnemyDeath(GameObject enemy)
+    {
+        if(myGrenade1 != null)
+        {
+            if(myGrenade1.IsEnabled() == true)
+            {
+                SlowGrenade grenadeComp = myGrenade1.GetComponent<SlowGrenade>();
+
+                if (grenadeComp != null)
+                {
+                    grenadeComp.EnemyDied(enemy);
+                }
+            }
+
+        }
+
+        if (myGrenade2 != null)
+        {
+            if (myGrenade2.IsEnabled() == true)
+            {
+                SlowGrenade grenadeComp = myGrenade2.GetComponent<SlowGrenade>();
+
+                if (grenadeComp != null)
+                {
+                    grenadeComp.EnemyDied(enemy);
+                }
+            }
+        }
+    }
+
+    public override bool IsDying()
+    {
+        return IsMandoDead();
+    }
+
     public bool IsMandoDead()
     {
         return (currentState == STATE.DEAD);

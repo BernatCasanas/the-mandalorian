@@ -227,5 +227,9 @@ public class Enemy : Entity
 		}
 	}
 
+	public override bool IsDying()
+	{
+		return healthPoints <= 0f;
+	}
 
 }

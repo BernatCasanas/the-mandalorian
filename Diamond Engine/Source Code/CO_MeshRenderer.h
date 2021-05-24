@@ -52,7 +52,7 @@ private:
 	ResourceTexture* normalMap = nullptr;
 	ResourceTexture* specularMap = nullptr;
 
-	float bumpDepth = 1.0f;
+	float bumpDepth = 0.0f;
 
 	bool drawDebugVertices;
 	C_Transform* gameObjectTransform = nullptr;

@@ -15,6 +15,7 @@ public class ShopButtons : DiamondComponent
 
     public ShopItems itemType;
     public ShopPrice price;
+    public int discount;
     public GameResources resource = null;
     public bool closeBtn = false;
 
@@ -35,13 +36,14 @@ public class ShopButtons : DiamondComponent
             priceText = priceObj.GetComponent<Text>();
     }
 
-    public void SetItem(ShopItems type, ShopPrice shop_price, string name, string description)
+    public void SetItem(ShopItems type, ShopPrice shop_price, string name, string description, int shop_discount)
     {
         itemType = type;
         price = shop_price;
+        discount = shop_discount;
         if (nameText != null) nameText.text = name;
         if (descriptionText != null) descriptionText.text = description;
-        if (priceText != null) priceText.text = ((int)price).ToString();
+        if (priceText != null) priceText.text = ((int)price - shop_discount).ToString();
     }
 
     public void OnExecuteButton()

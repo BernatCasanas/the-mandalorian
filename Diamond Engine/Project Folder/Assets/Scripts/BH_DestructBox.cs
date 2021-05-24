@@ -43,6 +43,7 @@ public class BH_DestructBox : DiamondComponent
 	{
 		if((triggeredGameObject.CompareTag("Bullet") || triggeredGameObject.CompareTag("ChargeBullet")) && triggered == false)
         {
+
 			if (explosion != null && wave != null)
 			{
 				partExp = explosion.GetComponent<ParticleSystem>();
