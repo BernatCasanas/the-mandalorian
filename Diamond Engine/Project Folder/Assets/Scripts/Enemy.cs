@@ -46,11 +46,11 @@ public class Enemy : Entity
 		}
 		else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
 		{
-		}
 			Debug.Log("Enemy lvl 3 added statuses");
 			AddStatus(STATUS_TYPE.ACCELERATED, STATUS_APPLY_TYPE.SUBSTITUTE, 0.15f, 1f, true);
 			AddStatus(STATUS_TYPE.ENEMY_DAMAGE_UP, STATUS_APPLY_TYPE.SUBSTITUTE, 0.2f, 1f, true);
 			AddStatus(STATUS_TYPE.ENEMY_HP_UP, STATUS_APPLY_TYPE.SUBSTITUTE, 0.5f, 1f, true);
+		}
 	}
 
 	public virtual void TakeDamage(float damage)
