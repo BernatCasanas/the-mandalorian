@@ -912,13 +912,18 @@ public class Bosseslv2 : Entity
     public virtual void TakeDamage(float damage)
     { }
 
-/*    public void SetJumpValues(float charge, float up, float down, float recovery)
+    public override bool IsDying()
     {
-        chargeTime = charge;
-        upTime = up;
-        fallingTime = down;
-        recoveryTime = recovery;
-        totalJumpSlamTime = chargeTime + upTime + fallingTime + recoveryTime;
-    }*/
+        return healthPoints <= 0f;
+    }
+
+    /*    public void SetJumpValues(float charge, float up, float down, float recovery)
+        {
+            chargeTime = charge;
+            upTime = up;
+            fallingTime = down;
+            recoveryTime = recovery;
+            totalJumpSlamTime = chargeTime + upTime + fallingTime + recoveryTime;
+        }*/
 
 }

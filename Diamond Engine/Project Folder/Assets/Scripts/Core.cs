@@ -3363,6 +3363,12 @@ public class Core : Entity
                 break;
         }
     }
+
+    public override bool IsDying()
+    {
+        return IsMandoDead();
+    }
+
     public bool IsMandoDead()
     {
         return (currentState == STATE.DEAD);

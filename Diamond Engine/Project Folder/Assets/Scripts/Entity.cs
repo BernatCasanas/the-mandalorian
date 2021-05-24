@@ -540,4 +540,10 @@ public class Entity : DiamondComponent
     {
         newstatuses = statuses;
     }
+
+    public virtual bool IsDying()
+    {
+        return true;
+    }
+
 }

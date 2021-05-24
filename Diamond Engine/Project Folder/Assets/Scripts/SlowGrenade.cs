@@ -368,7 +368,9 @@ public class SlowGrenade : DiamondComponent
 
             if (script != null)
             {
-                enemies.Add(script);
+                if (script.IsDying() == false)
+                    enemies.Add(script);
+
                 ret = true;
             }
 

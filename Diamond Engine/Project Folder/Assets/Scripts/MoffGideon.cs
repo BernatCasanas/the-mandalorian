@@ -1787,6 +1787,11 @@ public class MoffGideon : Entity
         }
     }
 
+    public override bool IsDying()
+    {
+        return currentState == MOFFGIDEON_STATE.DEAD;
+    }
+
     public void MoveToPosition(Vector3 positionToReach, float speed)
     {
         Vector3 direction = positionToReach - gameObject.transform.localPosition;

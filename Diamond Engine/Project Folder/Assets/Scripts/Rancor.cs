@@ -1689,6 +1689,11 @@ public class Rancor : Entity
         }
     }
 
+    public override bool IsDying()
+    {
+        return currentState == RANCOR_STATE.DEAD;
+    }
+
     #region STATUS_SYSTEM
 
     protected override void OnInitStatus(ref StatusData statusToInit)
