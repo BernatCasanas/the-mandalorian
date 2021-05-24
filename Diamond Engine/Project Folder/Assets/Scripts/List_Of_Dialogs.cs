@@ -198,6 +198,121 @@ public class List_Of_Dialogs : DiamondComponent
         DialogImages.IMG_GREEF_LAUGHING,
     };
 
+    private List<string> Ahsoka_PreBoss_Dialogue = new List<string>()
+    {
+        "These are the lasts steps to assure the youngling's safety I'll be no jedi anymore but I can sense your victory.",
+        "May the force be with you my friend.",
+        "Thank you Ahsoka, I won't lose.",
+    };
+
+    private List<bool> Ahsoka_PreBoss_Dialogue_bool = new List<bool>()
+    {
+		// Mando true, other false
+		false,
+        false,
+        true,
+    };
+
+    private List<DialogImages> Ahsoka_PreBoss_Dialogue_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_AHSOKA_THINKER,
+        DialogImages.IMG_AHSOKA_MELANCHOLIC,
+        DialogImages.IMG_MANDO_HAPPY,
+    };
+
+    private List<string> Cara_PreBoss_Dialogue = new List<string>()
+    {
+        "Here we are Djin. show that filthy Imperial what happens when he mess with our little friend.",
+        "I will Cara, for the kid and all the suffering he has caused to the people across the galaxy.",
+        "Amen.",
+    };
+
+    private List<bool> Cara_PreBoss_Dialogue_bool = new List<bool>()
+    {
+		// Mando true, other false
+		false,
+        true,
+        false
+    };
+
+    private List<DialogImages> Cara_PreBoss_Dialogue_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_CARA_ANGRY2,
+        DialogImages.IMG_MANDO_ANGRY,
+        DialogImages.IMG_CARA_SERIOUS,
+    };
+
+    private List<string> Greef_PreBoss_Dialogue = new List<string>()
+    {
+        "I hope at least you will buy me a drink after this.",
+        "Count on it Greef.",
+        "Also a new pair of boots would be nice...",
+        "don't push your luck...",
+    };
+
+    private List<bool> Greef_PreBoss_Dialogue_bool = new List<bool>()
+    {
+		// Mando true, other false
+		false,
+        true,
+        false,
+        true,
+    };
+
+    private List<DialogImages> Greef_PreBoss_Dialogue_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_GREEF_LAUGHING,
+        DialogImages.IMG_MANDO_HAPPY,
+        DialogImages.IMG_GREEF_THINKER,
+        DialogImages.IMG_MANDO_ANGRY,
+    };
+
+    private List<string> Bo_Katan_PreBoss_Dialogue = new List<string>()
+    {
+        "Finish this quickly, We have a planet to retake.",
+        "I'll take that as your way to encourage me...",
+        "Whatever you want, but go now.",
+    };
+
+    private List<bool> Bo_Katan_PreBoss_Dialogue_bool = new List<bool>()
+    {
+		// Mando true, other false
+		false,
+        true,
+        false,
+    };
+
+    private List<DialogImages> Bo_Katan_PreBoss_Dialogue_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+		DialogImages.IMG_BOKATAN_ANGRY,
+        DialogImages.IMG_MANDO_JOKING,
+        DialogImages.IMG_BOKATAN_SERIOUS,
+    };
+
+    private List<string> Grogu_PreBoss_Dialogue = new List<string>()
+    {
+        "We end this here kid, you will be safe afterwards. I promise.",
+        "(Far from being afraid the kid looks at Mando with determination).",
+    };
+
+    private List<bool> Grogu_PreBoss_Dialogue_bool = new List<bool>()
+    {
+		// Mando true, other false
+		true,
+        false,
+    };
+
+    private List<DialogImages> Grogu_PreBoss_Dialogue_images = new List<DialogImages>()
+    {
+		// Mando true, other false
+        DialogImages.IMG_MANDO_ANGRY,
+        DialogImages.IMG_GROGU_SERIOUS,
+    };
+
     private List<string> Initial_Cutscene = new List<string>()
     {
         "Well kid, we should get going if we want to kill that Rancor before nightfall.",
@@ -3579,6 +3694,16 @@ public class List_Of_Dialogs : DiamondComponent
                 return Post_Initial_Cutscene_Dialogue;
             case 87:
                 return Hoth_Cutscene;
+            case 88:
+                return Ahsoka_PreBoss_Dialogue;
+            case 89:
+                return Cara_PreBoss_Dialogue;
+            case 90:
+                return Greef_PreBoss_Dialogue;
+            case 91:
+                return Bo_Katan_PreBoss_Dialogue;
+            case 92:
+                return Grogu_PreBoss_Dialogue;
         }
         return Initial_Cutscene;
 
@@ -3764,6 +3889,16 @@ public class List_Of_Dialogs : DiamondComponent
                 return Post_Initial_Cutscene_Dialogue_bool;
             case 87:
                 return Hoth_Cutscene_bool;
+            case 88:
+                return Ahsoka_PreBoss_Dialogue_bool;
+            case 89:
+                return Cara_PreBoss_Dialogue_bool;
+            case 90:
+                return Greef_PreBoss_Dialogue_bool;
+            case 91:
+                return Bo_Katan_PreBoss_Dialogue_bool;
+            case 92:
+                return Grogu_PreBoss_Dialogue_bool;
         }
         return Initial_Cutscene_bool;
     }
@@ -3948,6 +4083,16 @@ public class List_Of_Dialogs : DiamondComponent
                 return Post_Initial_Cutscene_Dialogue_images;
             case 87:
                 return Hoth_Cutscene_images;
+            case 88:
+                return Ahsoka_PreBoss_Dialogue_images;
+            case 89:
+                return Cara_PreBoss_Dialogue_images;
+            case 90:
+                return Greef_PreBoss_Dialogue_images;
+            case 91:
+                return Bo_Katan_PreBoss_Dialogue_images;
+            case 92:
+                return Grogu_PreBoss_Dialogue_images;
         }
         return Initial_Cutscene_images;
     }
@@ -4132,6 +4277,16 @@ public class List_Of_Dialogs : DiamondComponent
                 return "Greef";
             case 87:
                 return "Ahsoka";
+            case 88:
+                return "Ahsoka";
+            case 89:
+                return "Cara";
+            case 90:
+                return "Greef";
+            case 91:
+                return "Bo-Katan";
+            case 92:
+                return "Grogu";
         }
         return " ";
 
