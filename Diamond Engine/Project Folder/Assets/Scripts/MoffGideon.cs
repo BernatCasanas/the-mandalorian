@@ -210,7 +210,9 @@ public class MoffGideon : Entity
 
         bossBarMat = boss_bar.GetComponent<Material>();
 
-       
+        Audio.SetState("Player_State", "Alive");
+        Audio.SetState("Game_State", "Moff_Guideon_Room");
+
         StartPresentation();
     }
 
