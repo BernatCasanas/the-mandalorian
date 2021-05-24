@@ -20,6 +20,7 @@ public class SlowGrenade : DiamondComponent
     private float explosionTimer = 0.0f;
 
     public float areaRadius = 1.85f;
+    private float currentRadius = 1f;
     public float damage = 3.5f;
     public float procTime = 0.25f;
     private float procTimer = 0f;
@@ -80,7 +81,7 @@ public class SlowGrenade : DiamondComponent
             for (int i = 0; i < enemies.Count; i++)
             {
 
-                if (enemies[i] == null || enemies[i].gameObject.transform.globalPosition.Distance(this.gameObject.transform.globalPosition) > areaRadius)
+                if (enemies[i] == null || enemies[i].gameObject.transform.globalPosition.Distance(this.gameObject.transform.globalPosition) > currentRadius)
                 {
                     enemies.Remove(enemies[i]);
                     i--;
@@ -401,7 +402,7 @@ public class SlowGrenade : DiamondComponent
 
         for (int i = 0; i < enemies.Count; i++)
         {
-            if (enemies[i].gameObject.GetUid() == enemy.GetUid() && enemies[i].gameObject.transform.globalPosition.Distance(this.gameObject.transform.globalPosition) > areaRadius)
+            if (enemies[i].gameObject.GetUid() == enemy.GetUid() && enemies[i].gameObject.transform.globalPosition.Distance(this.gameObject.transform.globalPosition) > currentRadius)
             {
                 ret = true;
                 enemies.RemoveAt(i);
@@ -425,6 +426,12 @@ public class SlowGrenade : DiamondComponent
                 modifier = 1 + Core.instance.GetStatusData(STATUS_TYPE.SEC_RANGE).severity / 100;
 
         forceToAdd = force * modifier;
+
+        currentRadius = areaRadius;
+        if (Core.instance != null)
+            if (Core.instance.HasStatus(STATUS_TYPE.BOBBA_STUN_AMMO))
+                currentRadius *= (1 + Core.instance.GetStatusData(STATUS_TYPE.BOBBA_STUN_AMMO).severity / 100);
+
 
         forceToAdd.x = Math.Min(forceToAdd.x, 2000f);
         forceToAdd.y = Math.Min(forceToAdd.y, 100f);
@@ -466,6 +473,7 @@ public class SlowGrenade : DiamondComponent
 
         enemies.Clear();
 
+        currentRadius = areaRadius;
         readyToAddForce = false;
         start = true;
         detonate = false;
@@ -516,7 +524,7 @@ public class SlowGrenade : DiamondComponent
             {
                 float distance = EnemyManager.currentEnemies[i].transform.globalPosition.Distance(this.gameObject.transform.globalPosition);
 
-                if (distance <= areaRadius)
+                if (distance <= currentRadius)
                     AddEnemyTolist(EnemyManager.currentEnemies[i]);
             }
 

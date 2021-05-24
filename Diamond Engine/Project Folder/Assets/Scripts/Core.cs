@@ -1546,7 +1546,7 @@ public class Core : Entity
 
         Vector3 scale = baseScale;
         if (HasStatus(STATUS_TYPE.BOBBA_STUN_AMMO))
-            scale *= 1 + GetStatusData(STATUS_TYPE.BOBBA_STUN_AMMO).severity / 100;
+            scale *= (1 + GetStatusData(STATUS_TYPE.BOBBA_STUN_AMMO).severity / 100);
 
         float buttonPressedTimeNorm = 1f - (grenadeMaxLaunchTimer / grenadeLaunchMaxTime);
         buttonPressedTimeNorm *= buttonPressedTimeNorm;
