@@ -593,11 +593,4 @@ public class Wampa : Bosseslv2
         slowRushSpeed = 10.0f;
         restingTime = 1.0f;
     }
-
-
-    public void OnDestroy()
-    {
-        EnemyManager.RemoveEnemy(this.gameObject);
-    }
-
 }

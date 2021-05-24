@@ -644,6 +644,7 @@ public class StormTrooper : Enemy
     #region DIE
     private void StartDie()
     {
+        EnemyManager.RemoveEnemy(gameObject);
         dieTimer = dieTime;
 
         Animator.Play(gameObject, "ST_Die", speedMult);
@@ -652,8 +653,6 @@ public class StormTrooper : Enemy
         UpdateAnimationSpd(speedMult);
 
         Audio.PlayAudio(gameObject, "Play_Stormtrooper_Death");
-
-        EnemyManager.RemoveEnemy(gameObject);
 
         if (Core.instance != null)
         {
@@ -1018,10 +1017,5 @@ public class StormTrooper : Enemy
                 Animator.SetSpeed(blaster, newSpd);
             currAnimationPlaySpd = newSpd;
         }
-    }
-
-    public void OnDestroy()
-    {
-        EnemyManager.RemoveEnemy(this.gameObject);
     }
 }

@@ -920,9 +920,4 @@ public class Skytrooper : Enemy
 
         return gameObject.transform.localPosition + randomPosition * dashRange;
     }
-
-    public void OnDestroy()
-    {
-        EnemyManager.RemoveEnemy(this.gameObject);
-    }
 }
