@@ -192,6 +192,7 @@ public class Bosseslv2 : Entity
                     {
                         for(int i = 0;i<projectiles.Count;++i)
                         {
+                            if(projectiles[i]!=null)
                             projectiles[i].damage = (int)(projectiles[i].damage * damageMult);
                         }
                         projectiles[0].targetDirection = new Vector3(targetPos.x, targetPos.y, targetPos.z);
