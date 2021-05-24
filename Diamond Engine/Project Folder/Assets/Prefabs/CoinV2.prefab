@@ -68,29 +68,21 @@
                     "Density": 1
                 },
                 {
-                    "Type": 22,
-                    "Active": true,
-                    "isTrigger": true,
-                    "Position": [
-                        0,
-                        0,
-                        0
-                    ],
-                    "Rotation": [
-                        0,
-                        0,
-                        0,
-                        1
-                    ],
-                    "Radius": 0.69999998807907104
-                },
-                {
                     "Type": 3,
                     "Active": true,
                     "IsEmpty": true,
-                    "MaterialAssetPath": "Assets\/Materials\/vertex_color.mat",
+                    "MaterialAssetPath": "Empty",
                     "MaterialLibraryPath": "Library\/Materials\/82053990.mat",
                     "MaterialUID": 82053990
+                },
+                {
+                    "Type": 5,
+                    "Active": true,
+                    "ScriptName": "PullArea",
+                    "areaRange": 256,
+                    "initSpeed": 3,
+                    "finalSpeed": 10,
+                    "gettingDistance": 0.5
                 }
             ]
         }

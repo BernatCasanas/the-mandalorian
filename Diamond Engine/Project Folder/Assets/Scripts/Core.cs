@@ -2392,21 +2392,6 @@ public class Core : Entity
 
     public void OnTriggerEnter(GameObject triggeredGameObject)
     {
-        if (triggeredGameObject.CompareTag("Coin"))
-        {
-            PlayerResources.AddRunCoins(10);
-            Audio.PlayAudio(gameObject, "Play_UI_Credit_Pickup");
-
-            if (hud != null)
-            {
-                HUD hudComponent = hud.GetComponent<HUD>();
-
-                if (hudComponent != null)
-                    hudComponent.UpdateCurrency(PlayerResources.GetRunCoins());
-            }
-
-            InternalCalls.Destroy(triggeredGameObject);
-        }
 
         if (triggeredGameObject.CompareTag("Zone1"))
         {
@@ -2445,6 +2430,19 @@ public class Core : Entity
         }
     }
 
+    public void GetCoin()
+    {
+        PlayerResources.AddRunCoins(10);
+        Audio.PlayAudio(gameObject, "Play_UI_Credit_Pickup");
+
+        if (hud != null)
+        {
+            HUD hudComponent = hud.GetComponent<HUD>();
+
+            if (hudComponent != null)
+                hudComponent.UpdateCurrency(PlayerResources.GetRunCoins());
+        }
+    }
 
     public void RespawnOnFall()
     {
