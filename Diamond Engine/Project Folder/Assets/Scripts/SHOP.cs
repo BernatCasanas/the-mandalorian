@@ -92,7 +92,7 @@ public class SHOP : DiamondComponent
             if (envObj != null)
                 Audio.PlayAudio(envObj, "Play_Post_Boss_Room_2_Ambience");
         }
-        else if (RoomSwitch.currentLevelIndicator == RoomSwitch.LEVELS.THREE)
+        if (RoomSwitch.currentroom == RoomSwitch.levelLists[(int)RoomSwitch.currentLevelIndicator].preBossScene)
         {
             Audio.SetState("Game_State", "Run_3");
             Audio.SetState("Player_State", "Alive");
