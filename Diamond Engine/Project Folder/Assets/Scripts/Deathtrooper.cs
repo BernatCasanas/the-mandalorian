@@ -537,6 +537,7 @@ public class Deathtrooper : Enemy
     #region DIE
     private void StartDie()
     {
+        EnemyManager.RemoveEnemy(gameObject);
         dieTimer = dieTime;
 
         Animator.Play(gameObject, "DTH_Die");
@@ -546,8 +547,6 @@ public class Deathtrooper : Enemy
         Audio.PlayAudio(gameObject, "Play_Deathtrooper_Death");
         if (Core.instance != null)
             Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Kill_Voice");
-
-        EnemyManager.RemoveEnemy(gameObject);
 
         //Combo
         if (PlayerResources.CheckBoon(BOONS.BOON_MASTER_YODA_FORCE))
@@ -865,10 +864,4 @@ public class Deathtrooper : Enemy
     {
         return currentState;
     }
-
-    public void OnDestroy()
-    {
-        EnemyManager.RemoveEnemy(this.gameObject);
-    }
-
 }

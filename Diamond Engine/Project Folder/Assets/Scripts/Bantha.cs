@@ -623,7 +623,7 @@ public class Bantha : Enemy
     #region DIE
     private void StartDie()
     {
-        //Audio.StopAudio(gameObject);
+        EnemyManager.RemoveEnemy(gameObject);
 
         if (visualFeedback != null)
             InternalCalls.Destroy(visualFeedback);
@@ -665,7 +665,6 @@ public class Bantha : Enemy
     private void Die()
     {
         Counter.SumToCounterType(Counter.CounterTypes.ENEMY_BANTHA);
-        EnemyManager.RemoveEnemy(gameObject);
 
         DropCoins();
 
@@ -987,10 +986,5 @@ public class Bantha : Enemy
             Animator.SetSpeed(gameObject, newSpd);
             currAnimationPlaySpd = newSpd;
         }
-    }
-
-    public void OnDestroy()
-    {
-        EnemyManager.RemoveEnemy(this.gameObject);
     }
 }

@@ -785,6 +785,7 @@ public class HeavyTrooper : Enemy
     #region DIE
     private void StartDie()
     {
+        EnemyManager.RemoveEnemy(gameObject);
         dieTimer = dieTime;
 
         Animator.Play(gameObject, "HVY_Die", speedMult);
@@ -795,8 +796,6 @@ public class HeavyTrooper : Enemy
         Audio.PlayAudio(gameObject, "Play_Heavytrooper_Death");
         if (Core.instance != null)
             Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Kill_Voice");
-
-        EnemyManager.RemoveEnemy(gameObject);
 
         //Combo
         if (PlayerResources.CheckBoon(BOONS.BOON_MASTER_YODA_FORCE))
@@ -1124,10 +1123,5 @@ public class HeavyTrooper : Enemy
 
             currAnimationPlaySpd = newSpd;
         }
-    }
-
-    public void OnDestroy()
-    {
-        EnemyManager.RemoveEnemy(this.gameObject);
     }
 }

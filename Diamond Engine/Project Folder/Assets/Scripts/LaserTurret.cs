@@ -351,10 +351,10 @@ public class LaserTurret : Enemy
     #region DIE
     private void StartDie()
     {
+        EnemyManager.RemoveEnemy(gameObject);
         //Debug.Log("TURRET DIE");
         dieTimer = dieTime;
 
-        EnemyManager.RemoveEnemy(gameObject);
         if (Core.instance != null)
             Audio.PlayAudio(Core.instance.gameObject, "Play_Mando_Kill_Voice");
 
@@ -572,10 +572,5 @@ public class LaserTurret : Enemy
             }
         }
 
-    }
-
-    public void OnDestroy()
-    {
-        EnemyManager.RemoveEnemy(this.gameObject);
     }
 }

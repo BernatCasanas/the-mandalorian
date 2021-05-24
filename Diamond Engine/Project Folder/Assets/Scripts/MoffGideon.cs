@@ -976,6 +976,7 @@ public class MoffGideon : Entity
         dashBackWardDistance = 4f;
         dashForwardDistance = 8f;
         closerDistance = 6f;
+        touchDamage = 20f;
         if (cam_comp != null)
             cam_comp.target = Core.instance.gameObject;
         invencible = false;
