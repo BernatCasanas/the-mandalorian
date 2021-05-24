@@ -717,7 +717,7 @@ public class Bantha : Enemy
 
                 Audio.PlayAudio(gameObject, "Play_Growl_Bantha_Hit");
 
-                if (Core.instance.hud != null)
+                if (Core.instance.hud != null && currentState != STATE.DIE)
                 {
                     HUD hud = Core.instance.hud.GetComponent<HUD>();
 
@@ -855,7 +855,7 @@ public class Bantha : Enemy
                 }
             }
 
-            if(Core.instance != null)
+            if(Core.instance != null &&  currentState != STATE.DIE)
             {
                 if (Core.instance.hud != null)
                 {
@@ -876,7 +876,7 @@ public class Bantha : Enemy
             pushDir = triggeredGameObject.transform.GetForward();
             inputsList.Add(INPUT.IN_PUSHED);
 
-            if (Core.instance != null)
+            if (Core.instance != null && currentState != STATE.DIE)
             {
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
@@ -891,7 +891,7 @@ public class Bantha : Enemy
         {
             pushDir = triggeredGameObject.transform.GetForward();
             inputsList.Add(INPUT.IN_PUSHED);
-            if (Core.instance != null)
+            if (Core.instance != null && currentState != STATE.DIE)
             {
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 

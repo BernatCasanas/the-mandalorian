@@ -438,7 +438,7 @@ public class Skel : Bosseslv2
 
             //damaged = 1.0f; this is HUD things
 
-            if (Core.instance.hud != null)
+            if (Core.instance.hud != null && currentState != STATE.DEAD)
             {
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(25, 0.95f);
             }
@@ -501,7 +501,7 @@ public class Skel : Bosseslv2
 
             //damaged = 1.0f; this is HUD things
 
-            if (Core.instance.hud != null)
+            if (Core.instance.hud != null && currentState != STATE.DEAD)
             {
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(55, 0.25f);
             }

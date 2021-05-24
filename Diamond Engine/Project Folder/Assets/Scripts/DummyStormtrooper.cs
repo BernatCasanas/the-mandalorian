@@ -480,7 +480,7 @@ public class DummyStormtrooper : Enemy
 
             Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
-            if (Core.instance.hud != null)
+            if (Core.instance.hud != null && currentState != STATE.DIE)
             {
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
@@ -571,7 +571,7 @@ public class DummyStormtrooper : Enemy
 
                 Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
-                if (Core.instance.hud != null)
+                if (Core.instance.hud != null && currentState != STATE.DIE)
                 {
                     HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
@@ -599,7 +599,7 @@ public class DummyStormtrooper : Enemy
                     inputsList.Add(INPUT.IN_DIE);
             }
 
-            if (Core.instance != null)
+            if (Core.instance != null && currentState != STATE.DIE)
             {
                 if (Core.instance.hud != null)
                 {
@@ -622,7 +622,7 @@ public class DummyStormtrooper : Enemy
             pushDir = triggeredGameObject.transform.GetForward();
             inputsList.Add(INPUT.IN_PUSHED);
 
-            if (Core.instance != null)
+            if (Core.instance != null && currentState != STATE.DIE)
             {
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
@@ -639,7 +639,7 @@ public class DummyStormtrooper : Enemy
             pushDir = triggeredGameObject.transform.GetForward();
             inputsList.Add(INPUT.IN_PUSHED);
 
-            if (Core.instance != null)
+            if (Core.instance != null && currentState != STATE.DIE)
             {
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 

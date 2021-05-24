@@ -141,7 +141,7 @@ public class SlowGrenade : DiamondComponent
                                 }
                                 else if (procActivation == true)
                                 {
-                                    Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.4f);
+                                    Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.3f);
                                     bossScript.TakeDamage(grenadeDamage * bossScript.damageRecieveMult);
                                     bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
                                 }
@@ -161,7 +161,7 @@ public class SlowGrenade : DiamondComponent
                                 }
                                 else if (procActivation == true)
                                 {
-                                    Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.4f);
+                                    Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.3f);
                                     bossScript.TakeDamage(grenadeDamage * bossScript.damageRecieveMult);
                                     bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
                                 }
@@ -181,7 +181,7 @@ public class SlowGrenade : DiamondComponent
                                 }
                                 else if (procActivation == true)
                                 {
-                                    Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.4f);
+                                    Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.3f);
                                     bossScript.TakeDamage(grenadeDamage * bossScript.damageRecieveMult);
                                     bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
                                 }
@@ -201,7 +201,7 @@ public class SlowGrenade : DiamondComponent
                                 }
                                 else if (procActivation == true)
                                 {
-                                    Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.45f);
+                                    Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.3f);
                                     bossScript.TakeDamage(grenadeDamage * bossScript.damageRecieveMult);
                                     bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
                                 }
@@ -222,7 +222,7 @@ public class SlowGrenade : DiamondComponent
                     else if (procActivation == true)
                     {
                         Debug.Log("Enemy ticked!");
-                        Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.35f);
+                        Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.3f);
                         eneScript.TakeDamage(grenadeDamage * eneScript.damageRecieveMult);
                         eneScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
                     }

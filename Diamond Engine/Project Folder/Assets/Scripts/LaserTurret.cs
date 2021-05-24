@@ -413,7 +413,7 @@ public class LaserTurret : Enemy
             }
             Audio.PlayAudio(gameObject, "Play_Stormtrooper_Hit");
 
-            if (Core.instance.hud != null)
+            if (Core.instance.hud != null && currentState != STATE.DIE)
             {
                 Core.instance.hud.GetComponent<HUD>().AddToCombo(25, 0.95f);
             }

@@ -1440,7 +1440,7 @@ public class MoffGideon : Entity
                 Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Intimidation_Phase_2");
             }
 
-            if (Core.instance.hud != null)
+            if (Core.instance.hud != null  && currentState != MOFFGIDEON_STATE.DEAD)
             {
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
@@ -1523,7 +1523,7 @@ public class MoffGideon : Entity
             //CHANGE FOR APPROPIATE RANCOR HIT
             Audio.PlayAudio(gameObject, "Play_Moff_Guideon_Hit_Phase_1");
 
-            if (Core.instance.hud != null)
+            if (Core.instance.hud != null && currentState != MOFFGIDEON_STATE.DEAD)
             {
                 HUD hudComponent = Core.instance.hud.GetComponent<HUD>();
 
