@@ -42,8 +42,6 @@ public class BabyYoda : DiamondComponent
     private float forceFBTimer = 0.0f;
     public float forceFBTime = 0.25f;
 
-    private bool cryOnce = true;
-
     //State (INPUT AND STATE LOGIC)
     #region STATE
     private STATE state = STATE.MOVE;
@@ -154,7 +152,6 @@ public class BabyYoda : DiamondComponent
             forceGaugeFeedback.Enable(false);
 
         forceFBTime = 0.25f;
-        cryOnce = true;
     }
 
     public void Update()
@@ -179,12 +176,6 @@ public class BabyYoda : DiamondComponent
                 forceGaugeFeedback.Enable(false);
                 forceFBTimer = -1.0f;
             }
-        }
-
-        if (cryOnce && Mando.IsMandoDead())
-        {
-            cryOnce = false;
-            Audio.PlayAudio(gameObject, "Play_Grogu_Cry");
         }
     }
 
