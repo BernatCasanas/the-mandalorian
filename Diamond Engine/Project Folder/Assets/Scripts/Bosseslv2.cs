@@ -92,7 +92,6 @@ public class Bosseslv2 : Entity
     private bool returnToInitTarget = false;
     private float startBounceRushTime = 0.0f;
     public bool finalBounce = false;
-    //private float startBounceRushTimer = 0.0f;
 
     private bool firstThrow = true;
     public GameObject companion = null;
@@ -125,7 +124,6 @@ public class Bosseslv2 : Entity
 
         if (gameObject.CompareTag("Skel"))
         {
-            //presentationTime = Animator.GetAnimationDuration(gameObject, "Skel_Presentation") - 0.016f;
             startBounceRushTime = Animator.GetAnimationDuration(gameObject, "Skel_RushStart") - 0.016f;
             chargeTime = Animator.GetAnimationDuration(gameObject, "Skel_Jump_P1") - 0.05f;
             Debug.Log("Rush Start: " + startBounceRushTime.ToString());
@@ -224,8 +222,6 @@ public class Bosseslv2 : Entity
                 }
             }
         }
-        //Debug.Log("Projectile");
-        //Debug.Log(shootingTimer.ToString());
         if (projectilePoint == null) Debug.Log("Prohjectile null");
 
         UpdateAnimationSpd(speedMult);
@@ -357,9 +353,6 @@ public class Bosseslv2 : Entity
 
         initTarget = nearestColumn;
         finalTarget = nearestColumn.GetComponent<TargetColumn>().GetTarget(gameObject.transform.globalPosition);
-        //Debug.Log("Nearest column: " + nearestColumn.Name);
-        //Debug.Log("Final target: " + finalTarget.Name);
-        //Debug.Log("Started Bounce Rush");
         currentTarget = initTarget;
         returnToInitTarget = false;
 
@@ -403,8 +396,6 @@ public class Bosseslv2 : Entity
             finalBounce = true;
 
         }
-
-        //Debug.Log("Bounce Rush");
 
         UpdateAnimationSpd(speedMult);
         if (gameObject.CompareTag("Skel") && rushOnce)

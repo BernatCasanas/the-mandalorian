@@ -441,15 +441,10 @@ public class Wampa : Bosseslv2
             {
                 float damageToBoss = bulletComp.GetDamage();
 
-                //if (Skill_Tree_Data.IsEnabled((int)Skill_Tree_Data.SkillTreesNames.MANDO, (int)Skill_Tree_Data.MandoSkillNames.AGGRESION_INCREASE_DAMAGE_TO_BOSS))
-                //{
-                //    damageToBoss *= (1.0f + Skill_Tree_Data.GetMandoSkillTree().A6_increaseDamageToBossAmount);
-                //}
                 if (Core.instance != null)
                     damageToBoss *= Core.instance.DamageToBosses;
                 TakeDamage(damageToBoss * damageRecieveMult * BlasterVulnerability);
             }
-            //damaged = 1.0f; this is HUD things
 
             if (Core.instance.hud != null && currentState != STATE.DEAD)
             {
@@ -511,8 +506,6 @@ public class Wampa : Bosseslv2
                 }
                 TakeDamage(damageToBoss);
             }
-
-            //damaged = 1.0f; this is HUD things
 
             if (Core.instance.hud != null && currentState != STATE.DEAD)
             {
