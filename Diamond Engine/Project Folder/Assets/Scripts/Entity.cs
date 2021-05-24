@@ -100,6 +100,7 @@ public enum STATUS_TYPE
     ENEMY_DAMAGE_DOWN,
     ENEMY_VULNERABLE,
     ENEMY_DAMAGE_UP,
+    ENEMY_HP_UP,
     ENEMY_BLEED,
 
     // Boons
@@ -297,6 +298,8 @@ public class Entity : DiamondComponent
         if (HasStatus(STATUS_TYPE.ACCELERATED))
             counter++;
         if (HasStatus(STATUS_TYPE.ENEMY_DAMAGE_UP))
+            counter++;
+        if (HasStatus(STATUS_TYPE.ENEMY_HP_UP))
             counter++;
 
         return statuses.Count > counter;
