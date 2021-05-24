@@ -89,8 +89,10 @@ public class Skytrooper : Enemy
     //hit particles
     public GameObject hitParticlesObj = null;
     public GameObject sniperHitParticleObj = null;
+    public GameObject grenadeHitParticleObj = null;
     private ParticleSystem hitParticles = null;
     private ParticleSystem sniperHitParticle = null;
+    private ParticleSystem grenadeHitParticle = null;
 
     public void Awake()
     {
@@ -114,6 +116,9 @@ public class Skytrooper : Enemy
 
         if (sniperHitParticleObj != null)
             sniperHitParticle = sniperHitParticleObj.GetComponent<ParticleSystem>();
+
+        if (grenadeHitParticleObj != null)
+            grenadeHitParticle = grenadeHitParticleObj.GetComponent<ParticleSystem>();
         //else
         //Debug.Log("Hit particles gameobject not found!");
 
@@ -924,5 +929,11 @@ public class Skytrooper : Enemy
                                              (float)(Math.Sin(angle * Mathf.Deg2RRad) * direction.normalized.x + Math.Cos(angle * Mathf.Deg2RRad) * direction.normalized.z));
 
         return gameObject.transform.localPosition + randomPosition * dashRange;
+    }
+
+    public override void PlayGrenadeHitParticles()
+    {
+        if (grenadeHitParticle != null)
+            grenadeHitParticle.Play();
     }
 }

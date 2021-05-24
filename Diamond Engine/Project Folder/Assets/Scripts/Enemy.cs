@@ -232,4 +232,9 @@ public class Enemy : Entity
 		return healthPoints <= 0f;
 	}
 
+	public virtual void PlayGrenadeHitParticles()
+    {
+		return;
+    }
+
 }

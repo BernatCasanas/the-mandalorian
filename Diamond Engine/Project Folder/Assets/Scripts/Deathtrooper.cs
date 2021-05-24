@@ -90,6 +90,8 @@ public class Deathtrooper : Enemy
     private ParticleSystem shotgunParticle = null;
     public GameObject sniperHitParticleObj = null;
     private ParticleSystem sniperParticle = null;
+    public GameObject grenadeHitParticleObj = null;
+    private ParticleSystem grenadeHitParticle = null;
 
     public void Awake()
     {
@@ -119,6 +121,9 @@ public class Deathtrooper : Enemy
 
         if (sniperHitParticleObj != null)
             sniperParticle = sniperHitParticleObj.GetComponent<ParticleSystem>();
+
+        if (grenadeHitParticleObj != null)
+            grenadeHitParticle = grenadeHitParticleObj.GetComponent<ParticleSystem>();
 
         //else
         //{
@@ -873,4 +878,13 @@ public class Deathtrooper : Enemy
     {
         return currentState;
     }
+
+    public override void PlayGrenadeHitParticles()
+    {
+        if (grenadeHitParticle != null)
+        {
+            grenadeHitParticle.Play();
+        }
+    }
+
 }

@@ -225,6 +225,7 @@ public class SlowGrenade : DiamondComponent
                         Debug.Log("Enemy ticked!");
                         Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.3f);
                         eneScript.TakeDamage(grenadeDamage * eneScript.damageRecieveMult);
+                        eneScript.PlayGrenadeHitParticles();
                         eneScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
                     }
 

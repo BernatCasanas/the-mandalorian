@@ -62,9 +62,11 @@ public class LaserTurret : Enemy
     //Explosion effect
     public GameObject hit = null;
     public GameObject sniperHitObj = null;
+    public GameObject grenadeHitObj = null;
 
     private ParticleSystem hitParticle = null;
     private ParticleSystem sniperHitParticle = null;
+    private ParticleSystem grenadeHit = null;
 
     public void Awake()
     {
@@ -104,6 +106,10 @@ public class LaserTurret : Enemy
         if (sniperHitObj != null)
         {
             sniperHitParticle = sniperHitObj.GetComponent<ParticleSystem>();
+        }
+        if (grenadeHitObj != null)
+        {
+            grenadeHit = grenadeHitObj.GetComponent<ParticleSystem>();
         }
 
         rotationSpeed = shotTotalAngle * Mathf.Deg2RRad / shotTime;
@@ -581,5 +587,11 @@ public class LaserTurret : Enemy
             }
         }
 
+    }
+
+    public override void PlayGrenadeHitParticles()
+    {
+        if (grenadeHit != null)
+            grenadeHit.Play();
     }
 }

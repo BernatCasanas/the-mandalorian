@@ -47,6 +47,7 @@ public class Bantha : Enemy
     public GameObject hitParticles = null;
     public GameObject snipHitParticles = null;
     private GameObject visualFeedback = null;
+    private GameObject grenadeHitParticleObj = null;
 
     private bool straightPath = false;
 
@@ -994,6 +995,17 @@ public class Bantha : Enemy
         {
             Animator.SetSpeed(gameObject, newSpd);
             currAnimationPlaySpd = newSpd;
+        }
+    }
+
+    public override void PlayGrenadeHitParticles()
+    {
+        if (grenadeHitParticleObj != null)
+        {
+            ParticleSystem grenadeHitParticles = grenadeHitParticleObj.GetComponent<ParticleSystem>();
+
+            if (grenadeHitParticles != null)
+                grenadeHitParticles.Play();
         }
     }
 }

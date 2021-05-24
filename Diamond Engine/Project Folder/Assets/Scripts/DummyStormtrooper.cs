@@ -701,4 +701,11 @@ public class DummyStormtrooper : Enemy
             currAnimationPlaySpd = newSpd;
         }
     }
+
+    public override void PlayGrenadeHitParticles()
+    {
+        if (myParticles != null && myParticles.grenadeHit != null)
+            myParticles.grenadeHit.Play();
+    }
+
 }
