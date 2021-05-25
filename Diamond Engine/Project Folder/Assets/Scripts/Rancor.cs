@@ -1635,7 +1635,7 @@ public class Rancor : Entity
                 if (Core.instance != null)
                 {
                     if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))
-                        AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.WRECK_HEAVY_SHOT).severity / 100, 5);
+                        AddStatus(STATUS_TYPE.ENEMY_SLOWED, STATUS_APPLY_TYPE.SUBSTITUTE, Core.instance.GetStatusData(STATUS_TYPE.WRECK_HEAVY_SHOT).severity / 100, 3f);
 
                     if (Core.instance.HasStatus(STATUS_TYPE.LIFESTEAL))
                     {
@@ -1702,6 +1702,27 @@ public class Rancor : Entity
         {
             case STATUS_TYPE.SLOWED:
                 {
+                    if (this.speedMult <= 0.1f)
+                        statusToInit.severity = 0f;
+
+                    this.speedMult -= statusToInit.severity;
+
+                    if (speedMult < 0.1f)
+                    {
+                        statusToInit.severity = statusToInit.severity - (Math.Abs(this.speedMult) + 0.1f);
+
+                        speedMult = 0.1f;
+                    }
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+
+                }
+                break;
+            case STATUS_TYPE.ENEMY_SLOWED:
+                {
+                    if (this.speedMult <= 0.1f)
+                        statusToInit.severity = 0f;
+
                     this.speedMult -= statusToInit.severity;
 
                     if (speedMult < 0.1f)
@@ -1742,6 +1763,13 @@ public class Rancor : Entity
         switch (statusToDelete.statusType)
         {
             case STATUS_TYPE.SLOWED:
+                {
+                    this.speedMult += statusToDelete.severity;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.ENEMY_SLOWED:
                 {
                     this.speedMult += statusToDelete.severity;
 

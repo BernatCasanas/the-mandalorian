@@ -102,6 +102,7 @@ public enum STATUS_TYPE
     ENEMY_DAMAGE_UP,
     ENEMY_HP_UP,
     ENEMY_BLEED,
+    ENEMY_SLOWED,
 
     // Boons
     CAD_BANE_SOH,
@@ -426,6 +427,9 @@ public class Entity : DiamondComponent
         {
             case STATUS_TYPE.SLOWED:
                 {
+                    if (this.speedMult <= 0.1f)
+                        statusToInit.severity = 0f;
+
                     this.speedMult -= statusToInit.severity;
 
                     if (speedMult < 0.1f)

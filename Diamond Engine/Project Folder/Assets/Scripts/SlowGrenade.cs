@@ -90,7 +90,7 @@ public class SlowGrenade : DiamondComponent
                 float slow = 0.4f;
                 if (Core.instance != null)
                     if (Core.instance.HasStatus(STATUS_TYPE.SEC_SLOW))
-                        slow *= 1 + Core.instance.GetStatusData(STATUS_TYPE.SEC_SLOW).severity/100;
+                        slow *= (1f + Core.instance.GetStatusData(STATUS_TYPE.SEC_SLOW).severity / 100);
 
                 Entity myEntComp = enemies[i];
                 Enemy eneScript = null;
@@ -144,7 +144,7 @@ public class SlowGrenade : DiamondComponent
                                 {
                                     Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.3f);
                                     bossScript.TakeDamage(grenadeDamage * bossScript.damageRecieveMult);
-                                    bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
+                                    bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow *0.75f, 0.175f);
                                 }
                             }
                         }
@@ -164,7 +164,7 @@ public class SlowGrenade : DiamondComponent
                                 {
                                     Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.3f);
                                     bossScript.TakeDamage(grenadeDamage * bossScript.damageRecieveMult);
-                                    bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
+                                    bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow * 0.75f, 0.175f);
                                 }
                             }
                         }
@@ -184,7 +184,7 @@ public class SlowGrenade : DiamondComponent
                                 {
                                     Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.3f);
                                     bossScript.TakeDamage(grenadeDamage * bossScript.damageRecieveMult);
-                                    bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
+                                    bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow * 0.75f, 0.175f);
                                 }
                             }
                         }
@@ -204,7 +204,7 @@ public class SlowGrenade : DiamondComponent
                                 {
                                     Core.instance.hud.GetComponent<HUD>().AddToCombo(5, 1.3f);
                                     bossScript.TakeDamage(grenadeDamage * bossScript.damageRecieveMult);
-                                    bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow, 0.175f);
+                                    bossScript.AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.BIGGER_TIME, slow * 0.75f, 0.175f);
                                 }
                             }
                         }

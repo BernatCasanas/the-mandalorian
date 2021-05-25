@@ -536,7 +536,7 @@ public class Skel : Bosseslv2
                 if (Core.instance != null)
                 {
                     if (Core.instance.HasStatus(STATUS_TYPE.WRECK_HEAVY_SHOT) && HasStatus(STATUS_TYPE.SLOWED))
-                        AddStatus(STATUS_TYPE.SLOWED, STATUS_APPLY_TYPE.ADDITIVE, Core.instance.GetStatusData(STATUS_TYPE.WRECK_HEAVY_SHOT).severity / 100, 5);
+                        AddStatus(STATUS_TYPE.ENEMY_SLOWED, STATUS_APPLY_TYPE.SUBSTITUTE, Core.instance.GetStatusData(STATUS_TYPE.WRECK_HEAVY_SHOT).severity / 100, 3f);
 
                     if (Core.instance.HasStatus(STATUS_TYPE.LIFESTEAL))
                     {

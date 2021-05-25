@@ -816,6 +816,27 @@ public class Bosseslv2 : Entity
         {
             case STATUS_TYPE.SLOWED:
                 {
+                    if (this.speedMult <= 0.1f)
+                        statusToInit.severity = 0f;
+
+                    this.speedMult -= statusToInit.severity;
+
+                    if (speedMult < 0.1f)
+                    {
+                        statusToInit.severity = statusToInit.severity - (Math.Abs(this.speedMult) + 0.1f);
+
+                        speedMult = 0.1f;
+                    }
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+
+                }
+                break;
+            case STATUS_TYPE.ENEMY_SLOWED:
+                {
+                    if (this.speedMult <= 0.1f)
+                        statusToInit.severity = 0f;
+
                     this.speedMult -= statusToInit.severity;
 
                     if (speedMult < 0.1f)
@@ -873,6 +894,13 @@ public class Bosseslv2 : Entity
         switch (statusToDelete.statusType)
         {
             case STATUS_TYPE.SLOWED:
+                {
+                    this.speedMult += statusToDelete.severity;
+
+                    this.myDeltaTime = Time.deltaTime * speedMult;
+                }
+                break;
+            case STATUS_TYPE.ENEMY_SLOWED:
                 {
                     this.speedMult += statusToDelete.severity;
 
