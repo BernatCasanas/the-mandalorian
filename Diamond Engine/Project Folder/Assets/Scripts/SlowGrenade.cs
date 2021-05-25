@@ -90,7 +90,7 @@ public class SlowGrenade : DiamondComponent
                 float slow = 0.4f;
                 if (Core.instance != null)
                     if (Core.instance.HasStatus(STATUS_TYPE.SEC_SLOW))
-                        slow *= 1 + Core.instance.GetStatusData(STATUS_TYPE.SEC_SLOW).severity;
+                        slow *= 1 + Core.instance.GetStatusData(STATUS_TYPE.SEC_SLOW).severity/100;
 
                 Entity myEntComp = enemies[i];
                 Enemy eneScript = null;
